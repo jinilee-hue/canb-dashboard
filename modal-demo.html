@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>모달 데모 | CANB 캠퍼스</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="styles/common.css">
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">모달 컴포넌트</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" title="알림" aria-label="알림">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">모달 컴포넌트 데모</h1>
+        <p class="page-subtitle">디자인 시스템 모달 스타일 확인용 페이지입니다</p>
+      </div>
+    </div>
+
+    <!-- 모달 트리거 카드 -->
+    <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(260px,1fr));">
+
+      <!-- 정보 모달 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">기본 모달</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">정보 표시, 상세 보기 등 일반적인 용도의 기본 모달입니다.</p>
+        <button class="btn btn-primary" onclick="openModal('modal-info')">정보 모달 열기</button>
+      </div>
+
+      <!-- 폼 모달 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">폼 모달</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">입력 폼이 포함된 모달입니다. 등록·수정 작업에 사용합니다.</p>
+        <button class="btn btn-primary" onclick="openModal('modal-form')">폼 모달 열기</button>
+      </div>
+
+      <!-- 확인 모달 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">확인 모달 (소형)</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">동작 확인 요청 모달입니다. <code style="font-size:11px;background:var(--color-bg-muted);padding:1px 5px;border-radius:3px;">.modal-sm</code> 사용.</p>
+        <button class="btn btn-secondary" onclick="openModal('modal-confirm')">확인 모달 열기</button>
+      </div>
+
+      <!-- 삭제 확인 모달 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">삭제 확인 모달</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">삭제·취소 등 비가역적 동작에 대한 경고 확인 모달입니다.</p>
+        <button class="btn btn-danger" onclick="openModal('modal-delete')">삭제 모달 열기</button>
+      </div>
+
+      <!-- 대형 모달 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">대형 모달</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">넓은 콘텐츠가 필요한 경우. <code style="font-size:11px;background:var(--color-bg-muted);padding:1px 5px;border-radius:3px;">.modal-lg</code> 사용.</p>
+        <button class="btn btn-secondary" onclick="openModal('modal-large')">대형 모달 열기</button>
+      </div>
+
+      <!-- 날짜 피커 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">날짜 피커</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">Flatpickr 기반 날짜 선택 컴포넌트. 단일·범위 두 가지 모드 제공.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <input type="text" id="demoDate" class="fp-date-input" placeholder="단일 날짜 선택" readonly aria-label="단일 날짜">
+          <input type="text" id="demoRange" class="fp-date-input" placeholder="기간 선택" readonly aria-label="기간 선택">
+        </div>
+      </div>
+
+      <!-- 커스텀 셀렉트 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">커스텀 셀렉트</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);"><code style="font-size:11px;background:var(--color-bg-muted);padding:1px 5px;border-radius:3px;">filter-select</code> 클래스 사용 시 자동으로 커스텀 드롭다운으로 변환됩니다.</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <select class="filter-select" aria-label="과목 선택">
+            <option>전체 과목</option>
+            <option>수학</option>
+            <option>영어</option>
+            <option>과학</option>
+            <option>코딩</option>
+          </select>
+          <select class="filter-select" aria-label="담당자 선택">
+            <option>전체 담당자</option>
+            <option>박지연</option>
+            <option>최준호</option>
+            <option>김태현</option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 달력 인라인 프리뷰 -->
+    <div class="card section" style="margin-top:32px; overflow:visible;">
+      <div class="card-header">
+        <div>
+          <div class="card-title">날짜 피커 — 달력 UI</div>
+          <div class="card-subtitle">Flatpickr · os-theme-canb 테마 적용</div>
+        </div>
+      </div>
+      <div class="card-body" style="overflow:visible;">
+        <div style="display:flex;flex-wrap:wrap;gap:40px;align-items:start;">
+          <div style="min-width:320px;">
+            <p style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:var(--color-text-secondary);margin-bottom:16px;">단일 날짜 선택</p>
+            <input type="text" id="calInlineSingle" class="fp-date-input" readonly style="margin-bottom:12px;">
+          </div>
+          <div style="min-width:320px;">
+            <p style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:var(--color-text-secondary);margin-bottom:16px;">기간 선택 (Range)</p>
+            <input type="text" id="calInlineRange" class="fp-date-input" readonly style="margin-bottom:12px;">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 사용법 안내 -->
+    <div class="card section" style="margin-top:32px;">
+      <div class="card-header"><div class="card-title">사용법</div></div>
+      <div class="card-body">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <p style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:8px;">HTML 구조</p>
+            <pre style="font-size:12px;background:var(--color-bg-subtle);border:var(--border-default);border-radius:var(--radius-md);padding:16px;overflow-x:auto;line-height:1.6;color:var(--color-text-secondary);"><code>&lt;div class="modal-overlay" id="myModal"&gt;
+  &lt;div class="modal [modal-sm|modal-lg]"&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;span class="modal-title"&gt;제목&lt;/span&gt;
+      &lt;button class="modal-close"
+        onclick="closeModal('myModal')"&gt;✕&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;내용&lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button class="btn btn-secondary"
+        onclick="closeModal('myModal')"&gt;취소&lt;/button&gt;
+      &lt;button class="btn btn-primary"&gt;확인&lt;/button&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          </div>
+          <div>
+            <p style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:8px;">JavaScript</p>
+            <pre style="font-size:12px;background:var(--color-bg-subtle);border:var(--border-default);border-radius:var(--radius-md);padding:16px;overflow-x:auto;line-height:1.6;color:var(--color-text-secondary);"><code>// 열기
+openModal('myModal');
+
+// 닫기
+closeModal('myModal');
+
+// 오버레이 클릭 시 닫힘
+// → layout.js 전역 핸들러가 자동 처리</code></pre>
+            <div style="margin-top:16px;">
+              <p style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:8px;">크기 변형</p>
+              <table style="font-size:13px;width:100%;border-collapse:collapse;">
+                <tr style="border-bottom:var(--border-default);">
+                  <td style="padding:6px 8px;color:var(--color-text-secondary);">.modal</td>
+                  <td style="padding:6px 8px;color:var(--color-text-primary);">560px (기본)</td>
+                </tr>
+                <tr style="border-bottom:var(--border-default);">
+                  <td style="padding:6px 8px;color:var(--color-text-secondary);">.modal-sm</td>
+                  <td style="padding:6px 8px;color:var(--color-text-primary);">400px</td>
+                </tr>
+                <tr>
+                  <td style="padding:6px 8px;color:var(--color-text-secondary);">.modal-lg</td>
+                  <td style="padding:6px 8px;color:var(--color-text-primary);">720px</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- ── 모달 1: 기본 정보 ────────────────────── -->
+<div class="modal-overlay" id="modal-info">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">학생 상세 정보</span>
+      <button class="modal-close" onclick="closeModal('modal-info')" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;align-items:center;gap:16px;padding-bottom:20px;border-bottom:var(--border-default);">
+        <div class="avatar-circle" style="width:48px;height:48px;font-size:18px;flex-shrink:0;">김</div>
+        <div>
+          <div style="font-size:var(--text-lg);font-weight:var(--weight-semibold);color:var(--color-text-primary);">김민준</div>
+          <div style="font-size:var(--text-sm);color:var(--color-text-secondary);">중등 2학년 · 학번 2024-0042</div>
+        </div>
+        <span class="badge badge-success" style="margin-left:auto;">재원</span>
+      </div>
+      <div>
+        <div class="stat-row"><span class="stat-row-label">수강 과목</span><span class="stat-row-value">수학 · 과학</span></div>
+        <div class="stat-row"><span class="stat-row-label">담당 강사</span><span class="stat-row-value">박지연</span></div>
+        <div class="stat-row"><span class="stat-row-label">등록일</span><span class="stat-row-value">2024.03.04</span></div>
+        <div class="stat-row"><span class="stat-row-label">출석률</span><span class="stat-row-value">93.2%</span></div>
+        <div class="stat-row"><span class="stat-row-label">이번 달 수강료</span><span class="stat-row-value" style="font-weight:var(--weight-medium);">₩320,000</span></div>
+        <div class="stat-row"><span class="stat-row-label">납부 상태</span><span class="stat-row-value"><span class="badge badge-neutral">완납</span></span></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-info')">닫기</button>
+      <button class="btn btn-primary">수정</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 모달 2: 폼 입력 ─────────────────────── -->
+<div class="modal-overlay" id="modal-form">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="modal-title">학생 등록</span>
+      <button class="modal-close" onclick="closeModal('modal-form')" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid-2">
+        <div class="form-group">
+          <label class="form-label">이름 <span style="color:var(--color-danger);">*</span></label>
+          <input class="form-input" type="text" placeholder="학생 이름">
+        </div>
+        <div class="form-group">
+          <label class="form-label">학년 <span style="color:var(--color-danger);">*</span></label>
+          <select class="form-select">
+            <option value="">학년 선택</option>
+            <option>초등 4학년</option>
+            <option>초등 5학년</option>
+            <option>초등 6학년</option>
+            <option>중등 1학년</option>
+            <option>중등 2학년</option>
+            <option>중등 3학년</option>
+            <option>고등 1학년</option>
+            <option>고등 2학년</option>
+            <option>고등 3학년</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">보호자 연락처</label>
+          <input class="form-input" type="tel" placeholder="010-0000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">등록일</label>
+          <input class="form-input" type="date" value="2026-05-15">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">수강 과목</label>
+        <input class="form-input" type="text" placeholder="예: 수학, 영어">
+      </div>
+      <div class="form-group">
+        <label class="form-label">메모</label>
+        <textarea class="form-textarea" placeholder="특이사항 등 메모를 입력하세요"></textarea>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-form')">취소</button>
+      <button class="btn btn-primary">등록</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 모달 3: 확인 (소형) ─────────────────── -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <span class="modal-title">수납 처리 확인</span>
+      <button class="modal-close" onclick="closeModal('modal-confirm')" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" style="text-align:center;">
+      <p style="font-size:var(--text-base);color:var(--color-text-primary);margin-bottom:8px;">박도윤 학생의 수강료를 납부 처리하시겠습니까?</p>
+      <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">납부 금액: <strong style="color:var(--color-text-primary);">₩260,000</strong> · 계좌이체</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-confirm')">취소</button>
+      <button class="btn btn-primary">확인</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 모달 4: 삭제 확인 ───────────────────── -->
+<div class="modal-overlay" id="modal-delete">
+  <div class="modal modal-sm">
+    <div class="modal-header">
+      <span class="modal-title">학생 삭제</span>
+      <button class="modal-close" onclick="closeModal('modal-delete')" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" style="text-align:center;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+        <div style="width:44px;height:44px;border-radius:var(--radius-md);background:var(--color-danger-light);color:var(--color-danger);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <p style="font-size:var(--text-base);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:6px;">한나연 학생을 삭제하시겠습니까?</p>
+          <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">삭제된 데이터는 복구할 수 없습니다. 수강 이력 및 납부 내역이 모두 삭제됩니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-delete')">취소</button>
+      <button class="btn btn-danger">삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── 모달 5: 대형 ────────────────────────── -->
+<div class="modal-overlay" id="modal-large">
+  <div class="modal modal-lg">
+    <div class="modal-header">
+      <span class="modal-title">이번 달 미납 현황</span>
+      <button class="modal-close" onclick="closeModal('modal-large')" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>학생</th>
+              <th>학년</th>
+              <th>수강 과목</th>
+              <th class="text-right">미납액</th>
+              <th>미납 기간</th>
+              <th>상태</th>
+              <th class="text-center">액션</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="table-avatar"><div class="avatar-circle">박</div>박도윤</div></td>
+              <td class="text-secondary">초등 6학년</td>
+              <td class="text-center">수학 · 코딩</td>
+              <td class="text-right" style="font-weight:var(--weight-medium);">₩260,000</td>
+              <td class="text-center text-secondary">14일</td>
+              <td class="text-center"><span class="badge badge-danger">미납</span></td>
+              <td class="text-center"><button class="btn btn-primary btn-sm">수납처리</button></td>
+            </tr>
+            <tr>
+              <td><div class="table-avatar"><div class="avatar-circle">강</div>강준혁</div></td>
+              <td class="text-secondary">초등 5학년</td>
+              <td class="text-center">코딩</td>
+              <td class="text-right" style="font-weight:var(--weight-medium);">₩150,000</td>
+              <td class="text-center text-secondary">21일</td>
+              <td class="text-center"><span class="badge badge-danger">미납</span></td>
+              <td class="text-center"><button class="btn btn-primary btn-sm">수납처리</button></td>
+            </tr>
+            <tr>
+              <td><div class="table-avatar"><div class="avatar-circle">한</div>한나연</div></td>
+              <td class="text-secondary">초등 4학년</td>
+              <td class="text-center">국어 · 코딩</td>
+              <td class="text-right" style="font-weight:var(--weight-medium);">₩230,000</td>
+              <td class="text-center text-secondary">8일</td>
+              <td class="text-center"><span class="badge badge-danger">미납</span></td>
+              <td class="text-center"><button class="btn btn-primary btn-sm">수납처리</button></td>
+            </tr>
+            <tr>
+              <td><div class="table-avatar"><div class="avatar-circle">오</div>오태양</div></td>
+              <td class="text-secondary">중등 2학년</td>
+              <td class="text-center">수학</td>
+              <td class="text-right" style="font-weight:var(--weight-medium);">₩160,000</td>
+              <td class="text-center text-secondary">3일</td>
+              <td class="text-center"><span class="badge badge-warning">부분납</span></td>
+              <td class="text-center"><button class="btn btn-primary btn-sm">수납처리</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="closeModal('modal-large')">닫기</button>
+      <button class="btn btn-primary">일괄 안내 발송</button>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('modal-demo.html');
+
+  /* 날짜 피커 트리거 */
+  flatpickr('#demoDate', {
+    locale: fpLocale, dateFormat: 'Y.m.d', defaultDate: '2026-05-15', disableMobile: true,
+    onReady: function(_, __, fp) { initFlatpickrSelects(fp); },
+    onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
+  });
+  flatpickr('#demoRange', {
+    mode: 'range', locale: fpLocale, dateFormat: 'Y.m.d',
+    defaultDate: ['2026-05-13', '2026-05-19'], disableMobile: true,
+    onReady: function(_, __, fp) { initFlatpickrSelects(fp); },
+    onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
+  });
+
+  /* 인라인 달력 */
+  flatpickr('#calInlineSingle', {
+    inline: true, locale: fpLocale, dateFormat: 'Y.m.d', defaultDate: '2026-05-15',
+    onReady: function(_, __, fp) { initFlatpickrSelects(fp); },
+    onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
+  });
+  flatpickr('#calInlineRange', {
+    inline: true, mode: 'range', locale: fpLocale, dateFormat: 'Y.m.d',
+    defaultDate: ['2026-05-13', '2026-05-19'],
+    onReady: function(_, __, fp) { initFlatpickrSelects(fp); },
+    onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
+  });
+</script>
+</body>
+</html>

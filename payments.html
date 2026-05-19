@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수납 관리 | CANB 캠퍼스</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">수납 관리</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" title="내보내기" aria-label="내보내기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+      <button class="icon-btn" title="알림" aria-label="알림">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="badge-dot-indicator"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">수납 관리</h1>
+        <p class="page-subtitle">수강료 수납 현황을 관리하고 미납 학생을 추적합니다</p>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary">미납 안내 발송</button>
+        <button class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          수납 등록
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">이달 수납</span>
+          <div class="kpi-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value sm">₩8,520만</span>
+        <div class="kpi-change positive">▲ 5.2% 지난달 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">미수납</span>
+          <div class="kpi-icon red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value sm">₩1,240만</span>
+        <div class="kpi-change negative">미납 학생 112명</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">수납률</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">87.3%</span>
+        <div class="kpi-change positive">▲ 1.8% 지난달 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">이달 목표</span>
+          <div class="kpi-icon amber" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value sm">₩9,760만</span>
+        <div class="kpi-change negative">달성률 87.3%</div>
+      </div>
+    </div>
+
+    <!-- 월별 수납 추이 -->
+    <div class="chart-grid-3 section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">월별 수납 추이</div>
+            <div class="card-subtitle">최근 12개월</div>
+          </div>
+          <div class="period-tabs" role="group">
+            <button class="period-tab active">12개월</button>
+            <button class="period-tab">6개월</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="월별 수납 추이 차트">
+            <canvas id="paymentChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">수납 현황</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="수납 현황 도넛 차트">
+            <canvas id="payStatusChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 탭: 전체/미납/완납 -->
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true">전체 내역</button>
+      <button class="tab-btn" role="tab">미납 학생</button>
+      <button class="tab-btn" role="tab">이달 완납</button>
+    </div>
+
+    <!-- 수납 내역 테이블 -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="학생 이름 검색..." aria-label="학생 검색">
+      </div>
+      <select class="filter-select" aria-label="수납 방법">
+        <option>전체 방법</option>
+        <option>계좌이체</option>
+        <option>카드</option>
+        <option>현금</option>
+      </select>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">수납 내역</div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table>
+            <thead style="border-top: var(--border-default);">
+              <tr>
+                <th>학생</th>
+                <th>학년</th>
+                <th>수강 과목</th>
+                <th class="text-right">수강료</th>
+                <th>납부 방법</th>
+                <th>납부일</th>
+                <th>상태</th>
+                <th class="text-center">액션</th>
+              </tr>
+            </thead>
+            <tbody id="paymentBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('payments.html');
+
+  /* 탭 */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+    });
+  });
+  document.querySelectorAll('.period-tabs .period-tab').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.target.closest('.period-tabs').querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  const payments = [
+    { name:'김민준', grade:'중등 2학년', subjects:'수학·과학', fee:320000, method:'계좌이체', date:'2026.05.03', status:'완납' },
+    { name:'이서연', grade:'고등 1학년', subjects:'영어·국어',  fee:280000, method:'카드',    date:'2026.05.02', status:'완납' },
+    { name:'박도윤', grade:'초등 6학년', subjects:'수학·코딩',  fee:260000, method:'미납',    date:'–',          status:'미납' },
+    { name:'최수아', grade:'중등 3학년', subjects:'수학·영어·과학', fee:420000, method:'계좌이체', date:'2026.05.01', status:'완납' },
+    { name:'정하은', grade:'고등 2학년', subjects:'국어·사회',  fee:240000, method:'현금',   date:'2026.05.04', status:'완납' },
+    { name:'강준혁', grade:'초등 5학년', subjects:'코딩',       fee:150000, method:'미납',   date:'–',          status:'미납' },
+    { name:'윤지아', grade:'중등 1학년', subjects:'영어·수학',  fee:280000, method:'계좌이체', date:'2026.05.05', status:'부분납' },
+    { name:'임서준', grade:'고등 3학년', subjects:'수학·과학',  fee:380000, method:'카드',    date:'2026.05.01', status:'완납' },
+    { name:'한나연', grade:'초등 4학년', subjects:'국어·코딩',  fee:230000, method:'미납',   date:'–',          status:'미납' },
+    { name:'오태양', grade:'중등 2학년', subjects:'수학',       fee:160000, method:'미납',   date:'–',          status:'미납' },
+  ];
+
+  const stsCls = { '완납':'badge-neutral','미납':'badge-danger','부분납':'badge-warning' };
+  document.getElementById('paymentBody').innerHTML = payments.map(p => `
+    <tr>
+      <td><div class="table-avatar"><div class="avatar-circle">${p.name[0]}</div>${p.name}</div></td>
+      <td class="text-secondary">${p.grade}</td>
+      <td>${p.subjects}</td>
+      <td class="text-right" style="font-weight:var(--weight-medium);">${new Intl.NumberFormat('ko-KR',{style:'currency',currency:'KRW'}).format(p.fee)}</td>
+      <td class="text-secondary">${p.method === '미납' ? '–' : p.method}</td>
+      <td class="text-secondary">${p.date}</td>
+      <td><span class="badge ${stsCls[p.status]}">${p.status}</span></td>
+      <td class="text-center">${p.status === '완납'
+        ? `<button class="btn btn-secondary btn-sm">영수증</button>`
+        : `<button class="btn btn-primary btn-sm">수납처리</button>`
+      }</td>
+    </tr>
+  `).join('');
+
+  let _charts = {};
+
+  function buildCharts() {
+    setChartDefaults();
+    Object.values(_charts).forEach(ch => ch && ch.destroy());
+    const c = getChartColors();
+
+    _charts.payment = new Chart(document.getElementById('paymentChart'), {
+      type: 'bar',
+      data: {
+        labels: ['6월','7월','8월','9월','10월','11월','12월','1월','2월','3월','4월','5월'],
+        datasets: [
+          { label:'수납', data:[7820,7650,6980,8120,8340,8180,7240,8560,8720,8450,8100,8520], backgroundColor:c[0], borderRadius:3, barPercentage:0.45 },
+          { label:'미납', data:[1240,1380,1560,1020,980,1100,1850,890,760,1050,1240,1240], backgroundColor:c[5], borderRadius:3, barPercentage:0.45 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position:'bottom', labels:{ usePointStyle:true } } },
+        scales: {
+          x: { stacked:true, grid:{ display:false } },
+          y: { stacked:true, beginAtZero:true, ticks:{ callback: v => `${(v/10000).toFixed(0)}만` } }
+        }
+      }
+    });
+
+    _charts.status = new Chart(document.getElementById('payStatusChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['완납','미납','부분납'],
+        datasets: [{ data:[1082,112,53], backgroundColor:[c[0],c[2],c[3]] }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout:'65%',
+        plugins: { legend:{ position:'bottom', labels:{ usePointStyle:true } } }
+      }
+    });
+  }
+
+  buildCharts();
+  window.addEventListener('themechange', buildCharts);
+</script>
+</body>
+</html>

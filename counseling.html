@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>상담 관리 | CANB 캠퍼스</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">상담 관리</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" title="알림" aria-label="알림">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">상담 관리</h1>
+        <p class="page-subtitle">학생 및 학부모 상담 내역을 기록하고 관리합니다</p>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          일정 보기
+        </button>
+        <button class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          상담 등록
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">이달 총 상담</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">42</span>
+        <div class="kpi-change positive">▲ 8건 지난달 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">완료</span>
+          <div class="kpi-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">35</span>
+        <div class="kpi-change neutral">완료율 83.3%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">예정</span>
+          <div class="kpi-icon amber" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">7</span>
+        <div class="kpi-change neutral">이번 주 3건</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">후속 조치 필요</span>
+          <div class="kpi-icon red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">4</span>
+        <div class="kpi-change negative">즉각 대응 필요</div>
+      </div>
+    </div>
+
+    <!-- 차트 -->
+    <div class="chart-grid-2 section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">월별 상담 건수</div>
+            <div class="card-subtitle">최근 6개월</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="월별 상담 건수 추이 차트">
+            <canvas id="counselChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">상담 유형 분포</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="상담 유형 분포 차트">
+            <canvas id="counselTypeChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 탭 -->
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab">전체 (42)</button>
+      <button class="tab-btn" role="tab">완료 (35)</button>
+      <button class="tab-btn" role="tab">예정 (7)</button>
+      <button class="tab-btn" role="tab">후속 조치 (4)</button>
+    </div>
+
+    <!-- 필터 -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="학생 이름 검색..." aria-label="학생 검색">
+      </div>
+      <select class="filter-select" aria-label="상담 유형">
+        <option>전체 유형</option>
+        <option>학습 상담</option>
+        <option>진도 상담</option>
+        <option>학부모 상담</option>
+        <option>성적 상담</option>
+        <option>진로 상담</option>
+        <option>행동 상담</option>
+      </select>
+      <select class="filter-select" aria-label="담당자">
+        <option>전체 담당자</option>
+        <option>박지연</option>
+        <option>최준호</option>
+        <option>김태현</option>
+      </select>
+    </div>
+
+    <!-- 상담 목록 -->
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">상담 목록</div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table>
+            <thead style="border-top: var(--border-default);">
+              <tr>
+                <th>학생</th>
+                <th>학년</th>
+                <th>상담 유형</th>
+                <th>담당자</th>
+                <th>일시</th>
+                <th>주요 내용</th>
+                <th>결과</th>
+                <th>후속 조치</th>
+                <th class="text-center">액션</th>
+              </tr>
+            </thead>
+            <tbody id="counselBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('counseling.html');
+
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+    });
+  });
+
+  const counselings = [
+    { name:'김민준', grade:'중등 2학년', type:'학습 상담',  staff:'박지연', date:'2026.05.15 14:00', content:'수학 심화 단원 개념 점검',   result:'완료', followup:'' },
+    { name:'이서연', grade:'고등 1학년', type:'성적 상담',  staff:'최준호', date:'2026.05.15 16:00', content:'중간고사 대비 학습 전략',     result:'완료', followup:'' },
+    { name:'박도윤', grade:'초등 6학년', type:'학부모 상담',staff:'박지연', date:'2026.05.16 10:00', content:'수강료 미납 관련 면담',       result:'예정', followup:'납부 계획 확인 필요' },
+    { name:'최수아', grade:'중등 3학년', type:'진로 상담',  staff:'김태현', date:'2026.05.13 15:00', content:'고등학교 진학 준비 계획 수립', result:'완료', followup:'' },
+    { name:'정하은', grade:'고등 2학년', type:'학습 상담',  staff:'최준호', date:'2026.05.12 17:00', content:'국어 논술 작성 실력 향상 방안', result:'완료', followup:'' },
+    { name:'강준혁', grade:'초등 5학년', type:'행동 상담',  staff:'박지연', date:'2026.05.11 15:00', content:'수업 집중력 저하 문제 논의',   result:'완료', followup:'부모 연락 완료' },
+    { name:'윤지아', grade:'중등 1학년', type:'진도 상담',  staff:'박지연', date:'2026.05.17 14:00', content:'휴원 후 복귀 학습 계획',       result:'예정', followup:'' },
+    { name:'임서준', grade:'고등 3학년', type:'학습 상담',  staff:'김태현', date:'2026.05.10 18:00', content:'수능 D-200 전략 수립',        result:'완료', followup:'주 1회 모의고사' },
+    { name:'한나연', grade:'초등 4학년', type:'학부모 상담',staff:'박지연', date:'2026.05.09 11:00', content:'학습 진도 및 숙제 이행 점검', result:'완료', followup:'' },
+    { name:'오태양', grade:'중등 2학년', type:'성적 상담',  staff:'김태현', date:'2026.05.18 16:00', content:'수학 성적 급락 원인 분석',     result:'예정', followup:'심층 상담 필요' },
+  ];
+
+  const resCls   = { '완료':'badge-neutral','예정':'badge-warning','취소':'badge-danger' };
+  const typeCls  = { '학습 상담':'badge-neutral','성적 상담':'badge-neutral','학부모 상담':'badge-neutral','진로 상담':'badge-neutral','진도 상담':'badge-neutral','행동 상담':'badge-neutral' };
+
+  document.getElementById('counselBody').innerHTML = counselings.map(c => `
+    <tr>
+      <td><div class="table-avatar"><div class="avatar-circle">${c.name[0]}</div>${c.name}</div></td>
+      <td class="text-secondary">${c.grade}</td>
+      <td><span class="badge ${typeCls[c.type] || 'badge-neutral'}">${c.type}</span></td>
+      <td class="text-secondary">${c.staff}</td>
+      <td class="text-secondary" style="font-size:var(--text-xs);">${c.date}</td>
+      <td class="text-left" style="max-width:180px;white-space:normal;font-size:var(--text-xs);">${c.content}</td>
+      <td><span class="badge ${resCls[c.result]}">${c.result}</span></td>
+      <td style="max-width:140px;white-space:normal;font-size:var(--text-xs);color:${c.followup?'var(--color-danger)':'var(--color-text-tertiary)'};">${c.followup || '–'}</td>
+      <td class="text-center">
+        <button class="btn btn-secondary btn-sm">상세</button>
+      </td>
+    </tr>
+  `).join('');
+
+  let _charts = {};
+
+  function buildCharts() {
+    setChartDefaults();
+    Object.values(_charts).forEach(ch => ch && ch.destroy());
+    const c = getChartColors();
+
+    _charts.counsel = new Chart(document.getElementById('counselChart'), {
+      type: 'bar',
+      data: {
+        labels: ['12월','1월','2월','3월','4월','5월'],
+        datasets: [
+          { label:'학습/성적', data:[12,15,11,14,16,18], backgroundColor:c[0], borderRadius:3, barPercentage:0.45 },
+          { label:'학부모',    data:[5,6,4,7,6,8],        backgroundColor:c[1], borderRadius:3, barPercentage:0.45 },
+          { label:'진로/행동', data:[3,4,5,4,6,4],        backgroundColor:c[2], borderRadius:3, barPercentage:0.45 },
+          { label:'기타',      data:[2,3,2,4,6,12],       backgroundColor:c[3], borderRadius:3, barPercentage:0.45 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position:'bottom', labels:{ usePointStyle:true } } },
+        scales: {
+          x: { stacked:true, grid:{ display:false } },
+          y: { stacked:true, beginAtZero:true }
+        }
+      }
+    });
+
+    _charts.type = new Chart(document.getElementById('counselTypeChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['학습 상담','성적 상담','학부모 상담','진로 상담','행동 상담','기타'],
+        datasets: [{ data:[18,10,8,4,2,3], backgroundColor:[c[0],c[1],c[2],c[3],c[4],c[5]] }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false, cutout:'62%',
+        plugins: { legend:{ position:'bottom', labels:{ usePointStyle:true } } }
+      }
+    });
+  }
+
+  buildCharts();
+  window.addEventListener('themechange', buildCharts);
+</script>
+</body>
+</html>

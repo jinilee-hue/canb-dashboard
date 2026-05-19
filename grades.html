@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>성적 관리 | CANB 캠퍼스</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">성적 관리</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" title="내보내기" aria-label="내보내기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+      <button class="icon-btn" title="알림" aria-label="알림">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">성적 관리</h1>
+        <p class="page-subtitle">시험 결과를 분석하고 학생별 성취도를 파악합니다</p>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          성적표 출력
+        </button>
+        <button class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          시험 등록
+        </button>
+      </div>
+    </div>
+
+    <!-- 필터 -->
+    <div class="filter-bar">
+      <select class="filter-select" aria-label="과목 선택">
+        <option>수학 — 중등 2학년</option>
+        <option>영어 — 고등 1학년</option>
+        <option>과학 — 중등 1학년</option>
+        <option>국어 — 고등 2학년</option>
+      </select>
+      <select class="filter-select" aria-label="시험 유형">
+        <option>월간 테스트 (2026.05)</option>
+        <option>중간고사 (2026.04)</option>
+        <option>월간 테스트 (2026.04)</option>
+        <option>기말고사 (2026.02)</option>
+      </select>
+      <select class="filter-select" aria-label="정렬 기준">
+        <option>점수 높은 순</option>
+        <option>점수 낮은 순</option>
+        <option>이름 순</option>
+      </select>
+    </div>
+
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">평균 점수</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">76.4점</span>
+        <div class="kpi-change positive">▲ 3.2점 지난 달 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">최고점</span>
+          <div class="kpi-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">100점</span>
+        <div class="kpi-change neutral">김민준 (중등 2학년)</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">최저점</span>
+          <div class="kpi-icon red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">42점</span>
+        <div class="kpi-change negative">▼ 주의 필요</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">응시 인원</span>
+          <div class="kpi-icon cyan" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">234명</span>
+        <div class="kpi-change neutral">미응시 8명</div>
+      </div>
+    </div>
+
+    <!-- 차트 + 성적 분포 -->
+    <div class="chart-grid-3 section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">점수 구간별 분포</div>
+            <div class="card-subtitle">수학 — 중등 2학년 | 2026.05 월간 테스트</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="점수 구간별 분포 차트">
+            <canvas id="gradeDistChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">월별 평균 추이</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="월별 평균 추이 차트">
+            <canvas id="gradeTrendChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 학생별 성적 -->
+    <div class="card section">
+      <div class="card-header">
+        <div class="card-title">학생별 성적</div>
+        <span style="font-size:var(--text-sm);color:var(--color-text-tertiary);">234명 응시</span>
+      </div>
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table>
+            <thead style="border-top: var(--border-default);">
+              <tr>
+                <th>순위</th>
+                <th>학생</th>
+                <th>학년</th>
+                <th class="text-right">이번 점수</th>
+                <th class="text-right">지난달</th>
+                <th class="text-right">변화</th>
+                <th>등급</th>
+                <th>메모</th>
+              </tr>
+            </thead>
+            <tbody id="gradeBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('grades.html');
+
+  const grades = [
+    { name:'김민준', grade:'중등 2학년', score:100, prev:95, note:'' },
+    { name:'최수아', grade:'중등 2학년', score:97,  prev:91, note:'' },
+    { name:'이서연', grade:'중등 2학년', score:92,  prev:88, note:'' },
+    { name:'정하은', grade:'중등 2학년', score:88,  prev:93, note:'소폭 하락' },
+    { name:'박도윤', grade:'중등 2학년', score:85,  prev:79, note:'꾸준한 향상' },
+    { name:'강준혁', grade:'중등 2학년', score:81,  prev:82, note:'' },
+    { name:'윤지아', grade:'중등 2학년', score:76,  prev:70, note:'' },
+    { name:'임서준', grade:'중등 2학년', score:72,  prev:75, note:'' },
+    { name:'한나연', grade:'중등 2학년', score:65,  prev:60, note:'상담 권장' },
+    { name:'오태양', grade:'중등 2학년', score:42,  prev:51, note:'집중 관리 필요' },
+  ];
+
+  function gradeLabel(s) {
+    if (s >= 90) return ['A','badge-success'];
+    if (s >= 80) return ['B','badge-neutral'];
+    if (s >= 70) return ['C','badge-neutral'];
+    if (s >= 60) return ['D','badge-warning'];
+    return ['F','badge-danger'];
+  }
+
+  document.getElementById('gradeBody').innerHTML = grades.map((g, i) => {
+    const diff = g.score - g.prev;
+    const [gl, gc] = gradeLabel(g.score);
+    const changeClass = diff > 0 ? 'positive' : diff < 0 ? 'negative' : 'neutral';
+    const changeText = diff > 0 ? `▲ ${diff}` : diff < 0 ? `▼ ${Math.abs(diff)}` : '–';
+    return `<tr>
+      <td style="font-weight:var(--weight-medium);color:${i<3?'var(--color-primary)':'var(--color-text-secondary)'};">${i+1}</td>
+      <td><div class="table-avatar"><div class="avatar-circle">${g.name[0]}</div>${g.name}</div></td>
+      <td class="text-secondary">${g.grade}</td>
+      <td class="text-right" style="font-weight:var(--weight-semibold);font-size:var(--text-base);">${g.score}</td>
+      <td class="text-right text-secondary">${g.prev}</td>
+      <td class="text-right"><span class="kpi-change ${changeClass}" style="justify-content:flex-end;">${changeText}</span></td>
+      <td><span class="badge ${gc}">${gl}</span></td>
+      <td class="text-secondary" style="font-size:var(--text-xs);">${g.note}</td>
+    </tr>`;
+  }).join('');
+
+  let _charts = {};
+
+  function buildCharts() {
+    setChartDefaults();
+    Object.values(_charts).forEach(ch => ch && ch.destroy());
+    const c = getChartColors();
+
+    _charts.dist = new Chart(document.getElementById('gradeDistChart'), {
+      type: 'bar',
+      data: {
+        labels: ['0-49','50-59','60-69','70-79','80-89','90-100'],
+        datasets: [{
+          label: '학생 수',
+          data: [6, 12, 28, 62, 87, 39],
+          backgroundColor: [c[4],c[4],c[3],c[3],c[0],c[3]],
+          borderRadius: 5,
+          barPercentage: 0.45,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { beginAtZero: true, ticks: { stepSize: 20 } }
+        }
+      }
+    });
+
+    _charts.trend = new Chart(document.getElementById('gradeTrendChart'), {
+      type: 'line',
+      data: {
+        labels: ['12월','1월','2월','3월','4월','5월'],
+        datasets: [{
+          label: '평균 점수',
+          data: [68.2, 70.5, 71.8, 73.1, 73.2, 76.4],
+          borderColor: c[0],
+          backgroundColor: c[5],
+          fill: true,
+          borderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: c[0],
+          pointBorderColor: 'transparent',
+          pointBorderWidth: 0,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { min: 60, max: 90 }
+        }
+      }
+    });
+  }
+
+  buildCharts();
+  window.addEventListener('themechange', buildCharts);
+</script>
+</body>
+</html>

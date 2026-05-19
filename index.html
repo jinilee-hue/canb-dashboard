@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>대시보드 | CANB 캠퍼스</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">대시보드</span>
+      <span class="topbar-date" id="today-date"></span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" title="새로고침" aria-label="새로고침">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+      </button>
+      <button class="icon-btn" title="알림" aria-label="알림 3건">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="badge-dot-indicator"></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <!-- 페이지 헤더 -->
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">종합 현황</h1>
+        <p class="page-subtitle">CANB 캠퍼스 전체 운영 현황을 한눈에 확인하세요</p>
+      </div>
+      <div class="page-header-actions">
+        <div class="period-tabs" role="group" aria-label="기간 선택">
+          <button class="period-tab active">오늘</button>
+          <button class="period-tab">7일</button>
+          <button class="period-tab">30일</button>
+          <button class="period-tab">90일</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI 카드 -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">전체 학생</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">1,247</span>
+        <div class="kpi-change positive">▲ 3.8% 지난달 대비</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">이달 신규 등록</span>
+          <div class="kpi-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17 11 19 13 23 9"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">48</span>
+        <div class="kpi-change positive">▲ 12.5% 지난달 대비</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">이달 수납</span>
+          <div class="kpi-icon amber" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">₩8,520만</span>
+        <div class="kpi-change positive">▲ 5.2% 지난달 대비</div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">오늘 출석률</span>
+          <div class="kpi-icon cyan" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">94.2%</span>
+        <div class="kpi-change negative">▼ 0.8% 지난주 대비</div>
+      </div>
+    </div>
+
+    <!-- 차트 2열 -->
+    <div class="chart-grid-2 section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">월별 등록 학생 추이</div>
+            <div class="card-subtitle">최근 12개월</div>
+          </div>
+          <div class="period-tabs" role="group">
+            <button class="period-tab active">월</button>
+            <button class="period-tab">분기</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="월별 등록 학생 추이 차트">
+            <canvas id="enrollChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">과목별 수강 분포</div>
+            <div class="card-subtitle">전체 학생 기준</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="과목별 수강 분포 차트">
+            <canvas id="subjectChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 하단 2열 -->
+    <div class="chart-grid-2 section">
+      <!-- 최근 상담 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">최근 상담 내역</div>
+          <a href="counseling.html" class="btn btn-secondary btn-sm">전체 보기</a>
+        </div>
+        <div class="card-body">
+          <div class="table-wrapper">
+            <table>
+              <thead style="border-top: var(--border-default);">
+                <tr>
+                  <th>학생</th>
+                  <th>유형</th>
+                  <th>담당자</th>
+                  <th>일시</th>
+                  <th>결과</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><div class="table-avatar"><div class="avatar-circle">김</div>김민준</div></td>
+                  <td>학습 상담</td>
+                  <td class="text-secondary">박지연</td>
+                  <td class="text-secondary">2026.05.15</td>
+                  <td><span class="badge badge-neutral">완료</span></td>
+                </tr>
+                <tr>
+                  <td><div class="table-avatar"><div class="avatar-circle">이</div>이서연</div></td>
+                  <td>진도 상담</td>
+                  <td class="text-secondary">최준호</td>
+                  <td class="text-secondary">2026.05.14</td>
+                  <td><span class="badge badge-neutral">완료</span></td>
+                </tr>
+                <tr>
+                  <td><div class="table-avatar"><div class="avatar-circle">박</div>박도윤</div></td>
+                  <td>학부모 상담</td>
+                  <td class="text-secondary">박지연</td>
+                  <td class="text-secondary">2026.05.14</td>
+                  <td><span class="badge badge-warning">예정</span></td>
+                </tr>
+                <tr>
+                  <td><div class="table-avatar"><div class="avatar-circle">최</div>최수아</div></td>
+                  <td>성적 상담</td>
+                  <td class="text-secondary">김태현</td>
+                  <td class="text-secondary">2026.05.13</td>
+                  <td><span class="badge badge-neutral">완료</span></td>
+                </tr>
+                <tr>
+                  <td><div class="table-avatar"><div class="avatar-circle">정</div>정하은</div></td>
+                  <td>진로 상담</td>
+                  <td class="text-secondary">최준호</td>
+                  <td class="text-secondary">2026.05.12</td>
+                  <td><span class="badge badge-neutral">완료</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 오늘 출결 요약 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">오늘 출결 요약</div>
+          <a href="attendance.html" class="btn btn-secondary btn-sm">상세 보기</a>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-sm" role="img" aria-label="오늘 출결 현황 차트">
+            <canvas id="attendanceTodayChart"></canvas>
+          </div>
+          <div style="margin-top: var(--space-5);">
+            <div class="stat-row">
+              <span class="stat-row-label">출석</span>
+              <span class="stat-row-value" style="color: var(--color-success);">1,102명</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">결석</span>
+              <span class="stat-row-value" style="color: var(--color-text-secondary);">87명</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">지각</span>
+              <span class="stat-row-value" style="color: var(--color-text-secondary);">34명</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">조퇴</span>
+              <span class="stat-row-value" style="color: var(--color-text-secondary);">24명</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('index.html');
+
+  document.getElementById('today-date').textContent =
+    new Intl.DateTimeFormat('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' }).format(new Date());
+
+  document.querySelectorAll('.period-tabs').forEach(group => {
+    group.querySelectorAll('.period-tab').forEach(btn => {
+      btn.addEventListener('click', () => {
+        group.querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+  });
+
+  let _charts = {};
+
+  function buildCharts() {
+    setChartDefaults();
+    Object.values(_charts).forEach(ch => ch && ch.destroy());
+    const c = getChartColors();
+
+    _charts.enroll = new Chart(document.getElementById('enrollChart'), {
+      type: 'line',
+      data: {
+        labels: ['6월','7월','8월','9월','10월','11월','12월','1월','2월','3월','4월','5월'],
+        datasets: [{
+          label: '등록 학생',
+          data: [38, 42, 35, 51, 48, 44, 29, 56, 61, 52, 45, 48],
+          borderColor: c[0],
+          backgroundColor: c[5],
+          fill: true,
+          borderWidth: 2,
+          pointRadius: 5,
+          pointHoverRadius: 7,
+          pointBackgroundColor: c[0],
+          pointBorderColor: 'transparent',
+          pointBorderWidth: 0,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { beginAtZero: true, ticks: { stepSize: 20 } }
+        }
+      }
+    });
+
+    _charts.subject = new Chart(document.getElementById('subjectChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['수학','영어','과학','국어','코딩','사회'],
+        datasets: [{
+          data: [342, 298, 187, 164, 143, 113],
+          backgroundColor: [c[0],c[1],c[2],c[3],c[4],c[5]],
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        cutout: '65%',
+        plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } }
+      }
+    });
+
+    _charts.attendance = new Chart(document.getElementById('attendanceTodayChart'), {
+      type: 'bar',
+      data: {
+        labels: ['출석','결석','지각','조퇴'],
+        datasets: [{
+          data: [1102, 87, 34, 24],
+          backgroundColor: [c[0],c[1],c[2],c[3]],
+          borderRadius: 4,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  buildCharts();
+  window.addEventListener('themechange', buildCharts);
+</script>
+</body>
+</html>

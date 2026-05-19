@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>출결 관리 | CANB 캠퍼스</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">출결 관리</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" title="내보내기" aria-label="내보내기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+      <button class="icon-btn" title="알림" aria-label="알림">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">출결 관리</h1>
+        <p class="page-subtitle">학생 출결 현황을 실시간으로 확인하고 관리합니다</p>
+      </div>
+      <div class="page-header-actions">
+        <input type="text" id="datePicker" class="fp-date-input" placeholder="날짜 선택" readonly aria-label="날짜 선택">
+        <button class="btn btn-secondary">일괄 처리</button>
+        <button class="btn btn-primary">출결 입력</button>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">출석</span>
+          <div class="kpi-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">1,102</span>
+        <div class="kpi-change positive">출석률 88.4%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">결석</span>
+          <div class="kpi-icon red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">87</span>
+        <div class="kpi-change positive">▲ 12명 어제 대비</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">지각</span>
+          <div class="kpi-icon amber" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">34</span>
+        <div class="kpi-change neutral">전체의 2.7%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">조퇴</span>
+          <div class="kpi-icon cyan" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">24</span>
+        <div class="kpi-change positive">▲ 4명 어제 대비</div>
+      </div>
+    </div>
+
+    <!-- 주간 출결 추이 -->
+    <div class="chart-grid-3 section">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">주간 출결 추이</div>
+            <div class="card-subtitle">최근 4주</div>
+          </div>
+          <div class="period-tabs" role="group">
+            <button class="period-tab active">4주</button>
+            <button class="period-tab">8주</button>
+            <button class="period-tab">3개월</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="주간 출결 추이 차트">
+            <canvas id="attendanceChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">강좌별 출석률</div>
+        </div>
+        <div class="card-body no-pad">
+          <div id="subjectAttendance" style="padding:var(--space-4) var(--space-6);display:grid;grid-template-columns:1fr 1fr;gap:var(--space-3);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 결석/지각 학생 목록 -->
+    <div class="filter-bar">
+      <select class="filter-select" aria-label="출결 상태">
+        <option>전체</option>
+        <option>결석</option>
+        <option>지각</option>
+        <option>조퇴</option>
+      </select>
+      <select class="filter-select" aria-label="과목">
+        <option>전체 과목</option>
+        <option>수학</option>
+        <option>영어</option>
+        <option>과학</option>
+      </select>
+    </div>
+    <div class="card section">
+      <div class="card-header">
+        <div class="card-title">오늘 결석·지각 학생</div>
+      </div>
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table>
+            <thead style="border-top: var(--border-default);">
+              <tr>
+                <th>학생</th>
+                <th>학년</th>
+                <th>강좌명</th>
+                <th>상태</th>
+                <th>사유</th>
+                <th>연락처</th>
+                <th class="text-center">학부모 연락</th>
+              </tr>
+            </thead>
+            <tbody id="absenceBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ko.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/layout.js"></script>
+<script>
+  initLayout('attendance.html');
+
+  flatpickr('#datePicker', {
+    mode: 'single',
+    locale: fpLocale,
+    dateFormat: 'Y.m.d',
+    defaultDate: '2026-05-15',
+    disableMobile: true,
+    onReady: function(_, __, fp) { initFlatpickrSelects(fp); },
+    onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
+  });
+
+  document.querySelectorAll('.period-tabs .period-tab').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.target.closest('.period-tabs').querySelectorAll('.period-tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  /* 강좌별 출석률 */
+  const subData = [
+    { name:'수학', rate: 91.2 },
+    { name:'영어', rate: 94.6 },
+    { name:'과학', rate: 88.4 },
+    { name:'국어', rate: 96.1 },
+    { name:'코딩', rate: 97.3 },
+    { name:'사회', rate: 85.7 },
+  ];
+
+  const maxRate = Math.max(...subData.map(d => d.rate));
+  document.getElementById('subjectAttendance').innerHTML = subData.map(d => {
+    const barColor  = d.rate === maxRate ? 'var(--chart-1)' : d.rate >= 95 ? 'var(--chart-2)' : d.rate >= 88 ? 'var(--chart-3)' : 'var(--chart-4)';
+    const textColor = d.rate === maxRate ? 'var(--chart-1)' : 'var(--color-text-secondary)';
+    return `
+      <div style="padding:var(--space-5);border:var(--border-default);border-radius:var(--radius-lg);">
+        <div style="display:flex;justify-content:space-between;margin-bottom:8px;">
+          <span style="font-size:var(--text-sm);color:var(--color-text-secondary);">${d.name}</span>
+          <span style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:${textColor};">${d.rate}%</span>
+        </div>
+        <div style="height:8px;background:var(--color-bg-muted);border-radius:var(--radius-full);overflow:hidden;">
+          <div style="width:${d.rate}%;height:100%;background:${barColor};border-radius:var(--radius-full);"></div>
+        </div>
+      </div>`;
+  }).join('');
+
+  let _charts = {};
+
+  function buildCharts() {
+    setChartDefaults();
+    Object.values(_charts).forEach(ch => ch && ch.destroy());
+    const c = getChartColors();
+
+    _charts.attendance = new Chart(document.getElementById('attendanceChart'), {
+      type: 'bar',
+      data: {
+        labels: ['4/22','4/29','5/6','5/13'],
+        datasets: [
+          { label:'출석', data:[1098,1115,1089,1102], backgroundColor:c[0], borderRadius:3, barPercentage:0.45 },
+          { label:'결석', data:[92,76,105,87],        backgroundColor:c[1], borderRadius:3, barPercentage:0.45 },
+          { label:'지각', data:[28,31,24,34],          backgroundColor:c[2], borderRadius:3, barPercentage:0.45 },
+          { label:'조퇴', data:[29,25,29,24],          backgroundColor:c[3], borderRadius:3, barPercentage:0.45 },
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { usePointStyle: true } } },
+        scales: {
+          x: { stacked: true, grid: { display: false } },
+          y: { stacked: true, beginAtZero: true }
+        }
+      }
+    });
+  }
+
+  buildCharts();
+  window.addEventListener('themechange', buildCharts);
+
+  /* 결석·지각 목록 */
+  const absences = [
+    { name:'김민준', grade:'중등 2학년', course:'중등 수학 심화반A', status:'결석', reason:'병결', phone:'010-1234-5678', contacted:true },
+    { name:'이서연', grade:'고등 1학년', course:'고등 영어 독해반',  status:'지각', reason:'교통',  phone:'010-2345-6789', contacted:false },
+    { name:'박도윤', grade:'초등 6학년', course:'초등 수학 기초반',  status:'결석', reason:'미신고', phone:'010-3456-7890', contacted:false },
+    { name:'최수아', grade:'중등 3학년', course:'중등 과학 실험반',  status:'조퇴', reason:'조퇴허가', phone:'010-4567-8901', contacted:true },
+    { name:'강준혁', grade:'초등 5학년', course:'코딩 입문반',       status:'지각', reason:'교통',  phone:'010-5678-9012', contacted:false },
+    { name:'윤지아', grade:'중등 1학년', course:'중등 영어 회화반',  status:'결석', reason:'병결', phone:'010-6789-0123', contacted:true },
+  ];
+
+  const stsCls = { '결석':'badge-danger','지각':'badge-warning','조퇴':'badge-neutral' };
+  document.getElementById('absenceBody').innerHTML = absences.map(a => `
+    <tr>
+      <td><div class="table-avatar"><div class="avatar-circle">${a.name[0]}</div>${a.name}</div></td>
+      <td class="text-secondary">${a.grade}</td>
+      <td class="text-left">${a.course}</td>
+      <td><span class="badge ${stsCls[a.status]}">${a.status}</span></td>
+      <td class="text-secondary">${a.reason}</td>
+      <td class="text-secondary">${a.phone}</td>
+      <td class="text-center">${a.contacted
+        ? `<span class="badge badge-neutral">완료</span>`
+        : `<button class="btn btn-secondary btn-sm">연락하기</button>`
+      }</td>
+    </tr>
+  `).join('');
+</script>
+</body>
+</html>

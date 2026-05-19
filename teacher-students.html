@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Students | CANB Teacher Portal</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/styles/overlayscrollbars.min.css">
+  <link rel="stylesheet" href="styles/common.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    .progress-bar {
+      height: 6px;
+      background: var(--color-bg-muted);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      min-width: 100px;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: var(--radius-full);
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+<aside class="sidebar" id="sidebar"></aside>
+
+<div class="main-content">
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="topbar-title">Students</span>
+    </div>
+    <div class="topbar-actions">
+      <button class="icon-btn" title="Export" aria-label="Export">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </button>
+      <button class="icon-btn" title="Notifications" aria-label="Notifications">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <div class="page-header">
+      <div class="page-header-left">
+        <h1 class="page-title">My Students</h1>
+        <p class="page-subtitle">Track progress and attendance for the students in your classes</p>
+      </div>
+      <div class="page-header-actions">
+        <button class="btn btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Export
+        </button>
+      </div>
+    </div>
+
+    <!-- KPI -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">Total Students</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">108</span>
+        <div class="kpi-change positive">▲ 4 this month</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">Active</span>
+          <div class="kpi-icon green" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">101</span>
+        <div class="kpi-change neutral">93.5% of total</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">On Leave</span>
+          <div class="kpi-icon amber" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="10" y1="15" x2="10" y2="9"/><line x1="14" y1="15" x2="14" y2="9"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">7</span>
+        <div class="kpi-change neutral">temporary absence</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-card-header">
+          <span class="kpi-label">Avg Attendance</span>
+          <div class="kpi-icon cyan" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M9 16l2 2 4-4"/></svg>
+          </div>
+        </div>
+        <span class="kpi-value">94.2%</span>
+        <div class="kpi-change positive">▲ 1.8% vs last week</div>
+      </div>
+    </div>
+
+    <!-- Charts: by class + by level -->
+    <div class="chart-grid-2 section">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Students by Class</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="Students by class chart">
+            <canvas id="classChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Attendance by Class</div>
+        </div>
+        <div class="card-body">
+          <div class="chart-container-md" role="img" aria-label="Attendance by class chart">
+            <canvas id="attendanceClassChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div class="filter-bar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="search" placeholder="Search by name or student ID..." aria-label="Search students">
+      </div>
+      <select class="filter-select" aria-label="Class filter">
+        <option value="">All Classes</option>
+        <option>English Conversation A</option>
+        <option>English Conversation B</option>
+        <option>Reading Comprehension</option>
+        <option>Grammar Workshop</option>
+        <option>Speaking Club</option>
+        <option>Writing Lab</option>
+      </select>
+      <select class="filter-select" aria-label="Level filter">
+        <option value="">All Levels</option>
+        <option>Beginner</option>
+        <option>Intermediate</option>
+        <option>Advanced</option>
+        <option>Proficient</option>
+      </select>
+      <select class="filter-select" aria-label="Status filter">
+        <option value="">All Status</option>
+        <option>Active</option>
+        <option>On Leave</option>
+      </select>
+    </div>
+
+    <!-- Student table -->
+    <div class="card section">
+      <div class="card-header">
+        <div class="card-title">Student List</div>
+        <span class="text-secondary" style="font-size:var(--text-sm);">108 students</span>
+      </div>
+      <div class="card-body">
+        <div class="table-wrapper">
+          <table>
+            <thead style="border-top: var(--border-default);">
+              <tr>
+                <th class="text-left">Student</th>
+                <th class="text-left">Class</th>
+                <th>Level</th>
+                <th>Grade</th>
+                <th class="text-right">Attendance</th>
+                <th class="text-left">Progress</th>
+                <th>Last Lesson</th>
+                <th>Status</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="studentBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.16.0/browser/overlayscrollbars.browser.es5.min.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/teacher-layout.js"></script>
+<script>
+  initLayout('teacher-students.html');
+
+  const students = [
+    { name:'Min-jun Kim',   id:'CB-2410',  cls:'English Conversation A', level:'Beginner',     grade:'G4', att:96.5, prog:78, last:'May 19', status:'Active'   },
+    { name:'Soo-yeon Park', id:'CB-2418',  cls:'Speaking Club',          level:'Advanced',     grade:'G6', att:98.2, prog:92, last:'May 19', status:'Active'   },
+    { name:'Ji-woo Lee',    id:'CB-2401',  cls:'Reading Comprehension',  level:'Intermediate', grade:'G5', att:91.8, prog:65, last:'May 19', status:'Active'   },
+    { name:'Do-yun Park',   id:'CB-2407',  cls:'Grammar Workshop',       level:'Intermediate', grade:'G5', att:88.4, prog:71, last:'May 19', status:'Active'   },
+    { name:'Su-ah Choi',    id:'CB-2412',  cls:'Writing Lab',            level:'Advanced',     grade:'G6', att:94.7, prog:84, last:'May 19', status:'Active'   },
+    { name:'Ha-eun Jung',   id:'CB-2419',  cls:'Speaking Club',          level:'Advanced',     grade:'G6', att:97.1, prog:88, last:'May 19', status:'Active'   },
+    { name:'Yu-jin Han',    id:'CB-2425',  cls:'English Conversation B', level:'Beginner',     grade:'G3', att:82.3, prog:54, last:'May 16', status:'On Leave' },
+    { name:'Tae-hyun Oh',   id:'CB-2403',  cls:'Reading Comprehension',  level:'Intermediate', grade:'G5', att:93.0, prog:68, last:'May 19', status:'Active'   },
+    { name:'Seo-hyun Yoon', id:'CB-2421',  cls:'Writing Lab',            level:'Advanced',     grade:'G6', att:99.0, prog:95, last:'May 19', status:'Active'   },
+    { name:'Joon-ho Kang',  id:'CB-2414',  cls:'Grammar Workshop',       level:'Intermediate', grade:'G4', att:86.2, prog:62, last:'May 19', status:'Active'   },
+    { name:'Na-eun Shin',   id:'CB-2429',  cls:'English Conversation A', level:'Beginner',     grade:'G3', att:95.3, prog:74, last:'May 19', status:'Active'   },
+    { name:'Hyun-woo Im',   id:'CB-2432',  cls:'Speaking Club',          level:'Advanced',     grade:'G6', att:79.5, prog:58, last:'May 14', status:'On Leave' },
+  ];
+
+  const stsCls = { 'Active':'badge-success', 'On Leave':'badge-warning' };
+
+  function attColor(v) {
+    if (v >= 95) return 'var(--color-success)';
+    if (v >= 90) return 'var(--color-text-primary)';
+    if (v >= 85) return 'var(--color-warning)';
+    return 'var(--color-danger)';
+  }
+
+  function progColor(v) {
+    if (v >= 85) return 'var(--chart-1)';
+    if (v >= 70) return 'var(--chart-2)';
+    return 'var(--chart-3)';
+  }
+
+  document.getElementById('studentBody').innerHTML = students.map(s => `
+    <tr>
+      <td class="text-left">
+        <div class="table-avatar">
+          <div class="avatar-circle" style="background:var(--color-primary-light);color:var(--color-primary);">${s.name[0]}</div>
+          <div>
+            <div style="font-weight:var(--weight-medium);">${s.name}</div>
+            <div class="text-secondary" style="font-size:var(--text-xs);">${s.id}</div>
+          </div>
+        </div>
+      </td>
+      <td class="text-left">${s.cls}</td>
+      <td><span class="badge badge-neutral">${s.level}</span></td>
+      <td class="text-secondary">${s.grade}</td>
+      <td class="text-right" style="font-weight:var(--weight-medium);color:${attColor(s.att)};">${s.att.toFixed(1)}%</td>
+      <td class="text-left">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div class="progress-bar"><div class="progress-fill" style="width:${s.prog}%;background:${progColor(s.prog)};"></div></div>
+          <span class="text-secondary" style="font-size:var(--text-xs);width:30px;">${s.prog}%</span>
+        </div>
+      </td>
+      <td class="text-secondary" style="font-size:var(--text-xs);">${s.last}</td>
+      <td><span class="badge ${stsCls[s.status]}">${s.status}</span></td>
+      <td class="text-center"><button class="btn btn-secondary btn-sm">Details</button></td>
+    </tr>
+  `).join('');
+
+  let _charts = {};
+
+  function buildCharts() {
+    setChartDefaults();
+    Object.values(_charts).forEach(ch => ch && ch.destroy());
+    const c = getChartColors();
+
+    _charts.cls = new Chart(document.getElementById('classChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Conv A','Conv B','Reading','Grammar','Speaking','Writing'],
+        datasets: [{
+          label: 'Students',
+          data: [22, 18, 19, 21, 14, 14],
+          backgroundColor: [c[0], c[1], c[1], c[2], c[2], c[3]],
+          borderRadius: 3,
+          barPercentage: 0.45,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { grid: { display: false } },
+          y: { beginAtZero: true, ticks: { stepSize: 5 } }
+        }
+      }
+    });
+
+    _charts.att = new Chart(document.getElementById('attendanceClassChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Conv A','Conv B','Reading','Grammar','Speaking','Writing'],
+        datasets: [{
+          label: 'Attendance %',
+          data: [95.2, 88.6, 93.1, 90.4, 96.8, 97.2],
+          backgroundColor: c[0],
+          borderRadius: 3,
+          barPercentage: 0.45,
+        }]
+      },
+      options: {
+        indexAxis: 'y',
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { beginAtZero: true, min: 80, max: 100, ticks: { callback: v => v + '%' } },
+          y: { grid: { display: false } }
+        }
+      }
+    });
+  }
+
+  buildCharts();
+  window.addEventListener('themechange', buildCharts);
+</script>
+</body>
+</html>
