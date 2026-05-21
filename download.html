@@ -13,677 +13,569 @@
       --magenta:       #BC216D;
       --magenta-dark:  #9A1D5E;
       --magenta-light: #FAEAF3;
-      --magenta-mid:   rgba(188,33,109,0.12);
-      --gray-50:  #F9FAFB;
-      --gray-100: #F3F4F6;
-      --gray-200: #E5E7EB;
-      --gray-400: #9CA3AF;
-      --gray-600: #6B7280;
-      --gray-800: #1F2937;
-      --gray-900: #111827;
-      --radius:   12px;
-      --shadow:   0 4px 24px rgba(0,0,0,0.08);
+      --text-primary:  #111827;
+      --text-secondary:#6B7280;
+      --text-tertiary: #9CA3AF;
+      --bg:            #FFFFFF;
+      --bg-subtle:     #F7F8FA;
+      --border:        #E2E5EA;
+      --border-strong: #C4C8D0;
+      --shadow-sm:     0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md:     0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg:     0 10px 28px rgba(0,0,0,0.10);
+      --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-xl: 20px;
     }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
-      background: var(--gray-50);
-      color: var(--gray-900);
+      color: var(--text-primary);
+      background: var(--bg);
       line-height: 1.6;
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── NAV ── */
-    nav {
-      background: #fff;
-      border-bottom: 1px solid var(--gray-200);
-      padding: 0 40px;
-      height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: sticky;
-      top: 0;
-      z-index: 100;
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── TOPNAV ── */
+    .topnav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      font-size: 15px;
-      color: var(--gray-900);
-      text-decoration: none;
+    .topnav .container { height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .brand {
+      font-size: 16px; font-weight: 700; color: var(--text-primary);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
     }
-    .nav-logo {
-      width: 32px; height: 32px;
-      background: var(--magenta-light);
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
+    .brand-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--magenta); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { font-size: 14px; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text-primary); }
+    .nav-dl {
+      background: var(--magenta); color: #fff !important;
+      padding: 7px 18px; border-radius: 8px;
+      font-weight: 600; font-size: 13px !important;
+      transition: background 0.15s !important;
     }
-    .nav-logo svg { width: 16px; height: 16px; color: var(--magenta); }
+    .nav-dl:hover { background: var(--magenta-dark) !important; color: #fff !important; }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: inherit; font-weight: 600; border: none;
+      cursor: pointer; text-decoration: none;
+      transition: all 0.15s; white-space: nowrap;
+    }
+    .btn-lg { font-size: 15px; padding: 13px 28px; border-radius: 10px; }
+    .btn-sm { font-size: 13px; padding: 7px 16px; border-radius: 8px; }
+    .btn-primary { background: var(--magenta); color: #fff; }
+    .btn-primary:hover { background: var(--magenta-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(188,33,109,0.30); }
+    .btn-secondary { background: var(--bg-subtle); color: var(--text-primary); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: #fff; border-color: var(--border-strong); }
+    .btn-white { background: #fff; color: var(--magenta); }
+    .btn-white:hover { background: var(--magenta-light); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.14); }
+    .btn-ghost-white { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.38); }
+    .btn-ghost-white:hover { background: rgba(255,255,255,0.10); }
+    .btn svg { width: 16px; height: 16px; flex-shrink: 0; }
 
     /* ── HERO ── */
-    .hero {
-      background: linear-gradient(135deg, #fff 0%, var(--magenta-light) 100%);
-      border-bottom: 1px solid var(--gray-200);
-      padding: 80px 40px 72px;
-      text-align: center;
-    }
+    .hero { padding: 96px 0 84px; text-align: center; }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: var(--magenta-light);
-      color: var(--magenta);
-      font-size: 12px;
-      font-weight: 600;
-      padding: 4px 12px;
-      border-radius: 99px;
-      margin-bottom: 20px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--magenta-light); color: var(--magenta);
+      font-size: 12px; font-weight: 600;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 28px;
     }
+    .hero-badge svg { width: 13px; height: 13px; }
     .hero h1 {
-      font-size: 48px;
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-      color: var(--gray-900);
-      margin-bottom: 16px;
+      font-size: clamp(34px, 5vw, 52px); font-weight: 700;
+      line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 20px;
     }
-    .hero h1 span { color: var(--magenta); }
-    .hero p {
-      font-size: 18px;
-      color: var(--gray-600);
-      max-width: 560px;
-      margin: 0 auto 36px;
+    .accent { color: var(--magenta); }
+    .hero-desc {
+      font-size: 18px; color: var(--text-secondary);
+      max-width: 540px; margin: 0 auto 28px; line-height: 1.75;
     }
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .btn-download {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--magenta);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 600;
-      padding: 13px 28px;
-      border-radius: 10px;
-      text-decoration: none;
-      transition: background 0.15s;
-    }
-    .btn-download:hover { background: var(--magenta-dark); }
-    .btn-download svg { width: 18px; height: 18px; }
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #fff;
-      color: var(--gray-800);
-      font-size: 15px;
-      font-weight: 500;
-      padding: 13px 28px;
-      border-radius: 10px;
-      border: 1px solid var(--gray-200);
-      text-decoration: none;
-      transition: border-color 0.15s;
-    }
-    .btn-secondary:hover { border-color: var(--gray-400); }
     .hero-meta {
-      margin-top: 24px;
-      font-size: 13px;
-      color: var(--gray-400);
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--text-tertiary);
+      background: var(--bg-subtle); padding: 7px 18px;
+      border-radius: 100px; border: 1px solid var(--border); margin-bottom: 36px;
     }
-
-    /* ── CONTAINER ── */
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 40px;
-    }
+    .sep { color: var(--border-strong); }
+    .hero-actions { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
 
     /* ── SECTION ── */
-    section { padding: 64px 0; }
-    .section-label {
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--magenta);
-      margin-bottom: 8px;
+    .section { padding: 88px 0; }
+    .section-bg { background: var(--bg-subtle); }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .kicker {
+      font-size: 11px; font-weight: 700; color: var(--magenta);
+      letter-spacing: 1.2px; text-transform: uppercase; margin-bottom: 12px;
     }
-    .section-title {
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      margin-bottom: 12px;
-    }
-    .section-desc {
-      font-size: 16px;
-      color: var(--gray-600);
-      margin-bottom: 40px;
-    }
+    .section-title { font-size: 32px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 12px; }
+    .section-desc { font-size: 16px; color: var(--text-secondary); max-width: 440px; margin: 0 auto; }
+    hr.div { border: none; border-top: 1px solid var(--border); }
 
-    /* ── FILES GRID ── */
-    .files-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 16px;
+    /* ── PACKAGE GRID ── */
+    .pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .pkg-card {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: var(--r-lg); padding: 28px 24px;
+      transition: box-shadow 0.2s, border-color 0.2s;
     }
-    .file-card {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      padding: 20px 22px;
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
+    .pkg-card:hover { box-shadow: var(--shadow-md); border-color: var(--border-strong); }
+    .pkg-icon {
+      width: 44px; height: 44px; background: var(--magenta-light);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px; color: var(--magenta);
     }
-    .file-icon {
-      width: 40px; height: 40px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 18px;
+    .pkg-icon svg { width: 21px; height: 21px; }
+    .pkg-title { font-size: 14px; font-weight: 600; margin-bottom: 7px; }
+    .pkg-filename {
+      display: inline-block; font-size: 11px;
+      font-family: 'JetBrains Mono','Fira Code',monospace;
+      background: var(--bg-subtle); color: var(--text-secondary);
+      padding: 3px 8px; border-radius: 5px; margin-bottom: 11px;
+      border: 1px solid var(--border);
     }
-    .file-icon.skill  { background: var(--magenta-light); }
-    .file-icon.css    { background: #EFF6FF; }
-    .file-icon.js     { background: #FFFBEB; }
-    .file-icon.doc    { background: #F0FDF4; }
-    .file-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-    .file-info p  { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
-    .file-tag {
-      display: inline-block;
-      margin-top: 8px;
-      font-size: 11px;
-      font-weight: 500;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: var(--gray-100);
-      color: var(--gray-600);
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    /* ── STEPS ── */
-    .steps { display: flex; flex-direction: column; gap: 0; }
-    .step {
-      display: flex;
-      gap: 20px;
-      position: relative;
-    }
-    .step:not(:last-child)::before {
-      content: '';
-      position: absolute;
-      left: 19px;
-      top: 40px;
-      bottom: -24px;
-      width: 2px;
-      background: var(--gray-200);
-    }
-    .step-num {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: var(--magenta);
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      position: relative;
-      z-index: 1;
-    }
-    .step-body {
-      padding-bottom: 40px;
-      flex: 1;
-    }
-    .step-body h4 { font-size: 16px; font-weight: 600; margin-bottom: 6px; margin-top: 8px; }
-    .step-body p  { font-size: 14px; color: var(--gray-600); margin-bottom: 12px; }
-    pre {
-      background: var(--gray-900);
-      color: #E5E7EB;
-      border-radius: 8px;
-      padding: 14px 16px;
-      font-size: 13px;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      overflow-x: auto;
-      line-height: 1.7;
-    }
-    pre .comment { color: #6B7280; }
-    pre .path    { color: #93C5FD; }
-    pre .cmd     { color: #A7F3D0; }
+    .pkg-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+    code { font-family: 'JetBrains Mono','Fira Code',monospace; font-size: 12px; background: #F3F4F6; padding: 1px 5px; border-radius: 4px; }
 
     /* ── FEATURES ── */
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
+    .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .feat-item {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 22px; background: var(--bg);
+      border-radius: var(--r-md); border: 1px solid var(--border);
     }
-    .feature-card {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: var(--radius);
-      padding: 22px;
-      text-align: center;
+    .feat-icon {
+      width: 36px; height: 36px; background: var(--magenta-light);
+      border-radius: 8px; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0; color: var(--magenta);
     }
-    .feature-icon {
-      width: 48px; height: 48px;
-      background: var(--magenta-light);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 14px;
+    .feat-icon svg { width: 18px; height: 18px; }
+    .feat-title { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+    .feat-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ── EXAMPLES ── */
+    .examples-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+    .ex-card {
+      border: 1px solid var(--border); border-radius: var(--r-xl);
+      overflow: hidden; transition: box-shadow 0.2s, transform 0.2s;
     }
-    .feature-icon svg { width: 22px; height: 22px; color: var(--magenta); }
-    .feature-card h4 { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-    .feature-card p  { font-size: 13px; color: var(--gray-600); }
+    .ex-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .ex-body { padding: 26px 24px 28px; }
+    .ex-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600; color: var(--magenta);
+      background: var(--magenta-light); padding: 3px 10px;
+      border-radius: 100px; margin-bottom: 10px;
+    }
+    .ex-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .ex-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
+    .ex-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+    .ex-stat { display: flex; align-items: center; gap: 5px; font-size: 12px; color: var(--text-tertiary); }
+    .ex-stat svg { width: 12px; height: 12px; }
+    .ex-actions { display: flex; gap: 8px; }
+
+    /* ── STEPS ── */
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .step { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 32px 28px; }
+    .step-num {
+      width: 36px; height: 36px; background: var(--magenta); color: #fff;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 15px; font-weight: 700; margin-bottom: 20px;
+    }
+    .step-title { font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+    .step-body { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+    .step-code {
+      margin-top: 16px; background: #18181B; border-radius: 8px;
+      padding: 14px 16px; font-family: 'JetBrains Mono','Fira Code',monospace;
+      font-size: 11.5px; color: #E4E4E7; line-height: 1.8;
+    }
+    .sc-dim { color: #52525B; }
+    .sc-hi  { color: #60A5FA; }
+    .sc-str { color: #86EFAC; }
 
     /* ── CTA ── */
-    .cta {
-      background: linear-gradient(135deg, var(--magenta) 0%, var(--magenta-dark) 100%);
-      border-radius: 20px;
-      padding: 56px 48px;
-      text-align: center;
-      color: #fff;
-      margin: 0 0 64px;
-    }
-    .cta h2 { font-size: 28px; font-weight: 700; margin-bottom: 10px; }
-    .cta p  { font-size: 16px; opacity: 0.85; margin-bottom: 28px; }
-    .cta .btn-download { background: #fff; color: var(--magenta); }
-    .cta .btn-download:hover { background: var(--gray-100); }
+    .cta { background: var(--magenta); padding: 88px 0; text-align: center; }
+    .cta h2 { font-size: 38px; font-weight: 700; color: #fff; letter-spacing: -0.4px; margin-bottom: 16px; }
+    .cta p { font-size: 17px; color: rgba(255,255,255,0.72); max-width: 480px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-note { font-size: 13px; color: rgba(255,255,255,0.48); margin-top: 20px; }
 
     /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--gray-200);
-      background: #fff;
-      padding: 24px 40px;
-      text-align: center;
-      font-size: 13px;
-      color: var(--gray-400);
-    }
+    footer { border-top: 1px solid var(--border); padding: 32px 0; }
+    .footer-in { display: flex; align-items: center; justify-content: space-between; }
+    .footer-copy { font-size: 13px; color: var(--text-tertiary); }
+    .footer-copy strong { color: var(--text-secondary); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 13px; color: var(--text-tertiary); text-decoration: none; }
+    .footer-links a:hover { color: var(--text-secondary); }
 
-    /* ── DIVIDER ── */
-    .divider { border: none; border-top: 1px solid var(--gray-200); }
-
-    /* ── SAMPLES ── */
-    .samples-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-    .sample-card {
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: box-shadow 0.2s, transform 0.2s;
-    }
-    .sample-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.10); transform: translateY(-2px); }
-
-    /* Mini dashboard preview */
-    .sample-preview {
-      width: 100%;
-      height: 200px;
-      position: relative;
-      overflow: hidden;
-      background: #F3F4F6;
-    }
-    .mini-dash {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      transform-origin: top left;
-    }
-    .mini-sidebar {
-      width: 52px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 10px 8px;
-      gap: 4px;
-      flex-shrink: 0;
-    }
-    .mini-logo { width: 28px; height: 28px; border-radius: 6px; margin-bottom: 8px; }
-    .mini-nav-item { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.18); }
-    .mini-nav-item.active { background: rgba(255,255,255,0.70); width: 80%; }
-    .mini-nav-item.short { width: 60%; }
-    .mini-main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .mini-topbar {
-      height: 26px;
-      background: #fff;
-      border-bottom: 1px solid #E5E7EB;
-      display: flex;
-      align-items: center;
-      padding: 0 10px;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .mini-topbar-title { height: 5px; width: 60px; border-radius: 3px; background: #D1D5DB; }
-    .mini-topbar-dot { width: 5px; height: 5px; border-radius: 50%; margin-left: auto; }
-    .mini-content { flex: 1; padding: 8px 10px; display: flex; flex-direction: column; gap: 7px; background: #F9FAFB; }
-    .mini-kpi-row { display: flex; gap: 5px; }
-    .mini-kpi {
-      flex: 1; height: 30px; background: #fff;
-      border-radius: 6px; border: 1px solid #E5E7EB;
-      display: flex; flex-direction: column;
-      justify-content: center; padding: 4px 7px; gap: 3px;
-    }
-    .mini-kpi-label { height: 3px; width: 55%; border-radius: 2px; background: #E5E7EB; }
-    .mini-kpi-val { height: 5px; width: 70%; border-radius: 2px; }
-    .mini-chart-row { display: flex; gap: 5px; flex: 1; }
-    .mini-chart {
-      flex: 2; background: #fff; border-radius: 6px;
-      border: 1px solid #E5E7EB; padding: 6px 7px;
-      display: flex; flex-direction: column; gap: 4px;
-    }
-    .mini-chart-title { height: 3px; width: 50%; border-radius: 2px; background: #E5E7EB; }
-    .mini-bars { display: flex; align-items: flex-end; gap: 3px; flex: 1; padding-top: 4px; }
-    .mini-bar { flex: 1; border-radius: 2px 2px 0 0; }
-    .mini-table { flex: 1; background: #fff; border-radius: 6px; border: 1px solid #E5E7EB; padding: 6px 7px; display: flex; flex-direction: column; gap: 3px; }
-    .mini-table-row { height: 4px; background: #F3F4F6; border-radius: 2px; }
-    .mini-table-row:first-child { background: #E5E7EB; }
-
-    .sample-info { padding: 18px 20px 20px; }
-    .sample-tag {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 3px 9px;
-      border-radius: 99px;
-      margin-bottom: 10px;
-    }
-    .sample-info h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
-    .sample-info p  { font-size: 13px; color: var(--gray-600); line-height: 1.5; margin-bottom: 16px; }
-    .btn-sample {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 13px;
-      font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: opacity 0.15s;
-    }
-    .btn-sample:hover { opacity: 0.85; }
-    .btn-sample svg { width: 14px; height: 14px; }
-
-    @media (max-width: 640px) {
-      .hero { padding: 56px 24px 48px; }
-      .hero h1 { font-size: 32px; }
-      .container { padding: 0 24px; }
-      nav { padding: 0 24px; }
+    @media (max-width: 800px) {
+      .pkg-grid, .feat-grid, .steps { grid-template-columns: 1fr; }
+      .examples-grid { grid-template-columns: 1fr; }
+      .footer-in { flex-direction: column; gap: 16px; text-align: center; }
+      .nav-links a:not(.nav-dl) { display: none; }
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <a class="nav-brand" href="#">
-    <div class="nav-logo">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-        <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-      </svg>
+<!-- TOPNAV -->
+<nav class="topnav">
+  <div class="container">
+    <a href="#" class="brand">
+      <span class="brand-dot"></span>
+      CANB Dashboard Kit
+    </a>
+    <div class="nav-links">
+      <a href="#pkg">패키지</a>
+      <a href="#examples">제작 사례</a>
+      <a href="#install">설치</a>
+      <a href="#download" class="nav-dl">다운로드</a>
     </div>
-    CANB Dashboard Kit
-  </a>
-  <a class="btn-download" href="canb-dashboard-kit.zip" download style="padding:8px 18px;font-size:13px;border-radius:8px;">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-    다운로드
-  </a>
+  </div>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-badge">
-    <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5"/></svg>
-    Claude Code Design Kit
-  </div>
-  <h1>Claude로 만드는<br><span>CANB 스타일</span> 대시보드</h1>
-  <p>6개 파일만 있으면 Claude Code로 일관된 CANB Magenta 브랜드의 대시보드를 즉시 생성할 수 있습니다.</p>
-  <div class="hero-actions">
-    <a class="btn-download" href="canb-dashboard-kit.zip" download>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Kit 다운로드 (ZIP)
-    </a>
-    <a class="btn-secondary" href="DESIGN SYSTEM.MD">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      디자인 시스템 문서 보기
-    </a>
-  </div>
-  <p class="hero-meta">26KB · 6개 파일 · Vanilla JS · 빌드 불필요</p>
-</div>
-
-<!-- WHAT'S INCLUDED -->
-<div class="container">
-  <section>
-    <p class="section-label">패키지 구성</p>
-    <h2 class="section-title">포함된 파일</h2>
-    <p class="section-desc">Claude Code 슬래시 커맨드 1개 + 디자인 시스템 베이스 파일 5개</p>
-
-    <div class="files-grid">
-      <div class="file-card">
-        <div class="file-icon skill">🤖</div>
-        <div class="file-info">
-          <h4>Claude 슬래시 커맨드</h4>
-          <p>Claude Code에 CANB 디자인 시스템 컨텍스트를 주입합니다. <code>/canb-dashboard</code> 명령으로 즉시 활성화.</p>
-          <span class="file-tag">claude-skill/canb-dashboard.md</span>
-        </div>
-      </div>
-      <div class="file-card">
-        <div class="file-icon css">🎨</div>
-        <div class="file-info">
-          <h4>디자인 토큰</h4>
-          <p>CANB Magenta 브랜드 컬러, 간격, 타이포그래피, 다크 모드 토큰을 CSS 변수로 정의합니다.</p>
-          <span class="file-tag">styles/tokens.css</span>
-        </div>
-      </div>
-      <div class="file-card">
-        <div class="file-icon css">🧩</div>
-        <div class="file-info">
-          <h4>컴포넌트 스타일</h4>
-          <p>카드, 버튼, 배지, 테이블, 사이드바, 탑바, KPI 카드 등 모든 UI 컴포넌트 스타일이 포함됩니다.</p>
-          <span class="file-tag">styles/common.css</span>
-        </div>
-      </div>
-      <div class="file-card">
-        <div class="file-icon js">⚡</div>
-        <div class="file-info">
-          <h4>차트 유틸리티</h4>
-          <p>라이트/다크 모드 자동 전환 차트 컬러, 막대 두께 설정, 숫자·날짜 포맷 함수를 제공합니다.</p>
-          <span class="file-tag">js/utils.js</span>
-        </div>
-      </div>
-      <div class="file-card">
-        <div class="file-icon js">🏗️</div>
-        <div class="file-info">
-          <h4>레이아웃 엔진</h4>
-          <p>사이드바 자동 렌더링, 테마 토글, 브레드크럼 네비게이션, Flatpickr 커스텀 드롭다운을 처리합니다.</p>
-          <span class="file-tag">js/layout.js</span>
-        </div>
-      </div>
-      <div class="file-card">
-        <div class="file-icon doc">📖</div>
-        <div class="file-info">
-          <h4>디자인 시스템 문서</h4>
-          <p>색상 팔레트, 컴포넌트 규격, 배지 사용 규칙, 다크 모드 토큰 등 전체 스펙을 담은 레퍼런스 문서입니다.</p>
-          <span class="file-tag">DESIGN SYSTEM.MD</span>
-        </div>
-      </div>
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      Claude Slash Command 포함
     </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- INSTALL STEPS -->
-  <section>
-    <p class="section-label">시작하기</p>
-    <h2 class="section-title">3단계 설치 가이드</h2>
-    <p class="section-desc">ZIP을 받고 3단계만 따라하면 바로 사용할 수 있습니다.</p>
-
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h4>ZIP 다운로드 및 압축 해제</h4>
-          <p>아래 버튼을 눌러 <code>canb-dashboard-kit.zip</code>을 받고 원하는 위치에 압축을 해제합니다.</p>
-          <a class="btn-download" href="canb-dashboard-kit.zip" download style="display:inline-flex;margin-top:4px;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            canb-dashboard-kit.zip 다운로드
-          </a>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h4>Claude 슬래시 커맨드 등록</h4>
-          <p><code>claude-skill/canb-dashboard.md</code>를 Claude 글로벌 커맨드 폴더에 복사합니다.</p>
-          <pre><span class="comment"># Windows</span>
-<span class="path">C:\Users\{사용자명}\.claude\commands\canb-dashboard.md</span>
-
-<span class="comment"># Mac / Linux</span>
-<span class="path">~/.claude/commands/canb-dashboard.md</span></pre>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h4>새 프로젝트에 베이스 파일 복사</h4>
-          <p>새 대시보드 프로젝트 폴더에 <code>styles/</code>, <code>js/</code>, <code>DESIGN SYSTEM.MD</code>를 그대로 복사합니다.</p>
-          <pre><span class="comment"># 새 프로젝트 구조</span>
-my-dashboard/
-├── <span class="path">styles/tokens.css</span>
-├── <span class="path">styles/common.css</span>
-├── <span class="path">js/utils.js</span>
-├── <span class="path">js/layout.js</span>
-└── <span class="path">DESIGN SYSTEM.MD</span></pre>
-          <p style="margin-top:16px;">Claude Code를 해당 폴더에서 열고 슬래시 커맨드를 입력합니다.</p>
-          <pre><span class="cmd">/canb-dashboard</span>
-수납 관리 페이지 만들어줘</pre>
-        </div>
-      </div>
+    <h1>Claude로 만드는<br><span class="accent">CANB Magenta</span> 스타일 대시보드</h1>
+    <p class="hero-desc">6개 파일만으로 일관된 CANB Magenta 브랜드의 관리자 대시보드를<br>즉시 생성하세요. 토큰, 컴포넌트, 레이아웃이 모두 준비되어 있습니다.</p>
+    <div class="hero-meta">
+      <span>26KB</span><span class="sep">·</span>
+      <span>6개 파일</span><span class="sep">·</span>
+      <span>Vanilla JS</span><span class="sep">·</span>
+      <span>빌드 불필요</span>
     </div>
-  </section>
+    <div class="hero-actions">
+      <a href="canb-dashboard-kit.zip" download class="btn btn-primary btn-lg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        ZIP 다운로드
+      </a>
+      <a href="index.html" class="btn btn-secondary btn-lg">캠퍼스 데모 보기 →</a>
+    </div>
+  </div>
+</section>
 
-  <hr class="divider">
+<hr class="div">
 
-  <!-- FEATURES -->
-  <section>
-    <p class="section-label">특징</p>
-    <h2 class="section-title">이런 게 포함되어 있어요</h2>
-    <p class="section-desc">실제 CANB 캠퍼스 관리 대시보드에서 검증된 컴포넌트와 패턴을 그대로 사용할 수 있습니다.</p>
+<!-- PACKAGE CONTENTS -->
+<section id="pkg" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Package</div>
+      <h2 class="section-title">패키지 구성</h2>
+      <p class="section-desc">6개 파일로 완성되는 디자인 시스템</p>
+    </div>
+    <div class="pkg-grid">
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      <div class="pkg-card">
+        <div class="pkg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
-        <h4>CANB Magenta 브랜드</h4>
-        <p>투명도 단계 기반의 마젠타 차트 컬러 시스템</p>
+        <div class="pkg-title">Claude 슬래시 커맨드</div>
+        <div class="pkg-filename">.claude/commands/canb-dashboard.md</div>
+        <p class="pkg-desc"><code>/canb-dashboard</code> 명령 한 번으로 디자인 시스템 전체 규칙을 Claude에 즉시 주입합니다.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+
+      <div class="pkg-card">
+        <div class="pkg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
         </div>
-        <h4>라이트 / 다크 모드</h4>
-        <p>토큰 기반 자동 전환, 차트 컬러도 자동 대응</p>
+        <div class="pkg-title">디자인 토큰</div>
+        <div class="pkg-filename">styles/tokens.css</div>
+        <p class="pkg-desc">색상, 간격, 타이포그래피, 그림자를 CSS 변수로 정의합니다. 라이트/다크 모드를 모두 지원합니다.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">
+
+      <div class="pkg-card">
+        <div class="pkg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div class="pkg-title">컴포넌트 스타일</div>
+        <div class="pkg-filename">styles/common.css</div>
+        <p class="pkg-desc">카드, 버튼, 테이블, 배지, 사이드바, 필터바 등 모든 UI 컴포넌트 스타일이 담겨 있습니다.</p>
+      </div>
+
+      <div class="pkg-card">
+        <div class="pkg-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
-        <h4>Chart.js 통합</h4>
-        <p>막대·라인·도넛·폴라 차트 설정 패턴 제공</p>
+        <div class="pkg-title">차트 유틸리티</div>
+        <div class="pkg-filename">js/utils.js</div>
+        <p class="pkg-desc">Chart.js 기본값 설정, 라이트/다크 색상 전환, 날짜·숫자·퍼센트 포맷 함수가 포함됩니다.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+
+      <div class="pkg-card">
+        <div class="pkg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
         </div>
-        <h4>완성된 컴포넌트</h4>
-        <p>KPI 카드, 테이블, 배지, 버튼, 모달, 필터바</p>
+        <div class="pkg-title">레이아웃 엔진</div>
+        <div class="pkg-filename">js/layout.js</div>
+        <p class="pkg-desc">사이드바 렌더링, 테마 토글, 브레드크럼, 커스텀 셀렉트를 <code>initLayout()</code> 한 줄로 초기화합니다.</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">
+
+      <div class="pkg-card">
+        <div class="pkg-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        </div>
+        <div class="pkg-title">디자인 시스템 문서</div>
+        <div class="pkg-filename">DESIGN SYSTEM.MD</div>
+        <p class="pkg-desc">색상 스케일, 컴포넌트 스펙, 배지·버튼·차트 사용 규칙이 담긴 전체 레퍼런스 문서입니다.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- FEATURES -->
+<section class="section section-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Features</div>
+      <h2 class="section-title">주요 특징</h2>
+      <p class="section-desc">처음부터 끝까지 일관된 개발 경험을 제공합니다</p>
+    </div>
+    <div class="feat-grid">
+
+      <div class="feat-item">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div>
+          <div class="feat-title">CANB Magenta 브랜드</div>
+          <div class="feat-desc">#BC216D 기반 투명도 단계 차트 컬러 시스템. 색상 결정에 드는 시간을 없앱니다.</div>
+        </div>
+      </div>
+
+      <div class="feat-item">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </div>
+        <div>
+          <div class="feat-title">라이트 / 다크 모드</div>
+          <div class="feat-desc">CSS 변수 기반으로 두 모드를 완벽 지원. 토글 버튼이 자동 삽입되며 상태가 localStorage에 저장됩니다.</div>
+        </div>
+      </div>
+
+      <div class="feat-item">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div>
+          <div class="feat-title">Chart.js 통합</div>
+          <div class="feat-desc">막대·라인·도넛·폴라 차트가 테마에 따라 자동으로 색상을 전환합니다. 두께·점 스타일 사전 설정 포함.</div>
+        </div>
+      </div>
+
+      <div class="feat-item">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <div>
+          <div class="feat-title">완성형 컴포넌트</div>
+          <div class="feat-desc">카드, 테이블, 배지, 버튼, 모달, 필터바, 진행률 바 등 즉시 사용 가능한 컴포넌트가 모두 포함됩니다.</div>
+        </div>
+      </div>
+
+      <div class="feat-item">
+        <div class="feat-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
-        <h4>빌드 불필요</h4>
-        <p>Vanilla JS + HTML — 브라우저에서 바로 열기</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-        </div>
-        <h4>Claude Code 슬래시 커맨드</h4>
-        <p>디자인 컨텍스트를 AI에 자동 주입, 일관된 생성</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
-  <!-- SAMPLES -->
-  <section>
-    <p class="section-label">샘플 대시보드</p>
-    <h2 class="section-title">실제 제작 사례</h2>
-    <p class="section-desc">이 키트로 만들어진 대시보드 샘플입니다. 버튼을 눌러 직접 확인해보세요.</p>
-
-    <div class="samples-grid">
-
-      <!-- 1. CANB 캠퍼스 관리 -->
-      <div class="sample-card">
-        <div class="sample-info">
-          <span class="sample-tag" style="background:#FAEAF3;color:#BC216D;">캠퍼스 관리</span>
-          <h3>CANB 캠퍼스 관리 대시보드</h3>
-          <p>학생·강사·수강·출결·성적·수납·상담·공지를 통합 관리하는 학원 운영 시스템. 10개 페이지 완성.</p>
-          <a class="btn-sample" href="index.html" target="_blank" style="background:#BC216D;color:#fff;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            샘플보기
-          </a>
+        <div>
+          <div class="feat-title">Vanilla JS · 빌드 불필요</div>
+          <div class="feat-desc">Node.js, 번들러, 패키지 설치 없이 브라우저에서 바로 실행됩니다. CDN 링크 4줄로 시작합니다.</div>
         </div>
       </div>
 
-      <!-- 2. 선생님 포털 -->
-      <div class="sample-card">
-        <div class="sample-info">
-          <span class="sample-tag" style="background:#FAEAF3;color:#BC216D;">선생님 포털</span>
-          <h3>CANB 선생님 포털 대시보드</h3>
-          <p>강사 전용 수업 일정·학생 관리·성적 리포트 포털. 영문 UI, CANB Magenta 브랜드 동일 적용.</p>
-          <a class="btn-sample" href="teacher-dashboard.html" target="_blank" style="background:#BC216D;color:#fff;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            샘플보기
-          </a>
+      <div class="feat-item">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+        </div>
+        <div>
+          <div class="feat-title">Claude 슬래시 커맨드</div>
+          <div class="feat-desc"><code>/canb-dashboard</code> 한 번으로 디자인 규칙 전체를 Claude에 전달. 규칙 설명 없이 바로 개발을 시작합니다.</div>
         </div>
       </div>
 
     </div>
-  </section>
-
-  <!-- CTA -->
-  <div class="cta">
-    <h2>지금 바로 시작하세요</h2>
-    <p>26KB 패키지 하나로 CANB 스타일 대시보드를 Claude Code로 즉시 생성할 수 있습니다.</p>
-    <a class="btn-download" href="canb-dashboard-kit.zip" download>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Kit 다운로드 — 무료 (26KB)
-    </a>
   </div>
-</div>
+</section>
 
+<hr class="div">
+
+<!-- PRODUCTION EXAMPLES -->
+<section id="examples" class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Made with CANB Kit</div>
+      <h2 class="section-title">실제 제작 사례</h2>
+      <p class="section-desc">CANB Dashboard Kit으로 구축한 실제 프로젝트입니다</p>
+    </div>
+    <div class="examples-grid">
+
+      <!-- Campus Dashboard -->
+      <div class="ex-card">
+        <div class="ex-body">
+          <div class="ex-tag">
+            <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+            캠퍼스 관리
+          </div>
+          <div class="ex-title">CANB 캠퍼스 관리 대시보드</div>
+          <p class="ex-desc">학생·수강·출결·성적·수납·강사·상담·공지까지 학원 운영 전반을 단일 시스템으로 통합 관리합니다.</p>
+          <div class="ex-meta">
+            <div class="ex-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              10페이지
+            </div>
+            <div class="ex-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              Chart.js
+            </div>
+            <div class="ex-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+              라이트/다크
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="index.html" class="btn btn-primary btn-sm">데모 보기</a>
+            <a href="students.html" class="btn btn-secondary btn-sm">학생 관리</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher Portal -->
+      <div class="ex-card">
+        <div class="ex-body">
+          <div class="ex-tag">
+            <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+            선생님 포털
+          </div>
+          <div class="ex-title">CANB 선생님 포털 대시보드</div>
+          <p class="ex-desc">강사 전용 수업 일정·학생 관리·성적 리포트 포털. 영문 UI에 CANB Magenta 브랜드를 동일하게 적용합니다.</p>
+          <div class="ex-meta">
+            <div class="ex-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              5페이지
+            </div>
+            <div class="ex-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              강사 전용
+            </div>
+            <div class="ex-stat">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              영문 UI
+            </div>
+          </div>
+          <div class="ex-actions">
+            <a href="teacher-dashboard.html" class="btn btn-primary btn-sm">데모 보기</a>
+            <a href="teacher-schedule.html" class="btn btn-secondary btn-sm">수업 일정</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- INSTALLATION -->
+<section id="install" class="section section-bg">
+  <div class="container">
+    <div class="section-header">
+      <div class="kicker">Quick Start</div>
+      <h2 class="section-title">3단계로 시작하기</h2>
+      <p class="section-desc">복잡한 설치 없이 파일만 복사하면 됩니다</p>
+    </div>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-title">ZIP 다운로드 후 압축 해제</div>
+        <p class="step-body">다운로드한 ZIP을 원하는 위치에 압축 해제하세요. 6개 파일이 포함되어 있습니다.</p>
+        <div class="step-code">
+          <span class="sc-dim">canb-dashboard-kit/</span><br>
+          <span class="sc-hi">├─</span> .claude/commands/<br>
+          <span class="sc-hi">│ └─</span> canb-dashboard.md<br>
+          <span class="sc-hi">├─</span> styles/<br>
+          <span class="sc-hi">│ ├─</span> tokens.css<br>
+          <span class="sc-hi">│ └─</span> common.css<br>
+          <span class="sc-hi">├─</span> js/<br>
+          <span class="sc-hi">│ ├─</span> utils.js<br>
+          <span class="sc-hi">│ └─</span> layout.js<br>
+          <span class="sc-hi">└─</span> DESIGN SYSTEM.MD
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-title">슬래시 커맨드 등록</div>
+        <p class="step-body">Claude Code 프로젝트 루트에 <code>.claude/commands/</code> 폴더를 만들고 커맨드 파일을 복사합니다.</p>
+        <div class="step-code">
+          <span class="sc-dim"># Windows</span><br>
+          <span class="sc-hi">%USERPROFILE%</span>\.claude\<br>
+          &nbsp;&nbsp;commands\canb-dashboard.md<br><br>
+          <span class="sc-dim"># Mac / Linux</span><br>
+          ~/.claude/commands/<br>
+          &nbsp;&nbsp;canb-dashboard.md
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-title">기반 파일 복사 후 시작</div>
+        <p class="step-body">새 프로젝트에 <code>styles/</code>, <code>js/</code> 폴더를 복사하고 Claude에서 <code>/canb-dashboard</code>를 입력하세요.</p>
+        <div class="step-code">
+          <span class="sc-dim"># Claude Code에서</span><br>
+          <span class="sc-hi">/canb-dashboard</span><br><br>
+          <span class="sc-dim"># 그런 다음 요청</span><br>
+          <span class="sc-str">"수납 관리 페이지 만들어줘"</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD CTA -->
+<section id="download" class="cta">
+  <div class="container">
+    <h2>지금 바로 시작하세요</h2>
+    <p>26KB 패키지 하나로 일관된 CANB Magenta 대시보드를 Claude와 함께 만들어 보세요. 무료로 제공됩니다.</p>
+    <div class="hero-actions">
+      <a href="canb-dashboard-kit.zip" download class="btn btn-white btn-lg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        ZIP 다운로드 — 무료
+      </a>
+      <a href="index.html" class="btn btn-ghost-white btn-lg">캠퍼스 데모 보기</a>
+    </div>
+    <div class="cta-note">26KB · 6개 파일 · Vanilla JS · 빌드 불필요 · MIT 라이선스</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  © 2026 CANB 캠퍼스 · CANB Dashboard Design Kit
+  <div class="container">
+    <div class="footer-in">
+      <div class="footer-copy">© 2026 <strong>JINI</strong> · CANB Dashboard Kit</div>
+      <div class="footer-links">
+        <a href="index.html">캠퍼스 데모</a>
+        <a href="teacher-dashboard.html">선생님 포털</a>
+        <a href="DESIGN SYSTEM.MD">디자인 시스템</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
 </body>
