@@ -182,7 +182,7 @@
     .ex-actions { display: flex; gap: 8px; }
 
     /* ── STEPS ── */
-    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .steps { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
     .step { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 32px 28px; }
     .step-num {
       width: 36px; height: 36px; background: var(--magenta); color: #fff;
@@ -246,9 +246,9 @@
   <div class="container">
     <div class="hero-badge">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      Claude Slash Command 포함
+      AI Agent 프롬프트 포함
     </div>
-    <h1>Claude로 만드는<br><span class="accent">CANB Magenta</span> 스타일 대시보드</h1>
+    <h1><span class="accent">CANB Magenta</span> 스타일 대시보드</h1>
     <p class="hero-desc">6개 파일만으로 일관된 CANB Magenta 브랜드의 관리자 대시보드를<br>즉시 생성하세요. 토큰, 컴포넌트, 레이아웃이 모두 준비되어 있습니다.</p>
     <div class="hero-meta">
       <span>26KB</span><span class="sep">·</span>
@@ -282,9 +282,9 @@
         <div class="pkg-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
         </div>
-        <div class="pkg-title">Claude 슬래시 커맨드</div>
-        <div class="pkg-filename">.claude/commands/canb-dashboard.md</div>
-        <p class="pkg-desc"><code>/canb-dashboard</code> 명령 한 번으로 디자인 시스템 전체 규칙을 Claude에 즉시 주입합니다.</p>
+        <div class="pkg-title">AI Agent 프롬프트</div>
+        <div class="pkg-filename">canb-dashboard.md</div>
+        <p class="pkg-desc">Cursor · VS Code · AntiGravity 등 개발 Agent에 바로 붙여넣을 수 있는 UI 규약 프롬프트입니다.</p>
       </div>
 
       <div class="pkg-card">
@@ -403,8 +403,8 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
         </div>
         <div>
-          <div class="feat-title">Claude 슬래시 커맨드</div>
-          <div class="feat-desc"><code>/canb-dashboard</code> 한 번으로 디자인 규칙 전체를 Claude에 전달. 규칙 설명 없이 바로 개발을 시작합니다.</div>
+          <div class="feat-title">AI Agent 프롬프트 포함</div>
+          <div class="feat-desc">Cursor · VS Code · AntiGravity 등 개발 Agent에 바로 붙여넣을 수 있는 프롬프트가 포함되어 있습니다. 규칙 설명 없이 바로 개발을 시작합니다.</div>
         </div>
       </div>
 
@@ -495,7 +495,7 @@
   <div class="container">
     <div class="section-header">
       <div class="kicker">Quick Start</div>
-      <h2 class="section-title">3단계로 시작하기</h2>
+      <h2 class="section-title">2단계로 시작하기</h2>
       <p class="section-desc">복잡한 설치 없이 파일만 복사하면 됩니다</p>
     </div>
     <div class="steps">
@@ -506,8 +506,7 @@
         <p class="step-body">다운로드한 ZIP을 원하는 위치에 압축 해제하세요. 6개 파일이 포함되어 있습니다.</p>
         <div class="step-code">
           <span class="sc-dim">canb-dashboard-kit/</span><br>
-          <span class="sc-hi">├─</span> .claude/commands/<br>
-          <span class="sc-hi">│ └─</span> canb-dashboard.md<br>
+          <span class="sc-hi">├─</span> canb-dashboard.md<br>
           <span class="sc-hi">├─</span> styles/<br>
           <span class="sc-hi">│ ├─</span> tokens.css<br>
           <span class="sc-hi">│ └─</span> common.css<br>
@@ -520,27 +519,18 @@
 
       <div class="step">
         <div class="step-num">2</div>
-        <div class="step-title">슬래시 커맨드 등록</div>
-        <p class="step-body">Claude Code 프로젝트 루트에 <code>.claude/commands/</code> 폴더를 만들고 커맨드 파일을 복사합니다.</p>
+        <div class="step-title">개발 Agent에 요청할 Prompt</div>
+        <p class="step-body">Cursor / VS Code / AntiGravity — 아래 프롬프트를 그대로 붙여넣으세요.</p>
         <div class="step-code">
-          <span class="sc-dim"># Windows</span><br>
-          <span class="sc-hi">%USERPROFILE%</span>\.claude\<br>
-          &nbsp;&nbsp;commands\canb-dashboard.md<br><br>
-          <span class="sc-dim"># Mac / Linux</span><br>
-          ~/.claude/commands/<br>
-          &nbsp;&nbsp;canb-dashboard.md
-        </div>
-      </div>
-
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-title">기반 파일 복사 후 시작</div>
-        <p class="step-body">새 프로젝트에 <code>styles/</code>, <code>js/</code> 폴더를 복사하고 Claude에서 <code>/canb-dashboard</code>를 입력하세요.</p>
-        <div class="step-code">
-          <span class="sc-dim"># Claude Code에서</span><br>
-          <span class="sc-hi">/canb-dashboard</span><br><br>
-          <span class="sc-dim"># 그런 다음 요청</span><br>
-          <span class="sc-str">"수납 관리 페이지 만들어줘"</span>
+          <span class="sc-dim"># Cursor / VS Code / AntiGravity</span><br><br>
+          <span class="sc-str">canb-dashboard-kit 디렉토리에 디자이너가<br>
+          정의한 UI 구성에 필요한 규약이<br>
+          정의되어있어. 이를 참고해서 화면 구현시<br>
+          클로드 코드와 copilot, cursor가<br>
+          참조할 수 있게 구성해줘.</span><br><br>
+          <span class="sc-dim">(**개발자 추가 Comment 필요 :<br>
+          서비스 구성하는 프론트 F/W 정보<br>
+          추가하면 자세하게 정리됨)</span>
         </div>
       </div>
 
