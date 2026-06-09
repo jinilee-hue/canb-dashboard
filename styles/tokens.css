@@ -39,6 +39,14 @@
   --color-sidebar-border:     #E2E5EA;
   --color-sidebar-section:    #9CA3AF;
 
+  /* ── Brand alpha — 버튼 hover·focus 색상 (JS BRAND_TOKENS에서 오버라이드) ─ */
+  --color-primary-a08: rgba(188,33,109,0.08);
+  --color-primary-a10: rgba(188,33,109,0.10);
+  --color-primary-a15: rgba(188,33,109,0.15);
+  --color-primary-a25: rgba(188,33,109,0.25);
+  --color-primary-a30: rgba(188,33,109,0.30);
+  --color-primary-a50: rgba(188,33,109,0.50);
+
   /* ── Chart — 라이트 모드: 밝은 기저색(hsl 330°,65%,51%) 투명도 단계 ─ */
   --chart-1: rgba(212,46,120,0.85);
   --chart-2: rgba(212,46,120,0.60);
@@ -111,6 +119,14 @@
 
   /* Primary light (아이콘·배지 배경) */
   --color-primary-light:  rgba(188,33,109,0.22);
+
+  /* Brand alpha */
+  --color-primary-a08: rgba(188,33,109,0.08);
+  --color-primary-a10: rgba(188,33,109,0.10);
+  --color-primary-a15: rgba(188,33,109,0.15);
+  --color-primary-a25: rgba(188,33,109,0.25);
+  --color-primary-a30: rgba(188,33,109,0.30);
+  --color-primary-a50: rgba(188,33,109,0.50);
 
   /* Semantic lights */
   --color-success-light:  rgba(188,33,109,0.22);
