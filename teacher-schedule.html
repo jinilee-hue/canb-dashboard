@@ -58,9 +58,9 @@
     .tt-block .tt-meta  { font-size: 10px; color: var(--color-primary-dark); opacity: 0.85; }
     .tt-block.alt { background: var(--color-bg-muted); color: var(--color-text-secondary); }
     .tt-block.alt .tt-meta { color: var(--color-text-tertiary); }
-    .tt-cell.is-today { background: rgba(188,33,109,0.04); }
+    .tt-cell.is-today { background: var(--color-primary-a08); }
     [data-theme="dark"] .tt-block.alt { background: rgba(255,255,255,0.06); }
-    [data-theme="dark"] .tt-cell.is-today { background: rgba(188,33,109,0.10); }
+    [data-theme="dark"] .tt-cell.is-today { background: var(--color-primary-a10); }
   </style>
 </head>
 <body>
@@ -204,6 +204,7 @@
     disableMobile: true,
     onReady:       function(_, __, fp) { initFlatpickrSelects(fp); },
     onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
+    onOpen:        function(_, __, fp) { fp.calendarContainer.style.marginTop = '1px'; },
   });
 
   document.querySelectorAll('.period-tabs').forEach(group => {
