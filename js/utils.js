@@ -1,18 +1,7 @@
 /* js/utils.js — Data format utilities + Chart defaults */
 
-/* Flatpickr 커스텀 locale — 요일 한국어 유지, 월 이름 영어 */
-const fpLocale = {
-  weekdays: {
-    shorthand: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-    longhand:  ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-  },
-  months: {
-    shorthand: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-    longhand:  ['January','February','March','April','May','June','July','August','September','October','November','December']
-  },
-  firstDayOfWeek: 0,
-  ordinal: function() { return ''; }
-};
+/* Flatpickr 한국어 locale — l10n/ko.js 등록 후 참조 */
+const fpLocale = flatpickr.l10ns.ko;
 
 const formatNumber = (n) =>
   new Intl.NumberFormat('ko-KR').format(n);
