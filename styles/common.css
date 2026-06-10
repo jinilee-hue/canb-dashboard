@@ -332,7 +332,6 @@ tbody td.text-mono { font-family: var(--font-mono); font-size: var(--text-xs); }
 .badge-success { background: var(--color-success-light); color: var(--color-success); }
 .badge-warning { background: var(--color-warning-light); color: var(--color-warning); }
 .badge-danger  { background: var(--color-danger-light);  color: var(--color-danger); }
-.badge-info    { background: var(--color-primary-light); color: var(--color-primary); }
 .badge-neutral { background: var(--color-bg-muted);     color: var(--color-text-secondary); }
 .badge-primary { background: var(--color-primary-light); color: var(--color-primary); }
 
@@ -597,7 +596,7 @@ span.flatpickr-weekday { background: transparent !important; color: var(--color-
 .flatpickr-current-month .cs-trigger.open,
 .flatpickr-current-month .cs-year-trigger.open { background: rgba(0,0,0,0.09) !important; box-shadow: none !important; }
 .flatpickr-current-month .cs-chevron { display: none !important; }
-/* 달력 내부 드롭다운 — 절대 위치, 전체 폭, 스크롤 */
+/* 달력 내부 드롭다운 — 절대 위치, 전체 폭, 4열 그리드 */
 .flatpickr-calendar { overflow: visible !important; }
 .fp-cal-dropdown {
   position: absolute;
@@ -610,24 +609,26 @@ span.flatpickr-weekday { background: transparent !important; color: var(--color-
   border-radius: 0 0 var(--radius-md) var(--radius-md);
   box-shadow: var(--shadow-md);
   z-index: 9999;
-  max-height: 200px;
-  overflow-y: auto;
+  bottom: 0;
+  overflow: hidden;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
   transition: opacity 0.15s ease, visibility 0.15s ease;
 }
 .fp-cal-dropdown.open { top: 0; opacity: 1; visibility: visible; pointer-events: auto; }
-.fp-cal-dropdown ul { list-style: none; padding: 4px 0; margin: 0; }
+.fp-cal-dropdown ul { list-style: none; padding: 8px; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; align-content: start; }
 .fp-cal-dropdown .cs-option {
-  padding: 8px 16px;
+  padding: 7px 4px;
   font-size: var(--text-sm);
   color: var(--color-text-secondary);
   cursor: pointer;
   transition: background 0.1s ease;
+  text-align: center;
+  border-radius: var(--radius-sm);
 }
 .fp-cal-dropdown .cs-option:hover { background: var(--color-bg-muted); color: var(--color-text-primary); }
-.fp-cal-dropdown .cs-option.selected { color: var(--color-primary); font-weight: var(--weight-semibold); background: var(--color-primary-light); }
+.fp-cal-dropdown .cs-option.selected { color: var(--color-primary); font-weight: var(--weight-semibold); background: var(--color-primary-light); border-radius: var(--radius-sm); }
 
 /* Flatpickr trigger input */
 .fp-date-input {
@@ -875,10 +876,10 @@ span.flatpickr-weekday { background: transparent !important; color: var(--color-
 [data-theme="dark"] .form-select:focus,
 [data-theme="dark"] .form-textarea:focus,
 [data-theme="dark"] select.filter-select:focus {
-  box-shadow: 0 0 0 3px rgba(188,33,109,0.35);
+  box-shadow: 0 0 0 3px var(--color-primary-a30);
 }
 
-[data-theme="dark"] .cs-trigger.open { box-shadow: 0 0 0 3px rgba(188,33,109,0.35); }
+[data-theme="dark"] .cs-trigger.open { box-shadow: 0 0 0 3px var(--color-primary-a30); }
 [data-theme="dark"] .cs-dropdown { box-shadow: 0 4px 16px rgba(0,0,0,0.3); }
 
 [data-theme="dark"] .flatpickr-calendar {
@@ -888,8 +889,8 @@ span.flatpickr-weekday { background: transparent !important; color: var(--color-
 }
 [data-theme="dark"] .flatpickr-day:hover { background: var(--color-bg-muted) !important; border-color: var(--color-bg-muted) !important; }
 [data-theme="dark"] .flatpickr-day.inRange {
-  background: rgba(188,33,109,0.22) !important;
-  border-color: rgba(188,33,109,0.22) !important;
-  box-shadow: -5px 0 0 rgba(188,33,109,0.22), 5px 0 0 rgba(188,33,109,0.22) !important;
+  background: var(--color-primary-a25) !important;
+  border-color: var(--color-primary-a25) !important;
+  box-shadow: -5px 0 0 var(--color-primary-a25), 5px 0 0 var(--color-primary-a25) !important;
 }
-[data-theme="dark"] .fp-date-input:focus { box-shadow: 0 0 0 3px rgba(188,33,109,0.35); }
+[data-theme="dark"] .fp-date-input:focus { box-shadow: 0 0 0 3px var(--color-primary-a30); }
