@@ -202,6 +202,30 @@ function _csWrapSelect(sel) {
   sel.style.display = 'none';
   wrap.appendChild(sel);
 
+  /* 가장 긴 옵션 기준 너비 설정 — probe span 방식 */
+  var _calcDropdownWidth = function() {
+    var probe = document.createElement('span');
+    probe.setAttribute('aria-hidden', 'true');
+    probe.style.cssText = 'position:fixed;top:0;left:-9999px;visibility:hidden;' +
+      'white-space:nowrap;padding:0 14px;border:none;outline:none;pointer-events:none;' +
+      'font-size:var(--text-sm);font-family:var(--font-sans);font-weight:400;';
+    document.body.appendChild(probe);
+    var maxW = 0;
+    dropdown.querySelectorAll('.cs-option').forEach(function(li) {
+      probe.textContent = li.textContent;
+      if (probe.offsetWidth > maxW) maxW = probe.offsetWidth;
+    });
+    document.body.removeChild(probe);
+    var trigW = Math.max(maxW + 20, 110);
+    var dropW = Math.max(maxW + 6,  92);
+    trigger.style.width = trigW + 'px';
+    dropdown.style.width = dropW + 'px';
+  };
+  _calcDropdownWidth();
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(_calcDropdownWidth);
+  }
+
   function positionDropdown() {
     var rect = trigger.getBoundingClientRect();
     var dropH = dropdown.scrollHeight || 200;
