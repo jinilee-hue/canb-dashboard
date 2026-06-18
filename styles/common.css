@@ -1097,12 +1097,12 @@ span.flatpickr-weekday { background: transparent !important; color: var(--color-
   font-size: var(--text-base);
   font-weight: var(--weight-medium);
   color: var(--color-text-secondary);
-  border-bottom: 2px solid transparent;
-  transition: color 0.12s, background 0.12s;
   white-space: nowrap;
   background: none;
   border: none;
+  border-bottom: 2px solid transparent;
   cursor: pointer;
+  transition: color 0.12s, background 0.12s;
   font-family: inherit;
 }
 .topnav-group-trigger:hover { color: var(--color-primary); }
