@@ -14,6 +14,27 @@ const NAV_ITEMS = [
   { icon: 'refresh',     label: '모달 데모', href: 'modal-demo.html' },
 ];
 
+/* 상단 네비 전용 그룹 구조 (2-depth 드롭다운) */
+const TOP_NAV_GROUPS = [
+  { label: '대시보드',  icon: 'home',        href: 'index.html' },
+  { label: '학생/강사', icon: 'users',       children: [
+    { label: '학생 관리', href: 'students.html' },
+    { label: '강사 관리', href: 'teachers.html' },
+  ]},
+  { label: '수강/출결', icon: 'book-open',   children: [
+    { label: '수강 관리', href: 'courses.html' },
+    { label: '출결 관리', href: 'attendance.html' },
+    { label: '성적 관리', href: 'grades.html' },
+  ]},
+  { label: '수납 관리', icon: 'credit-card', href: 'payments.html' },
+  { label: '소통',      icon: 'bell',        children: [
+    { label: '공지사항',  href: 'notices.html' },
+    { label: '상담 관리', href: 'counseling.html' },
+  ]},
+  { label: '설정',      icon: 'settings',    href: 'settings.html' },
+  { label: '모달 데모', icon: 'refresh',     href: 'modal-demo.html' },
+];
+
 const ICONS = {
   home: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
   users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
@@ -26,6 +47,8 @@ const ICONS = {
   message: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
   settings: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
   refresh: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
+  'layout-side': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>`,
+  'layout-top':  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>`,
   plus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
   download: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
   search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
@@ -50,41 +73,174 @@ function _syncThemeBtn() {
 }
 
 function initLayout(currentHref) {
-  const el = document.getElementById('sidebar');
-  if (!el) return;
+  var navMode = localStorage.getItem('canbNav') || 'side';
+  document.documentElement.setAttribute('data-layout', navMode);
 
-  el.innerHTML = `
-    <div class="sidebar-logo">
-      <div>
-        <span class="sidebar-brand">CANB</span>
-        <span class="sidebar-tagline">캠퍼스 관리</span>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      ${NAV_ITEMS.map(item => `
-        <a href="${item.href}" class="nav-item ${currentHref === item.href ? 'active' : ''}">
-          ${ICONS[item.icon] || ''}
-          <span>${item.label}</span>
-        </a>
-      `).join('')}
-    </nav>
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="user-avatar">이진</div>
-        <div>
-          <span class="user-name">이진희</span>
-          <span class="user-role">관리자</span>
-        </div>
-      </div>
-    </div>
-  `;
+  /* ── 사이드바 (side 모드) ── */
+  if (navMode === 'side') {
+    var sideEl = document.getElementById('sidebar');
+    if (sideEl) {
+      var chevSvg = '<svg class="nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
 
-  /* Breadcrumb: replace topbar-title with home > current page */
+      var navHtml = TOP_NAV_GROUPS.map(function (group) {
+        if (group.children && group.children.length) {
+          var isActiveGroup = group.children.some(function (c) { return c.href === currentHref; });
+          var childrenHtml = group.children.map(function (child) {
+            return '<a href="' + child.href + '" class="nav-item nav-item-child' + (child.href === currentHref ? ' active' : '') + '">' +
+              '<span>' + child.label + '</span></a>';
+          }).join('');
+          return '<div class="nav-group' + (isActiveGroup ? ' open' : '') + '">' +
+            '<button class="nav-group-trigger' + (isActiveGroup ? ' active' : '') + '" type="button">' +
+              (ICONS[group.icon] || '') +
+              '<span>' + group.label + '</span>' +
+              chevSvg +
+            '</button>' +
+            '<div class="nav-group-children">' + childrenHtml + '</div>' +
+          '</div>';
+        } else {
+          return '<a href="' + group.href + '" class="nav-item' + (group.href === currentHref ? ' active' : '') + '">' +
+            (ICONS[group.icon] || '') + '<span>' + group.label + '</span></a>';
+        }
+      }).join('');
+
+      sideEl.innerHTML =
+        '<div class="sidebar-logo"><div>' +
+          '<span class="sidebar-brand">CANB</span>' +
+          '<span class="sidebar-tagline">캠퍼스 관리</span>' +
+        '</div></div>' +
+        '<nav class="sidebar-nav">' + navHtml + '</nav>' +
+        '<div class="sidebar-footer"><div class="sidebar-user">' +
+          '<div class="user-avatar">이진</div>' +
+          '<div><span class="user-name">이진희</span><span class="user-role">관리자</span></div>' +
+        '</div></div>';
+
+      /* 그룹 트리거 클릭 → 첫 번째 자식 페이지로 이동 */
+      sideEl.querySelectorAll('.nav-group-trigger').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          var firstChild = this.closest('.nav-group').querySelector('.nav-item-child');
+          if (firstChild && firstChild.href) window.location.href = firstChild.href;
+        });
+      });
+    }
+  }
+
+  /* ── 상단 네비바 (top 모드) ── */
+  if (navMode === 'top') {
+    var _chevronSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+    var topnavBar = document.createElement('header');
+    topnavBar.className = 'topnav-bar';
+
+    var topBrand = document.createElement('div');
+    topBrand.className = 'topnav-bar-brand';
+    topBrand.innerHTML = '<span class="sidebar-brand">CANB</span><span class="sidebar-tagline">캠퍼스 관리</span>';
+    topnavBar.appendChild(topBrand);
+
+    var topnav = document.createElement('nav');
+    topnav.className = 'topnav';
+
+    TOP_NAV_GROUPS.forEach(function (group) {
+      if (group.children && group.children.length) {
+        var isActiveGroup = group.children.some(function (c) { return c.href === currentHref; });
+        var groupEl = document.createElement('div');
+        groupEl.className = 'topnav-group';
+
+        var trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'topnav-group-trigger' + (isActiveGroup ? ' active' : '');
+
+        var tIcon = document.createElement('span');
+        tIcon.className = 'topnav-item-icon';
+        tIcon.innerHTML = ICONS[group.icon] || '';
+
+        var tLabel = document.createElement('span');
+        tLabel.textContent = group.label;
+
+        var tChevron = document.createElement('span');
+        tChevron.className = 'topnav-group-chevron';
+        tChevron.innerHTML = _chevronSvg;
+
+        trigger.appendChild(tIcon);
+        trigger.appendChild(tLabel);
+        trigger.appendChild(tChevron);
+
+        var dropdown = document.createElement('div');
+        dropdown.className = 'topnav-dropdown';
+        group.children.forEach(function (child) {
+          var a = document.createElement('a');
+          a.href = child.href;
+          a.className = 'topnav-dropdown-item' + (currentHref === child.href ? ' active' : '');
+          a.textContent = child.label;
+          dropdown.appendChild(a);
+        });
+
+        trigger.addEventListener('click', function () {
+          window.location.href = group.children[0].href;
+        });
+
+        groupEl.appendChild(trigger);
+        groupEl.appendChild(dropdown);
+        topnav.appendChild(groupEl);
+      } else {
+        var a = document.createElement('a');
+        a.href = group.href;
+        a.className = 'topnav-item' + (currentHref === group.href ? ' active' : '');
+
+        var iSpan = document.createElement('span');
+        iSpan.className = 'topnav-item-icon';
+        iSpan.innerHTML = ICONS[group.icon] || '';
+
+        var lSpan = document.createElement('span');
+        lSpan.textContent = group.label;
+
+        a.appendChild(iSpan);
+        a.appendChild(lSpan);
+        topnav.appendChild(a);
+      }
+    });
+
+    topnavBar.appendChild(topnav);
+
+    var topBarActionsEl = document.createElement('div');
+    topBarActionsEl.className = 'topnav-bar-actions';
+    topnavBar.appendChild(topBarActionsEl);
+
+    var mainContent = document.querySelector('.main-content');
+    var topbar = document.querySelector('.topbar');
+    if (mainContent && topbar) {
+      mainContent.insertBefore(topnavBar, topbar);
+    } else if (mainContent) {
+      mainContent.insertBefore(topnavBar, mainContent.firstChild);
+    }
+
+    /* 가장 넓은 1depth 아이템 기준으로 너비 통일 */
+    document.fonts.ready.then(function () {
+      var allItems = Array.from(topnav.querySelectorAll('.topnav-item, .topnav-group-trigger'));
+      var maxW = 0;
+      allItems.forEach(function (el) { maxW = Math.max(maxW, el.offsetWidth); });
+      if (maxW > 0) allItems.forEach(function (el) { el.style.width = maxW + 'px'; });
+    });
+  }
+
+  /* ── 브레드크럼 ── */
   const titleEl = document.querySelector('.topbar-title');
   if (titleEl) {
     const currentItem = NAV_ITEMS.find(item => item.href === currentHref);
     const label = currentItem ? currentItem.label : titleEl.textContent.trim();
     const isHome = currentHref === 'index.html';
+
+    var parentGroup = null;
+    if (navMode === 'top') {
+      TOP_NAV_GROUPS.forEach(function (g) {
+        if (g.children && g.children.some(function (c) { return c.href === currentHref; })) {
+          parentGroup = g;
+        }
+      });
+    }
+    var ancestorHtml = parentGroup
+      ? '<span class="breadcrumb-ancestor">' + parentGroup.label + '</span><span class="breadcrumb-sep">›</span>'
+      : '';
+
     titleEl.outerHTML = isHome
       ? `<span class="breadcrumb-current">${label}</span>`
       : `<nav class="breadcrumb" aria-label="breadcrumb">
@@ -92,28 +248,63 @@ function initLayout(currentHref) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </a>
           <span class="breadcrumb-sep">›</span>
+          ${ancestorHtml}
           <span class="breadcrumb-current">${label}</span>
         </nav>`;
   }
 
-  /* Inject theme toggle button into topbar */
-  const actions = document.querySelector('.topbar-actions');
-  if (actions) {
-    const btn = document.createElement('button');
-    btn.className = 'icon-btn';
-    btn.id = 'theme-toggle';
-    btn.addEventListener('click', function () {
-      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const next = dark ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('canbTheme', next);
-      _syncThemeBtn();
-
-      if (typeof setChartDefaults === 'function') setChartDefaults();
-      window.dispatchEvent(new CustomEvent('themechange', { detail: { dark: next === 'dark' } }));
-    });
-    actions.insertBefore(btn, actions.firstChild);
+  /* ── 액션 버튼 (레이아웃 토글 + 테마 토글) ── */
+  var _themeBtn = document.createElement('button');
+  _themeBtn.className = 'icon-btn';
+  _themeBtn.id = 'theme-toggle';
+  _themeBtn.addEventListener('click', function () {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var next = dark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('canbTheme', next);
     _syncThemeBtn();
+    if (typeof setChartDefaults === 'function') setChartDefaults();
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { dark: next === 'dark' } }));
+  });
+
+  var _layoutBtn = document.createElement('button');
+  _layoutBtn.className = 'icon-btn';
+  _layoutBtn.id = 'layout-toggle';
+  _layoutBtn.innerHTML = navMode === 'top' ? ICONS['layout-side'] : ICONS['layout-top'];
+  _layoutBtn.title = navMode === 'top' ? '사이드바 메뉴로 전환' : '상단 메뉴로 전환';
+  _layoutBtn.setAttribute('aria-label', _layoutBtn.title);
+  _layoutBtn.addEventListener('click', function () {
+    var cur = localStorage.getItem('canbNav') || 'side';
+    localStorage.setItem('canbNav', cur === 'top' ? 'side' : 'top');
+    location.reload();
+  });
+
+  if (navMode === 'top') {
+    var _topBarActions = document.querySelector('.topnav-bar-actions');
+    if (_topBarActions) {
+      _topBarActions.appendChild(_layoutBtn);
+      _topBarActions.appendChild(_themeBtn);
+    }
+  } else {
+    var _sideActions = document.querySelector('.topbar-actions');
+    if (_sideActions) {
+      _sideActions.insertBefore(_themeBtn, _sideActions.firstChild);
+      _sideActions.insertBefore(_layoutBtn, _sideActions.firstChild);
+    }
+  }
+  _syncThemeBtn();
+
+  /* top 모드: 페이지 고유 버튼을 topnav-bar-actions로 이동 */
+  if (navMode === 'top') {
+    var _topActionsTarget = document.querySelector('.topnav-bar-actions');
+    var _pageActions = document.querySelector('.topbar-actions');
+    if (_topActionsTarget && _pageActions) {
+      var _pageButtons = Array.from(_pageActions.children);
+      var _refBtn = _topActionsTarget.firstChild;
+      _pageButtons.forEach(function (btn) {
+        _topActionsTarget.insertBefore(btn, _refBtn);
+      });
+    }
   }
 }
 
