@@ -110,6 +110,44 @@
         </div>
       </div>
 
+      <!-- 하단 탭바 데모 -->
+      <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
+        <div class="kpi-card-header">
+          <span class="kpi-label">하단 탭바</span>
+          <div class="kpi-icon blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="22" height="18" rx="2"/><line x1="1" y1="9" x2="23" y2="9"/></svg>
+          </div>
+        </div>
+        <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">방문 페이지가 탭으로 쌓입니다. 탭이 많아지면 가로 스크롤이 생깁니다.</p>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-primary btn-sm" onclick="
+            var base = [
+              {href:'index.html',label:'대시보드',icon:'home'},
+              {href:'students.html',label:'학생 관리',icon:'users'},
+              {href:'courses.html',label:'수강 관리',icon:'book-open'},
+              {href:'attendance.html',label:'출결 관리',icon:'cal-check'},
+              {href:'grades.html',label:'성적 관리',icon:'bar-chart'},
+              {href:'payments.html',label:'수납 관리',icon:'credit-card'},
+              {href:'teachers.html',label:'강사 관리',icon:'user-check'},
+              {href:'notices.html',label:'공지사항',icon:'bell'},
+              {href:'counseling.html',label:'상담 관리',icon:'message'},
+              {href:'settings.html',label:'설정',icon:'settings'},
+              {href:'modal-demo.html',label:'모달 데모',icon:'refresh'}
+            ];
+            var existing = [];
+            try { existing = JSON.parse(localStorage.getItem('canbTabs')) || []; } catch(e) {}
+            var n = Math.floor(existing.length / base.length) + 1;
+            var added = base.map(function(t){ return {href:t.href, label:t.label+(n>1?' '+n:''), icon:t.icon}; });
+            localStorage.setItem('canbTabs', JSON.stringify(existing.concat(added)));
+            location.reload();
+          ">탭 추가 (+11)</button>
+          <button class="btn btn-secondary btn-sm" onclick="
+            localStorage.removeItem('canbTabs');
+            location.reload();
+          ">탭 초기화</button>
+        </div>
+      </div>
+
       <!-- 커스텀 셀렉트 -->
       <div class="kpi-card" style="display:flex;flex-direction:column;gap:16px;">
         <div class="kpi-card-header">
@@ -136,6 +174,76 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- 토스트 메시지 데모 -->
+    <div class="card section" style="margin-top:32px;">
+      <div class="card-header"><div class="card-title">토스트 메시지</div></div>
+      <div class="card-body">
+        <div class="kpi-grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+
+          <div style="display:flex;flex-direction:column;gap:10px;padding:var(--space-4);border:var(--border-default);border-radius:var(--radius-lg);">
+            <div style="display:flex;align-items:center;gap:8px;color:var(--color-primary);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <span style="font-size:var(--text-sm);font-weight:var(--weight-semibold);">Success</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">완료·저장·등록 성공 시 사용합니다.</p>
+            <button class="btn btn-primary btn-sm" onclick="showToast('학생 등록이 완료되었습니다.', 'success')">Success 토스트</button>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px;padding:var(--space-4);border:var(--border-default);border-radius:var(--radius-lg);">
+            <div style="display:flex;align-items:center;gap:8px;color:var(--color-warning);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span style="font-size:var(--text-sm);font-weight:var(--weight-semibold);">Warning</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">주의·미납·경고 상황에 사용합니다.</p>
+            <button class="btn btn-secondary btn-sm" style="border-color:var(--color-warning);color:var(--color-warning);" onclick="showToast('미납 수강료가 3건 있습니다.', 'warning')">Warning 토스트</button>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px;padding:var(--space-4);border:var(--border-default);border-radius:var(--radius-lg);">
+            <div style="display:flex;align-items:center;gap:8px;color:var(--color-danger);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+              <span style="font-size:var(--text-sm);font-weight:var(--weight-semibold);">Danger</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">삭제 실패·오류 발생 시 사용합니다.</p>
+            <button class="btn btn-ghost btn-sm" onclick="showToast('저장에 실패했습니다. 다시 시도해주세요.', 'danger')">Danger 토스트</button>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:10px;padding:var(--space-4);border:var(--border-default);border-radius:var(--radius-lg);">
+            <div style="display:flex;align-items:center;gap:8px;color:var(--color-primary);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span style="font-size:var(--text-sm);font-weight:var(--weight-semibold);">Info</span>
+            </div>
+            <p style="font-size:var(--text-sm);color:var(--color-text-secondary);">일반 안내·정보 전달에 사용합니다.</p>
+            <button class="btn btn-secondary btn-sm" onclick="showToast('새로운 공지사항이 등록되었습니다.', 'info')">Info 토스트</button>
+          </div>
+
+        </div>
+
+        <div style="margin-top:var(--space-6);display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+          <div>
+            <p style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:8px;">JavaScript API</p>
+            <pre style="font-size:12px;background:var(--color-bg-subtle);border:var(--border-default);border-radius:var(--radius-md);padding:16px;overflow-x:auto;line-height:1.7;color:var(--color-text-secondary);"><code>showToast(message, type, duration)
+
+// type: 'success' | 'warning' | 'danger' | 'info'
+// duration: ms (기본 3500, 0 = 유지)
+
+showToast('저장되었습니다.', 'success');
+showToast('미납 내역이 있습니다.', 'warning');
+showToast('오류가 발생했습니다.', 'danger');
+showToast('공지가 등록되었습니다.', 'info', 5000);</code></pre>
+          </div>
+          <div>
+            <p style="font-size:var(--text-sm);font-weight:var(--weight-medium);color:var(--color-text-primary);margin-bottom:8px;">특징</p>
+            <table style="font-size:13px;width:100%;border-collapse:collapse;">
+              <tr style="border-bottom:var(--border-default);"><td style="padding:6px 8px;color:var(--color-text-secondary);">위치</td><td style="padding:6px 8px;color:var(--color-text-primary);">우하단 고정 (탭바 위)</td></tr>
+              <tr style="border-bottom:var(--border-default);"><td style="padding:6px 8px;color:var(--color-text-secondary);">애니메이션</td><td style="padding:6px 8px;color:var(--color-text-primary);">우측 슬라이드 인/아웃</td></tr>
+              <tr style="border-bottom:var(--border-default);"><td style="padding:6px 8px;color:var(--color-text-secondary);">자동 닫힘</td><td style="padding:6px 8px;color:var(--color-text-primary);">3.5초 후 자동 해제</td></tr>
+              <tr><td style="padding:6px 8px;color:var(--color-text-secondary);">스택</td><td style="padding:6px 8px;color:var(--color-text-primary);">여러 토스트 동시 표시</td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- 달력 인라인 프리뷰 -->

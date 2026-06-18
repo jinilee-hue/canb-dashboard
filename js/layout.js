@@ -306,6 +306,8 @@ function initLayout(currentHref) {
       });
     }
   }
+
+  _initTabBar(currentHref);
 }
 
 function icon(name) {
@@ -728,6 +730,183 @@ function initCondWraps() {
     document.body.removeChild(probe);
     trigger.style.width = Math.max(maxW + 15, 90) + 'px';
   });
+}
+
+/* ─── TOAST ──────────────────────────────────── */
+(function () {
+  var _container;
+  function _getContainer() {
+    if (!_container) {
+      _container = document.createElement('div');
+      _container.className = 'toast-container';
+      document.body.appendChild(_container);
+    }
+    return _container;
+  }
+
+  var _ICONS = {
+    success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+    warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    danger:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+    info:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+  };
+
+  window.showToast = function (message, type, duration) {
+    type     = type     !== undefined ? type     : 'info';
+    duration = duration !== undefined ? duration : 3500;
+
+    var container = _getContainer();
+    var toast = document.createElement('div');
+    toast.className = 'toast toast-' + type;
+
+    var iconEl = document.createElement('span');
+    iconEl.className = 'toast-icon';
+    iconEl.innerHTML = _ICONS[type] || _ICONS.info;
+
+    var msgEl = document.createElement('span');
+    msgEl.className = 'toast-msg';
+    msgEl.textContent = message;
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'toast-close';
+    closeBtn.setAttribute('aria-label', '닫기');
+    closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+    toast.appendChild(iconEl);
+    toast.appendChild(msgEl);
+    toast.appendChild(closeBtn);
+    container.appendChild(toast);
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { toast.classList.add('show'); });
+    });
+
+    function dismiss() {
+      toast.classList.remove('show');
+      toast.classList.add('hide');
+      toast.addEventListener('transitionend', function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, { once: true });
+    }
+    closeBtn.addEventListener('click', dismiss);
+    if (duration > 0) setTimeout(dismiss, duration);
+  };
+})();
+
+/* ─── BOTTOM TAB BAR ─────────────────────────── */
+var _CANB_TABS_KEY = 'canbTabs';
+var _CANB_TABS_MAX = 50;
+
+function _getTabStore() {
+  try { return JSON.parse(localStorage.getItem(_CANB_TABS_KEY)) || []; } catch (e) { return []; }
+}
+function _setTabStore(tabs) { localStorage.setItem(_CANB_TABS_KEY, JSON.stringify(tabs)); }
+
+function _initTabBar(currentHref) {
+  var navItem = NAV_ITEMS.find(function (i) { return i.href === currentHref; });
+  if (!navItem) return;
+
+  var tabs = _getTabStore();
+  var exists = tabs.some(function (t) { return t.href === currentHref; });
+  if (!exists) {
+    tabs.push({ href: navItem.href, label: navItem.label, icon: navItem.icon });
+    if (tabs.length > _CANB_TABS_MAX) tabs.shift();
+    _setTabStore(tabs);
+  }
+
+  var bar = document.createElement('div');
+  bar.className = 'tab-bar';
+
+  var btnLeft = document.createElement('button');
+  btnLeft.type = 'button';
+  btnLeft.className = 'tab-bar-nav tab-bar-nav-left';
+  btnLeft.setAttribute('aria-label', '이전 탭');
+  btnLeft.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+
+  var btnRight = document.createElement('button');
+  btnRight.type = 'button';
+  btnRight.className = 'tab-bar-nav tab-bar-nav-right';
+  btnRight.setAttribute('aria-label', '다음 탭');
+  btnRight.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+
+  var inner = document.createElement('div');
+  inner.className = 'tab-bar-inner';
+
+  tabs.forEach(function (tab, idx) {
+    var item = document.createElement('a');
+    item.href = tab.href;
+    item.className = 'tab-item' + (tab.href === currentHref ? ' active' : '');
+    item.dataset.tabHref = tab.href;
+
+    var iconSpan = document.createElement('span');
+    iconSpan.className = 'tab-item-icon';
+    iconSpan.innerHTML = ICONS[tab.icon] || '';
+
+    var labelSpan = document.createElement('span');
+    labelSpan.className = 'tab-item-label';
+    labelSpan.textContent = tab.label;
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'tab-close';
+    closeBtn.setAttribute('aria-label', tab.label + ' 탭 닫기');
+    closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+    (function (tabHref, tabIdx) {
+      closeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var stored = _getTabStore();
+        var newTabs = stored.filter(function (t) { return t.href !== tabHref; });
+        _setTabStore(newTabs);
+        if (tabHref === currentHref) {
+          var dest = newTabs.length
+            ? (newTabs[tabIdx - 1] || newTabs[tabIdx] || newTabs[newTabs.length - 1]).href
+            : 'index.html';
+          window.location.href = dest;
+        } else {
+          var el = inner.querySelector('[data-tab-href="' + tabHref + '"]');
+          if (el) el.parentNode.removeChild(el);
+          _syncNavBtns();
+        }
+      });
+    })(tab.href, idx);
+
+    item.appendChild(iconSpan);
+    item.appendChild(labelSpan);
+    item.appendChild(closeBtn);
+    inner.appendChild(item);
+  });
+
+  bar.appendChild(btnLeft);
+  bar.appendChild(inner);
+  bar.appendChild(btnRight);
+  document.body.appendChild(bar);
+
+  var SCROLL_STEP = 160;
+  function _syncNavBtns() {
+    var overflow = inner.scrollWidth > inner.clientWidth + 1;
+    if (overflow) {
+      btnLeft.classList.add('visible');
+      btnRight.classList.add('visible');
+    } else {
+      btnLeft.classList.remove('visible');
+      btnRight.classList.remove('visible');
+    }
+    btnLeft.disabled  = inner.scrollLeft <= 0;
+    btnRight.disabled = inner.scrollLeft >= inner.scrollWidth - inner.clientWidth - 1;
+  }
+
+  btnLeft.addEventListener('click', function () {
+    inner.scrollBy({ left: -SCROLL_STEP, behavior: 'smooth' });
+  });
+  btnRight.addEventListener('click', function () {
+    inner.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+  });
+  inner.addEventListener('scroll', _syncNavBtns);
+
+  setTimeout(function () {
+    _syncNavBtns();
+    var activeTab = inner.querySelector('.tab-item.active');
+    if (activeTab) activeTab.scrollIntoView({ inline: 'nearest' });
+  }, 0);
 }
 
 /* OverlayScrollbars 초기화 */

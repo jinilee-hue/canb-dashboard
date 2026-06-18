@@ -14,6 +14,27 @@ const NAV_ITEMS = [
   { icon: 'refresh',     label: '모달 데모', href: 'modal-demo.html' },
 ];
 
+/* 상단 네비 전용 그룹 구조 (2-depth 드롭다운) */
+const TOP_NAV_GROUPS = [
+  { label: '대시보드',  icon: 'home',        href: 'index.html' },
+  { label: '학생/강사', icon: 'users',       children: [
+    { label: '학생 관리', href: 'students.html' },
+    { label: '강사 관리', href: 'teachers.html' },
+  ]},
+  { label: '수강/출결', icon: 'book-open',   children: [
+    { label: '수강 관리', href: 'courses.html' },
+    { label: '출결 관리', href: 'attendance.html' },
+    { label: '성적 관리', href: 'grades.html' },
+  ]},
+  { label: '수납 관리', icon: 'credit-card', href: 'payments.html' },
+  { label: '소통',      icon: 'bell',        children: [
+    { label: '공지사항',  href: 'notices.html' },
+    { label: '상담 관리', href: 'counseling.html' },
+  ]},
+  { label: '설정',      icon: 'settings',    href: 'settings.html' },
+  { label: '모달 데모', icon: 'refresh',     href: 'modal-demo.html' },
+];
+
 const ICONS = {
   home: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
   users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
@@ -26,6 +47,8 @@ const ICONS = {
   message: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
   settings: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
   refresh: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
+  'layout-side': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>`,
+  'layout-top':  `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/></svg>`,
   plus: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>`,
   download: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>`,
   search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
@@ -50,41 +73,174 @@ function _syncThemeBtn() {
 }
 
 function initLayout(currentHref) {
-  const el = document.getElementById('sidebar');
-  if (!el) return;
+  var navMode = localStorage.getItem('canbNav') || 'side';
+  document.documentElement.setAttribute('data-layout', navMode);
 
-  el.innerHTML = `
-    <div class="sidebar-logo">
-      <div>
-        <span class="sidebar-brand">CANB</span>
-        <span class="sidebar-tagline">캠퍼스 관리</span>
-      </div>
-    </div>
-    <nav class="sidebar-nav">
-      ${NAV_ITEMS.map(item => `
-        <a href="${item.href}" class="nav-item ${currentHref === item.href ? 'active' : ''}">
-          ${ICONS[item.icon] || ''}
-          <span>${item.label}</span>
-        </a>
-      `).join('')}
-    </nav>
-    <div class="sidebar-footer">
-      <div class="sidebar-user">
-        <div class="user-avatar">이진</div>
-        <div>
-          <span class="user-name">이진희</span>
-          <span class="user-role">관리자</span>
-        </div>
-      </div>
-    </div>
-  `;
+  /* ── 사이드바 (side 모드) ── */
+  if (navMode === 'side') {
+    var sideEl = document.getElementById('sidebar');
+    if (sideEl) {
+      var chevSvg = '<svg class="nav-group-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
 
-  /* Breadcrumb: replace topbar-title with home > current page */
+      var navHtml = TOP_NAV_GROUPS.map(function (group) {
+        if (group.children && group.children.length) {
+          var isActiveGroup = group.children.some(function (c) { return c.href === currentHref; });
+          var childrenHtml = group.children.map(function (child) {
+            return '<a href="' + child.href + '" class="nav-item nav-item-child' + (child.href === currentHref ? ' active' : '') + '">' +
+              '<span>' + child.label + '</span></a>';
+          }).join('');
+          return '<div class="nav-group' + (isActiveGroup ? ' open' : '') + '">' +
+            '<button class="nav-group-trigger' + (isActiveGroup ? ' active' : '') + '" type="button">' +
+              (ICONS[group.icon] || '') +
+              '<span>' + group.label + '</span>' +
+              chevSvg +
+            '</button>' +
+            '<div class="nav-group-children">' + childrenHtml + '</div>' +
+          '</div>';
+        } else {
+          return '<a href="' + group.href + '" class="nav-item' + (group.href === currentHref ? ' active' : '') + '">' +
+            (ICONS[group.icon] || '') + '<span>' + group.label + '</span></a>';
+        }
+      }).join('');
+
+      sideEl.innerHTML =
+        '<div class="sidebar-logo"><div>' +
+          '<span class="sidebar-brand">CANB</span>' +
+          '<span class="sidebar-tagline">캠퍼스 관리</span>' +
+        '</div></div>' +
+        '<nav class="sidebar-nav">' + navHtml + '</nav>' +
+        '<div class="sidebar-footer"><div class="sidebar-user">' +
+          '<div class="user-avatar">이진</div>' +
+          '<div><span class="user-name">이진희</span><span class="user-role">관리자</span></div>' +
+        '</div></div>';
+
+      /* 그룹 트리거 클릭 → 첫 번째 자식 페이지로 이동 */
+      sideEl.querySelectorAll('.nav-group-trigger').forEach(function (trigger) {
+        trigger.addEventListener('click', function () {
+          var firstChild = this.closest('.nav-group').querySelector('.nav-item-child');
+          if (firstChild && firstChild.href) window.location.href = firstChild.href;
+        });
+      });
+    }
+  }
+
+  /* ── 상단 네비바 (top 모드) ── */
+  if (navMode === 'top') {
+    var _chevronSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>';
+
+    var topnavBar = document.createElement('header');
+    topnavBar.className = 'topnav-bar';
+
+    var topBrand = document.createElement('div');
+    topBrand.className = 'topnav-bar-brand';
+    topBrand.innerHTML = '<span class="sidebar-brand">CANB</span><span class="sidebar-tagline">캠퍼스 관리</span>';
+    topnavBar.appendChild(topBrand);
+
+    var topnav = document.createElement('nav');
+    topnav.className = 'topnav';
+
+    TOP_NAV_GROUPS.forEach(function (group) {
+      if (group.children && group.children.length) {
+        var isActiveGroup = group.children.some(function (c) { return c.href === currentHref; });
+        var groupEl = document.createElement('div');
+        groupEl.className = 'topnav-group';
+
+        var trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'topnav-group-trigger' + (isActiveGroup ? ' active' : '');
+
+        var tIcon = document.createElement('span');
+        tIcon.className = 'topnav-item-icon';
+        tIcon.innerHTML = ICONS[group.icon] || '';
+
+        var tLabel = document.createElement('span');
+        tLabel.textContent = group.label;
+
+        var tChevron = document.createElement('span');
+        tChevron.className = 'topnav-group-chevron';
+        tChevron.innerHTML = _chevronSvg;
+
+        trigger.appendChild(tIcon);
+        trigger.appendChild(tLabel);
+        trigger.appendChild(tChevron);
+
+        var dropdown = document.createElement('div');
+        dropdown.className = 'topnav-dropdown';
+        group.children.forEach(function (child) {
+          var a = document.createElement('a');
+          a.href = child.href;
+          a.className = 'topnav-dropdown-item' + (currentHref === child.href ? ' active' : '');
+          a.textContent = child.label;
+          dropdown.appendChild(a);
+        });
+
+        trigger.addEventListener('click', function () {
+          window.location.href = group.children[0].href;
+        });
+
+        groupEl.appendChild(trigger);
+        groupEl.appendChild(dropdown);
+        topnav.appendChild(groupEl);
+      } else {
+        var a = document.createElement('a');
+        a.href = group.href;
+        a.className = 'topnav-item' + (currentHref === group.href ? ' active' : '');
+
+        var iSpan = document.createElement('span');
+        iSpan.className = 'topnav-item-icon';
+        iSpan.innerHTML = ICONS[group.icon] || '';
+
+        var lSpan = document.createElement('span');
+        lSpan.textContent = group.label;
+
+        a.appendChild(iSpan);
+        a.appendChild(lSpan);
+        topnav.appendChild(a);
+      }
+    });
+
+    topnavBar.appendChild(topnav);
+
+    var topBarActionsEl = document.createElement('div');
+    topBarActionsEl.className = 'topnav-bar-actions';
+    topnavBar.appendChild(topBarActionsEl);
+
+    var mainContent = document.querySelector('.main-content');
+    var topbar = document.querySelector('.topbar');
+    if (mainContent && topbar) {
+      mainContent.insertBefore(topnavBar, topbar);
+    } else if (mainContent) {
+      mainContent.insertBefore(topnavBar, mainContent.firstChild);
+    }
+
+    /* 가장 넓은 1depth 아이템 기준으로 너비 통일 */
+    document.fonts.ready.then(function () {
+      var allItems = Array.from(topnav.querySelectorAll('.topnav-item, .topnav-group-trigger'));
+      var maxW = 0;
+      allItems.forEach(function (el) { maxW = Math.max(maxW, el.offsetWidth); });
+      if (maxW > 0) allItems.forEach(function (el) { el.style.width = maxW + 'px'; });
+    });
+  }
+
+  /* ── 브레드크럼 ── */
   const titleEl = document.querySelector('.topbar-title');
   if (titleEl) {
     const currentItem = NAV_ITEMS.find(item => item.href === currentHref);
     const label = currentItem ? currentItem.label : titleEl.textContent.trim();
     const isHome = currentHref === 'index.html';
+
+    var parentGroup = null;
+    if (navMode === 'top') {
+      TOP_NAV_GROUPS.forEach(function (g) {
+        if (g.children && g.children.some(function (c) { return c.href === currentHref; })) {
+          parentGroup = g;
+        }
+      });
+    }
+    var ancestorHtml = parentGroup
+      ? '<span class="breadcrumb-ancestor">' + parentGroup.label + '</span><span class="breadcrumb-sep">›</span>'
+      : '';
+
     titleEl.outerHTML = isHome
       ? `<span class="breadcrumb-current">${label}</span>`
       : `<nav class="breadcrumb" aria-label="breadcrumb">
@@ -92,29 +248,66 @@ function initLayout(currentHref) {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </a>
           <span class="breadcrumb-sep">›</span>
+          ${ancestorHtml}
           <span class="breadcrumb-current">${label}</span>
         </nav>`;
   }
 
-  /* Inject theme toggle button into topbar */
-  const actions = document.querySelector('.topbar-actions');
-  if (actions) {
-    const btn = document.createElement('button');
-    btn.className = 'icon-btn';
-    btn.id = 'theme-toggle';
-    btn.addEventListener('click', function () {
-      const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const next = dark ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('canbTheme', next);
-      _syncThemeBtn();
-
-      if (typeof setChartDefaults === 'function') setChartDefaults();
-      window.dispatchEvent(new CustomEvent('themechange', { detail: { dark: next === 'dark' } }));
-    });
-    actions.insertBefore(btn, actions.firstChild);
+  /* ── 액션 버튼 (레이아웃 토글 + 테마 토글) ── */
+  var _themeBtn = document.createElement('button');
+  _themeBtn.className = 'icon-btn';
+  _themeBtn.id = 'theme-toggle';
+  _themeBtn.addEventListener('click', function () {
+    var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    var next = dark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('canbTheme', next);
     _syncThemeBtn();
+    if (typeof setChartDefaults === 'function') setChartDefaults();
+    window.dispatchEvent(new CustomEvent('themechange', { detail: { dark: next === 'dark' } }));
+  });
+
+  var _layoutBtn = document.createElement('button');
+  _layoutBtn.className = 'icon-btn';
+  _layoutBtn.id = 'layout-toggle';
+  _layoutBtn.innerHTML = navMode === 'top' ? ICONS['layout-side'] : ICONS['layout-top'];
+  _layoutBtn.title = navMode === 'top' ? '사이드바 메뉴로 전환' : '상단 메뉴로 전환';
+  _layoutBtn.setAttribute('aria-label', _layoutBtn.title);
+  _layoutBtn.addEventListener('click', function () {
+    var cur = localStorage.getItem('canbNav') || 'side';
+    localStorage.setItem('canbNav', cur === 'top' ? 'side' : 'top');
+    location.reload();
+  });
+
+  if (navMode === 'top') {
+    var _topBarActions = document.querySelector('.topnav-bar-actions');
+    if (_topBarActions) {
+      _topBarActions.appendChild(_layoutBtn);
+      _topBarActions.appendChild(_themeBtn);
+    }
+  } else {
+    var _sideActions = document.querySelector('.topbar-actions');
+    if (_sideActions) {
+      _sideActions.insertBefore(_themeBtn, _sideActions.firstChild);
+      _sideActions.insertBefore(_layoutBtn, _sideActions.firstChild);
+    }
   }
+  _syncThemeBtn();
+
+  /* top 모드: 페이지 고유 버튼을 topnav-bar-actions로 이동 */
+  if (navMode === 'top') {
+    var _topActionsTarget = document.querySelector('.topnav-bar-actions');
+    var _pageActions = document.querySelector('.topbar-actions');
+    if (_topActionsTarget && _pageActions) {
+      var _pageButtons = Array.from(_pageActions.children);
+      var _refBtn = _topActionsTarget.firstChild;
+      _pageButtons.forEach(function (btn) {
+        _topActionsTarget.insertBefore(btn, _refBtn);
+      });
+    }
+  }
+
+  _initTabBar(currentHref);
 }
 
 function icon(name) {
@@ -537,6 +730,183 @@ function initCondWraps() {
     document.body.removeChild(probe);
     trigger.style.width = Math.max(maxW + 15, 90) + 'px';
   });
+}
+
+/* ─── TOAST ──────────────────────────────────── */
+(function () {
+  var _container;
+  function _getContainer() {
+    if (!_container) {
+      _container = document.createElement('div');
+      _container.className = 'toast-container';
+      document.body.appendChild(_container);
+    }
+    return _container;
+  }
+
+  var _ICONS = {
+    success: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+    warning: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    danger:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+    info:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>',
+  };
+
+  window.showToast = function (message, type, duration) {
+    type     = type     !== undefined ? type     : 'info';
+    duration = duration !== undefined ? duration : 3500;
+
+    var container = _getContainer();
+    var toast = document.createElement('div');
+    toast.className = 'toast toast-' + type;
+
+    var iconEl = document.createElement('span');
+    iconEl.className = 'toast-icon';
+    iconEl.innerHTML = _ICONS[type] || _ICONS.info;
+
+    var msgEl = document.createElement('span');
+    msgEl.className = 'toast-msg';
+    msgEl.textContent = message;
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'toast-close';
+    closeBtn.setAttribute('aria-label', '닫기');
+    closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+    toast.appendChild(iconEl);
+    toast.appendChild(msgEl);
+    toast.appendChild(closeBtn);
+    container.appendChild(toast);
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { toast.classList.add('show'); });
+    });
+
+    function dismiss() {
+      toast.classList.remove('show');
+      toast.classList.add('hide');
+      toast.addEventListener('transitionend', function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, { once: true });
+    }
+    closeBtn.addEventListener('click', dismiss);
+    if (duration > 0) setTimeout(dismiss, duration);
+  };
+})();
+
+/* ─── BOTTOM TAB BAR ─────────────────────────── */
+var _CANB_TABS_KEY = 'canbTabs';
+var _CANB_TABS_MAX = 50;
+
+function _getTabStore() {
+  try { return JSON.parse(localStorage.getItem(_CANB_TABS_KEY)) || []; } catch (e) { return []; }
+}
+function _setTabStore(tabs) { localStorage.setItem(_CANB_TABS_KEY, JSON.stringify(tabs)); }
+
+function _initTabBar(currentHref) {
+  var navItem = NAV_ITEMS.find(function (i) { return i.href === currentHref; });
+  if (!navItem) return;
+
+  var tabs = _getTabStore();
+  var exists = tabs.some(function (t) { return t.href === currentHref; });
+  if (!exists) {
+    tabs.push({ href: navItem.href, label: navItem.label, icon: navItem.icon });
+    if (tabs.length > _CANB_TABS_MAX) tabs.shift();
+    _setTabStore(tabs);
+  }
+
+  var bar = document.createElement('div');
+  bar.className = 'tab-bar';
+
+  var btnLeft = document.createElement('button');
+  btnLeft.type = 'button';
+  btnLeft.className = 'tab-bar-nav tab-bar-nav-left';
+  btnLeft.setAttribute('aria-label', '이전 탭');
+  btnLeft.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>';
+
+  var btnRight = document.createElement('button');
+  btnRight.type = 'button';
+  btnRight.className = 'tab-bar-nav tab-bar-nav-right';
+  btnRight.setAttribute('aria-label', '다음 탭');
+  btnRight.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>';
+
+  var inner = document.createElement('div');
+  inner.className = 'tab-bar-inner';
+
+  tabs.forEach(function (tab, idx) {
+    var item = document.createElement('a');
+    item.href = tab.href;
+    item.className = 'tab-item' + (tab.href === currentHref ? ' active' : '');
+    item.dataset.tabHref = tab.href;
+
+    var iconSpan = document.createElement('span');
+    iconSpan.className = 'tab-item-icon';
+    iconSpan.innerHTML = ICONS[tab.icon] || '';
+
+    var labelSpan = document.createElement('span');
+    labelSpan.className = 'tab-item-label';
+    labelSpan.textContent = tab.label;
+
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'tab-close';
+    closeBtn.setAttribute('aria-label', tab.label + ' 탭 닫기');
+    closeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+
+    (function (tabHref, tabIdx) {
+      closeBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var stored = _getTabStore();
+        var newTabs = stored.filter(function (t) { return t.href !== tabHref; });
+        _setTabStore(newTabs);
+        if (tabHref === currentHref) {
+          var dest = newTabs.length
+            ? (newTabs[tabIdx - 1] || newTabs[tabIdx] || newTabs[newTabs.length - 1]).href
+            : 'index.html';
+          window.location.href = dest;
+        } else {
+          var el = inner.querySelector('[data-tab-href="' + tabHref + '"]');
+          if (el) el.parentNode.removeChild(el);
+          _syncNavBtns();
+        }
+      });
+    })(tab.href, idx);
+
+    item.appendChild(iconSpan);
+    item.appendChild(labelSpan);
+    item.appendChild(closeBtn);
+    inner.appendChild(item);
+  });
+
+  bar.appendChild(btnLeft);
+  bar.appendChild(inner);
+  bar.appendChild(btnRight);
+  document.body.appendChild(bar);
+
+  var SCROLL_STEP = 160;
+  function _syncNavBtns() {
+    var overflow = inner.scrollWidth > inner.clientWidth + 1;
+    if (overflow) {
+      btnLeft.classList.add('visible');
+      btnRight.classList.add('visible');
+    } else {
+      btnLeft.classList.remove('visible');
+      btnRight.classList.remove('visible');
+    }
+    btnLeft.disabled  = inner.scrollLeft <= 0;
+    btnRight.disabled = inner.scrollLeft >= inner.scrollWidth - inner.clientWidth - 1;
+  }
+
+  btnLeft.addEventListener('click', function () {
+    inner.scrollBy({ left: -SCROLL_STEP, behavior: 'smooth' });
+  });
+  btnRight.addEventListener('click', function () {
+    inner.scrollBy({ left: SCROLL_STEP, behavior: 'smooth' });
+  });
+  inner.addEventListener('scroll', _syncNavBtns);
+
+  setTimeout(function () {
+    _syncNavBtns();
+    var activeTab = inner.querySelector('.tab-item.active');
+    if (activeTab) activeTab.scrollIntoView({ inline: 'nearest' });
+  }, 0);
 }
 
 /* OverlayScrollbars 초기화 */
