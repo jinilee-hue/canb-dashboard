@@ -277,7 +277,7 @@ function _csWrapSelect(sel) {
 }
 
 function initCustomSelects() {
-  document.querySelectorAll('select.filter-select').forEach(_csWrapSelect);
+  document.querySelectorAll('select.filter-select, select.form-select').forEach(_csWrapSelect);
 
   if (!window._csClickBound) {
     window._csClickBound = true;
