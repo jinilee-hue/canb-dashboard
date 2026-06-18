@@ -139,7 +139,6 @@ a { text-decoration: none; }
 .nav-group.open > .nav-group-children {
   max-height: 320px;
   margin-top: var(--space-1);
-  border: 1px solid var(--color-primary-a25);
 }
 .nav-group.open > .nav-group-trigger:not(.active) {
   background: var(--color-primary-a08);
