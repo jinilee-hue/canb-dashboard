@@ -160,9 +160,10 @@ datasets: [{ barPercentage: 0.45, borderRadius: 3, ... }]
 
 | 토큰 | 값 | 용도 |
 |------|-----|------|
-| `--radius-sm` | `4px` | 버튼·인풋 |
-| `--radius-md` | `8px` | 카드·드롭다운 |
-| `--radius-lg` | `12px` | 큰 카드 |
+| `--input-height` | `40px` | 모든 입력·버튼 높이 통일 (input/select/btn/search-box/cs-trigger) |
+| `--radius-sm` | `4px` | 달력 날짜 셀·소형 보조 요소 |
+| `--radius-md` | `8px` | **버튼·인풋·셀렉트·드롭다운·카드** 모두 동일 |
+| `--radius-lg` | `12px` | 큰 카드·필터바 |
 | `--radius-full` | `9999px` | 뱃지·아바타 |
 | `--shadow-sm` | `0 1px 2px rgba(0,0,0,0.06)` | |
 | `--shadow-md` | `0 4px 6px -1px rgba(0,0,0,0.08)` | |
@@ -212,6 +213,20 @@ datasets: [{ barPercentage: 0.45, borderRadius: 3, ... }]
 - 테이블 `<thead>` — `style="border-top: var(--border-default);"` 직접 지정
 - `tbody tr:last-child` — `border-bottom: var(--border-default)` (전역 CSS)
 
+**card-list-pad 패턴** — `card-body no-pad` 내부 리스트 전용:
+
+```html
+<!-- ✅ 인라인 padding 금지 — 반드시 클래스 사용 -->
+<div class="card-body no-pad">
+  <div class="card-list-pad">
+    <!-- 리스트 항목들 -->
+  </div>
+</div>
+```
+
+- sidebar 모드: `padding: var(--space-4) var(--space-6)` 자동 적용
+- top 모드: 좌우 패딩 자동 제거 → 카드 타이틀과 그리드 정렬
+
 ### 필터바
 
 ```html
@@ -225,7 +240,8 @@ datasets: [{ barPercentage: 0.45, borderRadius: 3, ... }]
 
 - 라이트: `background: var(--color-bg-muted)` (`#EDEFF2`)
 - 다크: `background: var(--color-sidebar-bg)` (`#0F0F0F`) — 카드(`#111111`)보다 어둡게
-- 레이아웃: `display: flex; justify-content: center; flex-wrap: wrap; width: 100%`
+- 레이아웃: `display: flex; justify-content: flex-start; flex-wrap: wrap; width: 100%`
+- `.search-box`: `flex: 1` — 검색박스가 남은 공간 채움, 셀렉트들은 우측 고정
 
 ### 브레드크럼
 
@@ -264,7 +280,10 @@ datasets: [{ barPercentage: 0.45, borderRadius: 3, ... }]
 
 ### 커스텀 셀렉트
 
-`select.filter-select` 클래스 사용 시 자동으로 커스텀 드롭다운으로 변환됩니다.
+`select.filter-select` 또는 `select.form-select` 클래스 사용 시 자동으로 커스텀 드롭다운으로 변환됩니다.
+
+- 필터바 컨텍스트 (`filter-select`): 트리거가 `inline-block`, 너비는 텍스트 기준 자동 계산
+- 폼 컨텍스트 (`form-select`, `.form-group` 안): 트리거가 `width: 100%` 전체 너비 자동 적용
 
 **시각 상태**
 
@@ -284,7 +303,7 @@ datasets: [{ barPercentage: 0.45, borderRadius: 3, ... }]
 
 | 상태 | 외형 |
 |------|------|
-| 기본 | 테두리 `--color-border`, 배경 white, `border-radius: --radius-sm` |
+| 기본 | 테두리 `--color-border`, 배경 white, `height: --input-height`, `border-radius: --radius-md` |
 | 포커스 | 테두리 `--color-primary`, 포커스 링 `--color-primary-light` |
 
 **달력 시각 사양**
@@ -349,7 +368,71 @@ datasets: [{ barPercentage: 0.45, borderRadius: 3, ... }]
 
 ---
 
-## 7. 접근성
+## 7. Top Nav 레이아웃 (상단 가로 메뉴 모드)
+
+`initLayout()`에서 `data-layout="top"` 속성 부여 시 자동 활성화.
+
+```
+[topnav-bar sticky 56px — 로고 + 가로 메뉴]
+[topbar 38px — 히스토리 브레드크럼] ← 콘텐츠와 함께 스크롤
+[page-content]
+  └── 카드·그리드 좌우 패딩: var(--space-10) = 40px
+```
+
+### 스크롤 동작
+
+- `topnav-bar`: `position: sticky; top: 0` → 스크롤 시 상단 고정
+- `topbar`: 콘텐츠와 함께 스크롤되어 올라감
+- `page-content`: 자체 overflow 없음 — `main-content`가 스크롤 컨테이너
+
+### 여백 & 그리드
+
+- `topnav-bar`, `topbar`, `page-content` 좌우 패딩 모두 `var(--space-10)` (40px) 통일
+- `.card > .card-header`, `.card > .card-body` 좌우 패딩 자동 제거 (전역 적용, `flush-x` 클래스 불필요)
+
+### 섹션 간격
+
+```css
+[data-layout="top"] .kpi-grid     { gap: 20px; margin-bottom: 40px; }
+[data-layout="top"] .section      { margin-bottom: 40px; }
+[data-layout="top"] .chart-grid-2,
+[data-layout="top"] .chart-grid-3 { gap: 40px; }
+```
+
+### 2열 그리드 (settings.html 등)
+
+인라인 `style="display:grid;gap:..."` 금지 — 반드시 `.chart-grid-2` 클래스 사용:
+
+```html
+<!-- top 모드 gap 자동 적용 -->
+<div class="chart-grid-2">
+  <div class="card">...</div>
+  <div class="card">...</div>
+</div>
+```
+
+### 카드 타이틀 액센트 라인
+
+top 모드에서만 자동 적용: 카드 타이틀 위에 `16px × 2px` Magenta 라인
+
+```css
+[data-layout="top"] .card-title::before {
+  content: ''; display: block;
+  width: 16px; height: 2px;
+  background: var(--color-primary);
+  margin-bottom: 4px;
+}
+```
+
+### 브레드크럼 depth
+
+- index.html: 페이지명만
+- 1-depth: 홈 아이콘 `›` 페이지명
+- 2-depth (그룹 하위): 홈 아이콘 `›` 그룹명 `›` 페이지명
+
+---
+
+## 8. 접근성
 
 - 모든 인터랙티브 요소에 `aria-label` 또는 가시 텍스트 필수
 - 차트에 `role="img"` + `aria-label` (데이터 요약)
@@ -358,7 +441,7 @@ datasets: [{ barPercentage: 0.45, borderRadius: 3, ... }]
 
 ---
 
-## 8. 다크 모드
+## 9. 다크 모드
 
 탑바 우측 달·해 아이콘 버튼으로 토글. `<html data-theme="dark">` 적용.
 
