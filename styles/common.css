@@ -1155,6 +1155,15 @@ span.flatpickr-weekday { background: transparent !important; color: var(--color-
 
 .topnav-bar-actions { display: flex; align-items: center; gap: var(--space-2); justify-self: end; }
 
+.topnav-user {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-right: var(--space-3);
+  border-right: var(--border-default);
+  margin-right: var(--space-1);
+}
+
 /* ─── TOAST ──────────────────────────────────── */
 .toast-container {
   position: fixed;
