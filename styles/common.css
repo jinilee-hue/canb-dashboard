@@ -222,7 +222,7 @@ a { text-decoration: none; }
   transition: color 0.15s, border-color 0.15s, background 0.15s;
   padding: 0;
 }
-.sidebar-logout:hover { color: var(--color-danger); border-color: var(--color-danger); background: var(--color-danger-light); }
+.sidebar-logout:hover { color: var(--color-primary); border-color: var(--color-primary); background: var(--color-primary-light); }
 .sidebar-logout svg { width: 14px; height: 14px; }
 
 /* ─── MAIN CONTENT ────────────────────────────── */
