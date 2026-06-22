@@ -111,12 +111,11 @@ function initLayout(currentHref) {
         '<nav class="sidebar-nav">' + navHtml + '</nav>' +
         '<div class="sidebar-footer"><div class="sidebar-user">' +
           '<div class="user-avatar">이진</div>' +
-          '<div><span class="user-name">이진희</span><span class="user-role">관리자</span></div>' +
-        '</div>' +
-        '<button class="sidebar-logout" type="button">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>' +
-          '<span>로그아웃</span>' +
-        '</button></div>';
+          '<div class="user-info"><span class="user-name">이진희</span><span class="user-role">관리자</span></div>' +
+          '<button class="sidebar-logout" type="button" aria-label="로그아웃">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>' +
+          '</button>' +
+        '</div></div>';
 
       /* 그룹 트리거 클릭 → 첫 번째 자식 페이지로 이동 */
       sideEl.querySelectorAll('.nav-group-trigger').forEach(function (trigger) {
