@@ -208,8 +208,30 @@ function initLayout(currentHref) {
           dropdown.appendChild(a);
         });
 
-        trigger.addEventListener('click', function () {
-          window.location.href = group.children[0].href;
+        /* 클릭: 모든 사이즈에서 드롭다운 토글 (position:fixed로 overflow 클리핑 우회) */
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var wasOpen = dropdown.classList.contains('dd-open');
+          document.querySelectorAll('.topnav-dropdown.dd-open').forEach(function (d) {
+            d.classList.remove('dd-open');
+            d.removeAttribute('style');
+          });
+          document.querySelectorAll('.topnav-group-trigger.dd-trigger-open').forEach(function (t) {
+            t.classList.remove('dd-trigger-open');
+            t.blur();
+          });
+          topnav.classList.remove('has-dd-open');
+          if (!wasOpen) {
+            var rect = trigger.getBoundingClientRect();
+            if (window.innerWidth <= 1024) {
+              dropdown.style.cssText = 'position:fixed;top:' + rect.bottom + 'px;left:0;right:0;width:100%;';
+            } else {
+              dropdown.style.cssText = 'position:fixed;top:' + rect.bottom + 'px;left:' + rect.left + 'px;min-width:' + Math.round(rect.width) + 'px;';
+            }
+            dropdown.classList.add('dd-open');
+            trigger.classList.add('dd-trigger-open');
+            topnav.classList.add('has-dd-open');
+          }
         });
 
         groupEl.appendChild(trigger);
@@ -235,6 +257,19 @@ function initLayout(currentHref) {
 
     topnavBar.appendChild(topnav);
 
+    /* 태블릿·모바일 드롭다운: 외부 클릭 시 닫기 */
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.topnav-dropdown.dd-open').forEach(function (d) {
+        d.classList.remove('dd-open');
+        d.removeAttribute('style');
+      });
+      document.querySelectorAll('.topnav-group-trigger.dd-trigger-open').forEach(function (t) {
+        t.classList.remove('dd-trigger-open');
+        t.blur();
+      });
+      topnav.classList.remove('has-dd-open');
+    });
+
     var topBarActionsEl = document.createElement('div');
     topBarActionsEl.className = 'topnav-bar-actions';
 
@@ -257,13 +292,20 @@ function initLayout(currentHref) {
       mainContent.insertBefore(topnavBar, mainContent.firstChild);
     }
 
-    /* 가장 넓은 1depth 아이템 기준으로 너비 통일 */
+    /* 가장 넓은 1depth 아이템 기준으로 너비 통일 (데스크톱만) */
     document.fonts.ready.then(function () {
+      if (window.innerWidth <= 1024) {
+        /* 태블릿·모바일: 균등화 없이 활성 항목만 스크롤해서 보이게 */
+        var activeItem = topnav.querySelector('.topnav-item.active, .topnav-group-trigger.active');
+        if (activeItem) activeItem.scrollIntoView({ inline: 'nearest', block: 'nearest' });
+        return;
+      }
       var allItems = Array.from(topnav.querySelectorAll('.topnav-item, .topnav-group-trigger'));
       var maxW = 0;
       allItems.forEach(function (el) { maxW = Math.max(maxW, el.offsetWidth); });
       if (maxW > 0) allItems.forEach(function (el) { el.style.width = maxW + 'px'; });
     });
+
   }
 
   /* ── 브레드크럼 ── */
