@@ -918,7 +918,7 @@ tbody td.td-fixed { border-right: var(--border-default); }
 
   /* 아이콘 버튼 숨김, 대메뉴명만 중앙에 표시 */
   .topbar { position: relative; }
-  .topbar-actions { display: none; }
+  .topbar-actions .icon-btn:not([aria-label="알림"]) { display: none; }
   .breadcrumb { display: flex; position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; }
   .breadcrumb-home, .breadcrumb-sep, .breadcrumb-ancestor { display: none; }
   .breadcrumb-current { font-size: var(--text-base); font-weight: var(--weight-semibold); }
