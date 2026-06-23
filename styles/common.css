@@ -937,10 +937,17 @@ tbody td.td-fixed { border-right: var(--border-default); }
   /* 탭바 left 0 (사이드바가 드로어 모드이므로 full width) */
   .tab-bar { left: 0; }
 
-  /* top 레이아웃도 모바일에서 햄버거 드로어로 전환 */
+  /* top 레이아웃 → 모바일에서 side 레이아웃과 완전히 동일하게 리셋 */
   [data-layout="top"] .topnav-bar { display: none; }
   [data-layout="top"] .sidebar { display: block; }
   [data-layout="top"] .topbar { height: 56px; padding: 0 var(--space-4); background: var(--color-bg); border-bottom: var(--border-default); }
+  [data-layout="top"] .main-content { overflow: hidden; }
+  [data-layout="top"] .page-content { overflow-y: auto; flex: 1; background: var(--color-bg-subtle); padding: var(--space-4); }
+  [data-layout="top"] .kpi-grid { gap: var(--space-4); margin-bottom: var(--space-8); }
+  [data-layout="top"] .section { margin-bottom: var(--space-8); }
+  [data-layout="top"] .card > .card-header,
+  [data-layout="top"] .card > .card-body { padding-left: var(--space-6); padding-right: var(--space-6); }
+  [data-layout="top"] .breadcrumb-current { font-size: var(--text-base); font-weight: var(--weight-semibold); }
 }
 @media (max-width: 480px) {
   .kpi-grid { grid-template-columns: 1fr; }
