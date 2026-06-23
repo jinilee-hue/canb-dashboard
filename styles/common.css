@@ -915,6 +915,7 @@ tbody td.td-fixed { border-right: var(--border-default); }
 @media (max-width: 640px) {
   /* 사이드바 → 오버레이 드로어 전환 (640px 이하) */
   .hamburger-btn { display: flex; }
+  .breadcrumb { display: none; }
 
   .sidebar {
     position: fixed; top: 0; left: 0;
