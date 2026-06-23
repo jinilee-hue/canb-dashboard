@@ -965,6 +965,114 @@ closeModal('myModal');
       </div>
     </div>
 
+
+    <!-- ── 스크롤 ─────────────────────────────────── -->
+    <div style="margin-top:32px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;">
+
+      <!-- 세로 스크롤 -->
+      <div class="card section">
+        <div class="card-header"><div class="card-title">세로 스크롤</div></div>
+        <div class="card-body">
+          <div id="vScrollDemo" style="height:240px;border:var(--border-default);border-radius:var(--radius-md);overflow:hidden;">
+            <table>
+              <thead>
+                <tr style="border-top:var(--border-default);">
+                  <th class="text-left">이름</th>
+                  <th>학년</th>
+                  <th>납부 상태</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="text-left">김민준</td><td class="text-secondary">중2</td><td><span class="badge badge-neutral">완납</span></td></tr>
+                <tr><td class="text-left">이서연</td><td class="text-secondary">고1</td><td><span class="badge badge-warning">미납</span></td></tr>
+                <tr><td class="text-left">박지훈</td><td class="text-secondary">중3</td><td><span class="badge badge-neutral">완납</span></td></tr>
+                <tr><td class="text-left">최수아</td><td class="text-secondary">고2</td><td><span class="badge badge-neutral">완납</span></td></tr>
+                <tr><td class="text-left">정도윤</td><td class="text-secondary">중1</td><td><span class="badge badge-warning">부분납</span></td></tr>
+                <tr><td class="text-left">한예린</td><td class="text-secondary">고3</td><td><span class="badge badge-neutral">완납</span></td></tr>
+                <tr><td class="text-left">오준서</td><td class="text-secondary">중2</td><td><span class="badge badge-neutral">완납</span></td></tr>
+                <tr><td class="text-left">윤채원</td><td class="text-secondary">고1</td><td><span class="badge badge-warning">미납</span></td></tr>
+                <tr><td class="text-left">임현우</td><td class="text-secondary">중3</td><td><span class="badge badge-neutral">완납</span></td></tr>
+                <tr><td class="text-left">강다은</td><td class="text-secondary">고2</td><td><span class="badge badge-neutral">완납</span></td></tr>
+                <tr><td class="text-left">신태양</td><td class="text-secondary">중1</td><td><span class="badge badge-warning">미납</span></td></tr>
+                <tr><td class="text-left">백소율</td><td class="text-secondary">고3</td><td><span class="badge badge-neutral">완납</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 가로 스크롤 -->
+      <div class="card section">
+        <div class="card-header"><div class="card-title">가로 스크롤</div></div>
+        <div class="card-body">
+          <div id="hScrollDemo" style="overflow:hidden;">
+            <table style="min-width:860px;">
+              <thead>
+                <tr style="border-top:var(--border-default);">
+                  <th>번호</th>
+                  <th class="text-left">이름</th>
+                  <th>학년</th>
+                  <th class="text-left">담당 강사</th>
+                  <th class="text-left">수강 과목</th>
+                  <th>출석률</th>
+                  <th>이번달 수강료</th>
+                  <th>납부 상태</th>
+                  <th>등록일</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-secondary">001</td>
+                  <td class="text-left">김민준</td>
+                  <td class="text-secondary">중2</td>
+                  <td class="text-left">박지연</td>
+                  <td class="text-left">수학 · 과학</td>
+                  <td>93.2%</td>
+                  <td>₩320,000</td>
+                  <td><span class="badge badge-neutral">완납</span></td>
+                  <td class="text-secondary">2024.03.04</td>
+                </tr>
+                <tr>
+                  <td class="text-secondary">002</td>
+                  <td class="text-left">이서연</td>
+                  <td class="text-secondary">고1</td>
+                  <td class="text-left">이준혁</td>
+                  <td class="text-left">영어 · 수학</td>
+                  <td>88.5%</td>
+                  <td>₩280,000</td>
+                  <td><span class="badge badge-warning">미납</span></td>
+                  <td class="text-secondary">2024.01.15</td>
+                </tr>
+                <tr>
+                  <td class="text-secondary">003</td>
+                  <td class="text-left">박지훈</td>
+                  <td class="text-secondary">중3</td>
+                  <td class="text-left">김소현</td>
+                  <td class="text-left">국어 · 사회</td>
+                  <td>97.0%</td>
+                  <td>₩260,000</td>
+                  <td><span class="badge badge-neutral">완납</span></td>
+                  <td class="text-secondary">2023.09.01</td>
+                </tr>
+                <tr>
+                  <td class="text-secondary">004</td>
+                  <td class="text-left">최수아</td>
+                  <td class="text-secondary">고2</td>
+                  <td class="text-left">박지연</td>
+                  <td class="text-left">수학 · 영어 · 과학</td>
+                  <td>85.0%</td>
+                  <td>₩420,000</td>
+                  <td><span class="badge badge-warning">부분납</span></td>
+                  <td class="text-secondary">2024.02.20</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </main>
 </div>
 
@@ -1207,6 +1315,12 @@ closeModal('myModal');
     onReady: function(_, __, fp) { initFlatpickrSelects(fp); },
     onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
   });
+
+  /* 스크롤 데모 */
+  var _OS = OverlayScrollbarsGlobal.OverlayScrollbars;
+  var _osOpts = { scrollbars: { theme: 'os-theme-canb', autoHide: 'never' } };
+  _OS(document.getElementById('vScrollDemo'), _osOpts);
+  _OS(document.getElementById('hScrollDemo'), _osOpts);
 </script>
 </body>
 </html>

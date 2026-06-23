@@ -46,6 +46,7 @@
   --color-primary-a15: rgba(188,33,109,0.15);
   --color-primary-a25: rgba(188,33,109,0.25);
   --color-primary-a30: rgba(188,33,109,0.30);
+  --color-primary-a40: rgba(188,33,109,0.40);
   --color-primary-a50: rgba(188,33,109,0.50);
 
   /* ── Chart — 라이트 모드: 밝은 기저색(hsl 330°,65%,51%) 투명도 단계 ─ */
@@ -131,6 +132,7 @@
   --color-primary-a15: rgba(188,33,109,0.15);
   --color-primary-a25: rgba(188,33,109,0.25);
   --color-primary-a30: rgba(188,33,109,0.30);
+  --color-primary-a40: rgba(188,33,109,0.40);
   --color-primary-a50: rgba(188,33,109,0.50);
 
   /* Semantic lights */
