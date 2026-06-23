@@ -933,7 +933,7 @@ tbody td.td-fixed { border-right: var(--border-default); }
   .page-content { padding: var(--space-3) var(--space-3); }
 
   /* iOS Safari 폼 필드 탭 시 자동 줌 방지 (font-size 16px 미만이면 줌됨) */
-  .form-input, .form-select, .form-textarea, .search-box input { font-size: 16px; }
+  .form-input, .form-select, .form-textarea, .search-box input, .cs-trigger { font-size: 16px; }
 
   /* 모바일 패딩 추가 축소 */
   .modal-body { padding: var(--space-4) var(--space-4); }
