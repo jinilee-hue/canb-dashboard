@@ -895,6 +895,8 @@ tbody td.td-fixed { border-right: var(--border-default); }
   [data-layout="top"] .topnav { overflow-x: auto; justify-content: flex-start; }
 }
 @media (max-width: 768px) {
+  .page-header { flex-direction: column; gap: var(--space-3); }
+
   .kpi-grid { grid-template-columns: 1fr 1fr; }
   .page-content { padding: var(--space-4) var(--space-4); }
   .topbar { padding: 0 var(--space-4); }
