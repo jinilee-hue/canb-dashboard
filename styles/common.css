@@ -933,10 +933,6 @@ tbody td.td-fixed { border-right: var(--border-default); }
   .kpi-grid { grid-template-columns: 1fr; }
   .page-content { padding: var(--space-3) var(--space-3); }
 
-  /* 폰 사이즈에서 탭바 숨김 */
-  .tab-bar { display: none; }
-  .page-content { padding-bottom: var(--space-3); }
-
   /* iOS Safari 폼 필드 탭 시 자동 줌 방지 (font-size 16px 미만이면 줌됨) */
   .form-input, .form-select, .form-textarea, .search-box input { font-size: 16px; }
 
@@ -1415,3 +1411,9 @@ tbody td.td-fixed { border-right: var(--border-default); }
 .page-content { padding-bottom: calc(44px + var(--space-6)); }
 
 [data-layout="top"] .tab-bar { left: 0; }
+
+/* 탭바는 base style(.tab-bar{display:flex}) 이후에 선언해야 override 가능 */
+@media (max-width: 480px) {
+  .tab-bar { display: none; }
+  .page-content { padding-bottom: var(--space-3); }
+}
