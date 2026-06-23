@@ -153,7 +153,7 @@ function initLayout(currentHref) {
         el.addEventListener('click', _closeSidebar);
       });
       window.addEventListener('resize', function () {
-        if (window.innerWidth > 768) _closeSidebar();
+        if (window.innerWidth > 640) _closeSidebar();
       });
     }
   }
