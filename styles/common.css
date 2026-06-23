@@ -889,6 +889,10 @@ tbody td.td-fixed { border-right: var(--border-default); }
 @media (max-width: 1024px) {
   .chart-grid-2, .chart-grid-3 { grid-template-columns: 1fr; }
   .form-grid-2, .form-grid-3 { grid-template-columns: 1fr; }
+
+  /* top 레이아웃: 브랜드·액션 고정, 네비 영역 가로 스크롤 */
+  [data-layout="top"] .topnav-bar { grid-template-columns: auto 1fr auto; padding: 0 var(--space-5); }
+  [data-layout="top"] .topnav { overflow-x: auto; justify-content: flex-start; }
 }
 @media (max-width: 768px) {
   .hamburger-btn { display: flex; }
@@ -907,6 +911,15 @@ tbody td.td-fixed { border-right: var(--border-default); }
   .kpi-grid { grid-template-columns: 1fr 1fr; }
   .page-content { padding: var(--space-4) var(--space-4); }
   .topbar { padding: 0 var(--space-4); }
+
+  /* top 레이아웃 모바일 패딩 축소 */
+  [data-layout="top"] .topnav-bar { padding: 0 var(--space-4); }
+  [data-layout="top"] .topbar { padding: 0 var(--space-4); height: 32px; }
+  [data-layout="top"] .page-content { padding-left: var(--space-4); padding-right: var(--space-4); }
+
+  /* 모바일 하단 탭바 숨김 */
+  .tab-bar { display: none; }
+  .page-content { padding-bottom: var(--space-6); }
 
   /* 필터바 세로 정렬 */
   .filter-bar { flex-direction: column; align-items: stretch; gap: var(--space-2); }
