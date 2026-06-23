@@ -936,6 +936,11 @@ tbody td.td-fixed { border-right: var(--border-default); }
 
   /* 탭바 left 0 (사이드바가 드로어 모드이므로 full width) */
   .tab-bar { left: 0; }
+
+  /* top 레이아웃도 모바일에서 햄버거 드로어로 전환 */
+  [data-layout="top"] .topnav-bar { display: none; }
+  [data-layout="top"] .sidebar { display: block; }
+  [data-layout="top"] .topbar { height: 56px; padding: 0 var(--space-4); background: var(--color-bg); border-bottom: var(--border-default); }
 }
 @media (max-width: 480px) {
   .kpi-grid { grid-template-columns: 1fr; }
