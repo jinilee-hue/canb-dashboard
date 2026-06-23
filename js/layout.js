@@ -124,6 +124,37 @@ function initLayout(currentHref) {
           if (firstChild && firstChild.href) window.location.href = firstChild.href;
         });
       });
+
+      /* ── 모바일 햄버거 + 오버레이 드로어 ── */
+      var _overlay = document.createElement('div');
+      _overlay.className = 'sidebar-overlay';
+      document.body.appendChild(_overlay);
+
+      var _hamburger = document.createElement('button');
+      _hamburger.className = 'hamburger-btn';
+      _hamburger.type = 'button';
+      _hamburger.setAttribute('aria-label', '메뉴');
+      _hamburger.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+      var _topbarLeft = document.querySelector('.topbar-left');
+      if (_topbarLeft) _topbarLeft.insertBefore(_hamburger, _topbarLeft.firstChild);
+
+      function _closeSidebar() {
+        sideEl.classList.remove('is-open');
+        _overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      _hamburger.addEventListener('click', function () {
+        var open = sideEl.classList.toggle('is-open');
+        _overlay.classList.toggle('active', open);
+        document.body.style.overflow = open ? 'hidden' : '';
+      });
+      _overlay.addEventListener('click', _closeSidebar);
+      sideEl.querySelectorAll('.nav-item, .nav-item-child').forEach(function (el) {
+        el.addEventListener('click', _closeSidebar);
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) _closeSidebar();
+      });
     }
   }
 
