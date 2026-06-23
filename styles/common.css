@@ -917,9 +917,8 @@ tbody td.td-fixed { border-right: var(--border-default); }
   [data-layout="top"] .topbar { padding: 0 var(--space-4); height: 32px; }
   [data-layout="top"] .page-content { padding-left: var(--space-4); padding-right: var(--space-4); }
 
-  /* 모바일 하단 탭바 숨김 */
-  .tab-bar { display: none; }
-  .page-content { padding-bottom: var(--space-6); }
+  /* 탭바 left 0 (사이드바가 드로어 모드이므로 full width) */
+  .tab-bar { left: 0; }
 
   /* 필터바 세로 정렬 */
   .filter-bar { flex-direction: column; align-items: stretch; gap: var(--space-2); }
@@ -933,6 +932,10 @@ tbody td.td-fixed { border-right: var(--border-default); }
 @media (max-width: 480px) {
   .kpi-grid { grid-template-columns: 1fr; }
   .page-content { padding: var(--space-3) var(--space-3); }
+
+  /* 폰 사이즈에서 탭바 숨김 */
+  .tab-bar { display: none; }
+  .page-content { padding-bottom: var(--space-3); }
 
   /* iOS Safari 폼 필드 탭 시 자동 줌 방지 (font-size 16px 미만이면 줌됨) */
   .form-input, .form-select, .form-textarea, .search-box input { font-size: 16px; }
