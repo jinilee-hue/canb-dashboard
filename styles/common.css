@@ -902,6 +902,7 @@ tbody td.td-fixed { border-right: var(--border-default); }
   [data-layout="top"] .topnav-bar-actions #layout-toggle,
   [data-layout="top"] .topnav-bar-actions #theme-toggle { display: none; }
   [data-layout="top"] .breadcrumb { display: none; }
+  [data-layout="top"] .topbar { display: none; }
   [data-layout="top"] .topnav-dropdown.dd-open { display: flex; flex-direction: row; flex-wrap: wrap; border-radius: 0; }
   [data-layout="top"] .topnav-dropdown.dd-open .topnav-dropdown-item { flex: 0 0 auto; padding: var(--space-3) var(--space-4); }
   /* 터치 hover 고착 방지: JS 클래스로만 트리거 활성화 표시 */
@@ -1181,7 +1182,7 @@ tbody td.td-fixed { border-right: var(--border-default); }
 [data-layout="top"] .topnav-bar            { border-bottom: none; }
 [data-layout="top"] .topnav-item,
 [data-layout="top"] .topnav-group-trigger  { margin-bottom: 0; }
-[data-layout="top"] .topbar                { display: none; }
+[data-layout="top"] .topbar                { background: var(--color-bg-subtle); height: 36px; padding: 0 var(--space-10); border-bottom: none; }
 [data-layout="top"] .breadcrumb-current    { font-size: var(--text-xs); font-weight: var(--weight-medium); }
 [data-layout="top"] .breadcrumb-ancestor   { font-size: var(--text-xs); }
 [data-layout="top"] .topbar-title          { font-size: var(--text-xs); font-weight: var(--weight-medium); }
