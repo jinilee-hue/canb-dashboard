@@ -24,9 +24,9 @@
   --color-success:        #BC216D;   /* Brand — 완료·활성·정상 */
   --color-success-light:  #FAEAF3;   /* Brand 틴트 배경 */
   --color-warning:        #D97706;
-  --color-warning-light:  #FFFBEB;
+  --color-warning-light:  rgba(217,119,6,0.10);
   --color-danger:         #DC2626;
-  --color-danger-light:   #FEF2F2;
+  --color-danger-light:   rgba(220,38,38,0.10);
   --color-info:           #BC216D;
   --color-info-light:     #FAEAF3;
 
