@@ -407,7 +407,7 @@
 
         <p style="font-size:11px;font-weight:700;color:var(--color-text-tertiary);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:14px;margin-top:32px;">그룹 헤더 · colspan</p>
         <div class="table-wrapper">
-          <table>
+          <table class="table-group">
             <thead style="border-top: var(--border-default);">
               <!-- 1행: 그룹 헤더 -->
               <tr>
@@ -415,58 +415,58 @@
                 <th class="th-fixed" rowspan="2">권역</th>
                 <th class="th-fixed" rowspan="2">캠퍼스명</th>
                 <th class="th-group" colspan="4">전년</th>
-                <th class="th-group" colspan="4">금년</th>
+                <th class="th-group th-group-alt" colspan="4">금년</th>
                 <th class="th-group" colspan="2">전년→금년 월별</th>
                 <th class="th-group" colspan="2">전월 연간</th>
-                <th class="th-group" colspan="2">당월 연간</th>
+                <th class="th-group th-group-alt" colspan="2">당월 연간</th>
               </tr>
               <!-- 2행: 세부 헤더 -->
               <tr>
                 <th class="th-sub">전월</th><th class="th-sub">당월</th><th class="th-sub">월별 증감<br><span style="font-size:10px;opacity:0.7;">(B-A)</span></th><th class="th-sub">월별 증감율<br><span style="font-size:10px;opacity:0.7;">(B/A)</span></th>
-                <th class="th-sub">전월</th><th class="th-sub">당월</th><th class="th-sub">월별 증감<br><span style="font-size:10px;opacity:0.7;">(F-E)</span></th><th class="th-sub">월별 증감율<br><span style="font-size:10px;opacity:0.7;">(F/E)</span></th>
+                <th class="th-sub th-sub-alt">전월</th><th class="th-sub th-sub-alt">당월</th><th class="th-sub th-sub-alt">월별 증감<br><span style="font-size:10px;opacity:0.7;">(F-E)</span></th><th class="th-sub th-sub-alt">월별 증감율<br><span style="font-size:10px;opacity:0.7;">(F/E)</span></th>
                 <th class="th-sub">증감 차<br><span style="font-size:10px;opacity:0.7;">(G-C)</span></th><th class="th-sub">증감율 차<br><span style="font-size:10px;opacity:0.7;">(H-D)</span></th>
                 <th class="th-sub">증감<br><span style="font-size:10px;opacity:0.7;">(E-A)</span></th><th class="th-sub">증감율<br><span style="font-size:10px;opacity:0.7;">(E/A)</span></th>
-                <th class="th-sub">증감<br><span style="font-size:10px;opacity:0.7;">(F-B)</span></th><th class="th-sub">증감율<br><span style="font-size:10px;opacity:0.7;">(F/B)</span></th>
+                <th class="th-sub th-sub-alt">증감<br><span style="font-size:10px;opacity:0.7;">(F-B)</span></th><th class="th-sub th-sub-alt">증감율<br><span style="font-size:10px;opacity:0.7;">(F/B)</span></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td class="td-fixed">직영</td><td class="td-fixed">서울권</td><td class="td-fixed text-left">대치캐녹서울</td>
-                <td>186</td><td>182</td><td class="num-negative">-4</td><td class="num-negative">-2.20%</td>
-                <td>137</td><td>128</td><td class="num-negative">-9</td><td class="num-negative">-6.60%</td>
-                <td class="num-negative">-5</td><td class="num-negative">-4.4%p</td>
-                <td class="num-negative">-49</td><td class="num-negative">-26.30%</td>
-                <td class="num-negative">-54</td><td class="num-negative">-29.70%</td>
+                <td>186</td><td>182</td><td class="num-negative">4</td><td class="num-negative">2.20%</td>
+                <td>137</td><td>128</td><td class="num-negative">9</td><td class="num-negative">6.60%</td>
+                <td class="num-negative">5</td><td class="num-negative">4.4%p</td>
+                <td class="num-negative">49</td><td class="num-negative">26.30%</td>
+                <td class="num-negative">54</td><td class="num-negative">29.70%</td>
               </tr>
               <tr>
                 <td class="td-fixed">직영</td><td class="td-fixed">서울권</td><td class="td-fixed text-left">목동</td>
                 <td>962</td><td>967</td><td class="num-positive">5</td><td class="num-positive">0.50%</td>
-                <td>878</td><td>873</td><td class="num-negative">-5</td><td class="num-negative">-0.60%</td>
-                <td class="num-negative">-10</td><td class="num-negative">-1.1%p</td>
-                <td class="num-negative">-84</td><td class="num-negative">-8.70%</td>
-                <td class="num-negative">-94</td><td class="num-negative">-9.70%</td>
+                <td>878</td><td>873</td><td class="num-negative">5</td><td class="num-negative">0.60%</td>
+                <td class="num-negative">10</td><td class="num-negative">1.1%p</td>
+                <td class="num-negative">84</td><td class="num-negative">8.70%</td>
+                <td class="num-negative">94</td><td class="num-negative">9.70%</td>
               </tr>
               <tr>
                 <td class="td-fixed">직영</td><td class="td-fixed">서울권</td><td class="td-fixed text-left">목동캐녹</td>
-                <td>360</td><td>356</td><td class="num-negative">-4</td><td class="num-negative">-1.10%</td>
-                <td>345</td><td>335</td><td class="num-negative">-10</td><td class="num-negative">-2.90%</td>
-                <td class="num-negative">-6</td><td class="num-negative">-1.8%p</td>
-                <td class="num-negative">-15</td><td class="num-negative">-4.20%</td>
-                <td class="num-negative">-21</td><td class="num-negative">-5.90%</td>
+                <td>360</td><td>356</td><td class="num-negative">4</td><td class="num-negative">1.10%</td>
+                <td>345</td><td>335</td><td class="num-negative">10</td><td class="num-negative">2.90%</td>
+                <td class="num-negative">6</td><td class="num-negative">1.8%p</td>
+                <td class="num-negative">15</td><td class="num-negative">4.20%</td>
+                <td class="num-negative">21</td><td class="num-negative">5.90%</td>
               </tr>
               <tr>
                 <td class="td-fixed">직영</td><td class="td-fixed">서울권</td><td class="td-fixed text-left" style="color:var(--color-primary);">목동엠캐녹</td>
-                <td>440</td><td>435</td><td class="num-negative">-5</td><td class="num-negative">-1.10%</td>
-                <td>438</td><td>423</td><td class="num-negative">-15</td><td class="num-negative">-3.40%</td>
-                <td class="num-negative">-10</td><td class="num-negative">-2.3%p</td>
-                <td class="num-negative">-2</td><td class="num-negative">-0.50%</td>
-                <td class="num-negative">-12</td><td class="num-negative">-2.80%</td>
+                <td>440</td><td>435</td><td class="num-negative">5</td><td class="num-negative">1.10%</td>
+                <td>438</td><td>423</td><td class="num-negative">15</td><td class="num-negative">3.40%</td>
+                <td class="num-negative">10</td><td class="num-negative">2.3%p</td>
+                <td class="num-negative">2</td><td class="num-negative">0.50%</td>
+                <td class="num-negative">12</td><td class="num-negative">2.80%</td>
               </tr>
               <tr>
                 <td class="td-fixed">직영</td><td class="td-fixed">서울권</td><td class="td-fixed text-left">엠아이엘</td>
                 <td>153</td><td>162</td><td class="num-positive">9</td><td class="num-positive">5.90%</td>
-                <td>194</td><td>190</td><td class="num-negative">-4</td><td class="num-negative">-2.10%</td>
-                <td class="num-negative">-13</td><td class="num-negative">-8%p</td>
+                <td>194</td><td>190</td><td class="num-negative">4</td><td class="num-negative">2.10%</td>
+                <td class="num-negative">13</td><td class="num-negative">8%p</td>
                 <td class="num-positive">41</td><td class="num-positive">26.80%</td>
                 <td class="num-positive">28</td><td class="num-positive">17.30%</td>
               </tr>
@@ -1006,7 +1006,7 @@ closeModal('myModal');
         <div class="card-header"><div class="card-title">가로 스크롤</div></div>
         <div class="card-body">
           <div id="hScrollDemo" style="overflow:hidden;">
-            <table style="min-width:860px;">
+            <table style="min-width:1200px;">
               <thead>
                 <tr style="border-top:var(--border-default);">
                   <th>번호</th>
@@ -1071,6 +1071,84 @@ closeModal('myModal');
         </div>
       </div>
 
+    </div>
+
+    <!-- ── 페이징 ─────────────────────────────── -->
+    <div class="card section" style="margin-top:32px;">
+      <div class="card-header"><div class="card-title">페이징</div></div>
+      <div class="card-body">
+
+        <p style="font-size:11px;font-weight:700;color:var(--color-text-tertiary);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:14px;">기본형</p>
+        <div style="margin-bottom:32px;">
+          <div class="pagination">
+            <button class="pg-btn" aria-label="이전 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="pg-btn">1</button>
+            <button class="pg-btn">2</button>
+            <button class="pg-btn active">3</button>
+            <button class="pg-btn">4</button>
+            <button class="pg-btn">5</button>
+            <button class="pg-btn" aria-label="다음 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;color:var(--color-text-tertiary);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:14px;">많은 페이지 · Ellipsis</p>
+        <div style="margin-bottom:32px;">
+          <div class="pagination">
+            <button class="pg-btn" aria-label="이전 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="pg-btn">1</button>
+            <button class="pg-btn">2</button>
+            <button class="pg-btn active">3</button>
+            <button class="pg-btn">4</button>
+            <button class="pg-btn">5</button>
+            <span class="pg-ellipsis">···</span>
+            <button class="pg-btn">24</button>
+            <button class="pg-btn" aria-label="다음 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;color:var(--color-text-tertiary);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:14px;">끝 페이지 · 다음 비활성</p>
+        <div style="margin-bottom:32px;">
+          <div class="pagination">
+            <button class="pg-btn" aria-label="이전 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <span class="pg-ellipsis">···</span>
+            <button class="pg-btn">21</button>
+            <button class="pg-btn">22</button>
+            <button class="pg-btn">23</button>
+            <button class="pg-btn active">24</button>
+            <button class="pg-btn" disabled aria-label="다음 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <p style="font-size:11px;font-weight:700;color:var(--color-text-tertiary);letter-spacing:0.6px;text-transform:uppercase;margin-bottom:14px;">인터랙티브</p>
+        <div style="margin-bottom:0;">
+          <div class="pagination" id="pg-demo" onclick="pgSetPage(event)">
+            <button class="pg-btn" data-pg="prev" aria-label="이전 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <button class="pg-btn" data-pg="1">1</button>
+            <button class="pg-btn active" data-pg="2">2</button>
+            <button class="pg-btn" data-pg="3">3</button>
+            <button class="pg-btn" data-pg="4">4</button>
+            <button class="pg-btn" data-pg="5">5</button>
+            <button class="pg-btn" data-pg="next" aria-label="다음 페이지">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
   </main>
@@ -1315,6 +1393,22 @@ closeModal('myModal');
     onReady: function(_, __, fp) { initFlatpickrSelects(fp); },
     onMonthChange: function(_, __, fp) { syncFlatpickrMonthLabel(fp); },
   });
+
+  /* 페이징 인터랙티브 */
+  function pgSetPage(e) {
+    var btn = e.target.closest('[data-pg]');
+    if (!btn || btn.disabled) return;
+    var pg = btn.dataset.pg;
+    var container = document.getElementById('pg-demo');
+    var numBtns = Array.from(container.querySelectorAll('[data-pg]')).filter(function(b) { return !isNaN(b.dataset.pg); });
+    var cur = numBtns.findIndex(function(b) { return b.classList.contains('active'); });
+    if (pg === 'prev') cur = Math.max(0, cur - 1);
+    else if (pg === 'next') cur = Math.min(numBtns.length - 1, cur + 1);
+    else cur = numBtns.findIndex(function(b) { return b.dataset.pg === pg; });
+    numBtns.forEach(function(b, i) { b.classList.toggle('active', i === cur); });
+    container.querySelector('[data-pg="prev"]').disabled = cur === 0;
+    container.querySelector('[data-pg="next"]').disabled = cur === numBtns.length - 1;
+  }
 
   /* 스크롤 데모 */
   var _OS = OverlayScrollbarsGlobal.OverlayScrollbars;

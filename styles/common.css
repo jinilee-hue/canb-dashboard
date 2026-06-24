@@ -845,10 +845,35 @@ thead th.th-group { border-right: var(--border-default); border-bottom: var(--bo
 thead th.th-group:last-child { border-right: none; }
 thead th.th-sub { border-right: var(--border-default); }
 thead th.th-sub:last-child { border-right: none; }
+thead th.th-group-alt { background: #f1f3f5; }
+thead th.th-sub-alt { background: #f1f3f5; }
 thead th.th-fixed { border-right: var(--border-default); vertical-align: middle; }
 tbody td.td-fixed { border-right: var(--border-default); }
+.table-group { border-left: var(--border-default); border-right: var(--border-default); }
+.table-group tbody td { border-right: var(--border-default); }
+.table-group tbody td:last-child { border-right: none; }
 .num-positive { color: var(--color-primary); }
+.num-positive::after {
+  content: ''; display: inline-block; width: 0.75em; height: 0.75em;
+  vertical-align: middle; margin-left: 3px; position: relative; top: -1px;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11'%3E%3Cpath d='M5,0 L10,5.5 L7.5,5.5 L7.5,11 L2.5,11 L2.5,5.5 L0,5.5 Z' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11'%3E%3Cpath d='M5,0 L10,5.5 L7.5,5.5 L7.5,11 L2.5,11 L2.5,5.5 L0,5.5 Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
 .num-negative { color: var(--color-danger); }
+.num-negative::after {
+  content: ''; display: inline-block; width: 0.75em; height: 0.75em;
+  vertical-align: middle; margin-left: 3px; position: relative; top: -1px;
+  background-color: currentColor;
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11'%3E%3Cpath d='M5,11 L10,5.5 L7.5,5.5 L7.5,0 L2.5,0 L2.5,5.5 L0,5.5 Z' fill='black'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 11'%3E%3Cpath d='M5,11 L10,5.5 L7.5,5.5 L7.5,0 L2.5,0 L2.5,5.5 L0,5.5 Z' fill='black'/%3E%3C/svg%3E");
+  -webkit-mask-size: contain; mask-size: contain;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+}
 
 .table-vertical { width: 100%; border-collapse: collapse; }
 .table-vertical tr { border-bottom: var(--border-default); }
@@ -864,6 +889,22 @@ tbody td.td-fixed { border-right: var(--border-default); }
 /* ─── PROGRESS BAR ────────────────────────────── */
 .progress-track { width: 100%; height: 8px; background: var(--color-bg-muted); border-radius: var(--radius-full); overflow: hidden; }
 .progress-fill { height: 100%; border-radius: var(--radius-full); transition: width 0.4s ease; }
+
+/* ─── PAGINATION ──────────────────────────────── */
+.pagination { display: flex; align-items: center; gap: 4px; }
+.pg-btn {
+  display: flex; align-items: center; justify-content: center;
+  min-width: 32px; height: 32px; padding: 0 6px;
+  border: var(--border-default); border-radius: var(--radius-md);
+  background: var(--color-bg); color: var(--color-text-secondary);
+  font-size: var(--text-sm); cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+.pg-btn:hover:not(:disabled) { border-color: var(--color-primary); color: var(--color-primary); }
+.pg-btn.active { background: var(--color-primary); border-color: var(--color-primary); color: #fff; font-weight: var(--weight-medium); }
+.pg-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.pg-ellipsis { min-width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--color-text-tertiary); font-size: var(--text-sm); }
 
 /* ─── RESPONSIVE ──────────────────────────────── */
 
