@@ -1323,6 +1323,7 @@ tbody td.td-fixed { border-right: var(--border-default); }
   border-bottom: 2px solid transparent;
   cursor: pointer;
   transition: color 0.12s, background 0.12s;
+  margin-bottom: -1px;
   font-family: inherit;
 }
 .topnav-group-trigger:hover { color: var(--color-primary); }
